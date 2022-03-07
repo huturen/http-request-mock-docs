@@ -5,7 +5,7 @@ module.exports = config({
   title: "http-request-mock",
   description: "http-request-mock: A new way to speed up your development and testing.",
 
-  base: '/http-request-mock-homepage/',
+  base: '/http-request-mock-docs/',
   dest: "./docs",
 
   head: [
