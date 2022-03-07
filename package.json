@@ -1,0 +1,20 @@
+{
+  "name": "http-request-mock-homepage",
+  "version": "1.0.0",
+  "description": "http-request-mock homepage",
+  "license": "MIT",
+  "scripts": {
+    "build": "vuepress build src",
+    "clean-dev": "vuepress dev src --no-cache",
+    "dev": "http-request-mock-cli -e none -d src/mock -w \"vuepress dev src\"",
+    "eject-theme": "vuepress eject-hope src"
+  },
+  "devDependencies": {
+    "vuepress": "^1.8.2",
+    "vuepress-theme-hope": "^1.20.2"
+  },
+  "dependencies": {
+    "axios": "^0.21.3",
+    "http-request-mock": "^1.6.4"
+  }
+}

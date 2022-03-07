@@ -1,0 +1,21 @@
+button {
+  display: inline-block;
+  padding: 5px;
+  border: 1px solid #000;
+  background: #eee;
+  border-radius: 2px;
+}
+.result {
+  border: 1px dashed red;
+  margin-top: 5px;
+  padding: 5px;
+  font-size: 12px;
+  border-radius: 0;
+}
+pre.result {
+  background: #eee;
+}
+
+.tips {
+  font-size: 12px;
+}

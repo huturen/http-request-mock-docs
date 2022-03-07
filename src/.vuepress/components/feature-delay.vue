@@ -1,0 +1,26 @@
+<template>
+  <div class="demo">
+    <button @click="get">GET https://www.api.com/delay</button>
+    <div class="result"> {{ msg }} </div>
+    <div class="tips">Hit F12 to access Developer Tools and view the console logs.</div>
+  </div>
+</template>
+
+<script>
+import axios from 'axios';
+export default {
+  data() {
+    return { msg: '' }
+  },
+  methods: {
+    get() {
+      this.msg = 'loading...';
+      const now = Date.now();
+      axios.get('https://www.api.com/delay').then(res => {
+        this.msg = 'spent: ' + (Date.now() - now);
+      });
+    },
+  }
+}
+</script>
+<style scoped src="./demo.css">
