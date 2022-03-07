@@ -30,4 +30,4 @@ For a `mocha` example, please refer to [experiment/mocha.js](https://github.com/
 
 ## Design
 
-![unit-test](/http-request-mock-homepage/imgs/unittest.png)
+![unit-test](/http-request-mock-docs/imgs/unittest.png)

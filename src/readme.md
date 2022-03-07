@@ -74,7 +74,7 @@ Intercept and mock http requests issued by XMLHttpRequest, fetch, nodejs native 
 :::
 
 ::: center
-![Design](/http-request-mock-homepage/imgs/layers-design.png)
+![Design](/http-request-mock-docs/imgs/layers-design.png)
 :::
 
 

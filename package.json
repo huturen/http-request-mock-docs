@@ -1,7 +1,7 @@
 {
-  "name": "http-request-mock-homepage",
+  "name": "http-request-mock-docs",
   "version": "1.0.0",
-  "description": "http-request-mock homepage",
+  "description": "http-request-mock docs",
   "license": "MIT",
   "scripts": {
     "build": "vuepress build src",
@@ -15,6 +15,6 @@
   },
   "dependencies": {
     "axios": "^0.21.3",
-    "http-request-mock": "^1.6.4"
+    "http-request-mock": "^1.6.5"
   }
 }

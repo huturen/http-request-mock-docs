@@ -19,7 +19,7 @@ based on the above requests can also be supported, such as:
 
 `axios`, `jquery`, `superagent`, `ky`, `node-fetch`, `got`, `request` ...
 
-![layers-design](/http-request-mock-homepage/imgs/layers-design.png)
+![layers-design](/http-request-mock-docs/imgs/layers-design.png)
 
 It differs from the other mocking libraries in that it provides a webpack plugin and command line tool
 to separate mock data from your business code. It's a truly non-hacking mocking library. You never have

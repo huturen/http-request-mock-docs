@@ -11,7 +11,8 @@ separated from the entry to reduce the burden of managing mock
 configuration entry file.
 
 
-![unit-test](/http-request-mock-homepage/imgs/development.png)
+
+![unit-test](/http-request-mock-docs/imgs/development.png)
 
 ## Integration By Webpack plugin
 

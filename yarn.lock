@@ -5714,10 +5714,10 @@ http-proxy@^1.17.0, http-proxy@^1.18.1:
     follow-redirects "^1.0.0"
     requires-port "^1.0.0"
 
-http-request-mock@^1.6.4:
-  version "1.6.4"
-  resolved "https://registry.npmjs.org/http-request-mock/-/http-request-mock-1.6.4.tgz#ac235e64bd2430e68ab4d37f5a80075bcd619d78"
-  integrity sha512-rwlnfdNmu0+lbQYzMEYfGWysldXKz4K2wEI05+HumS9c9AvMrip41yRuaUn4GtUKUnTSVmmU97lDSNaNu7kLdQ==
+http-request-mock@^1.6.5:
+  version "1.6.5"
+  resolved "https://registry.npmjs.org/http-request-mock/-/http-request-mock-1.6.5.tgz#5e27b0bc776830830032a7d4ee56c027516daa8d"
+  integrity sha512-uEsiFkFzjeFKic1De0UNk3AD0a6B9BRNZ+GjxYWI9B/8uFsf75h6GDfTrcTFTs9sg7UigjBwH0jkTH1nPc1X8A==
   dependencies:
     chance "^1.1.8"
     chokidar "^3.5.2"
