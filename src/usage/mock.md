@@ -43,7 +43,7 @@ You can define your mock data file like below:
  */
 // Response body to be mocked.
 // It supports to export an object, function, async function, sting or any other types.
-// If a function was specified, the function accepts an argument with request information.
+// If a function is specified, the function accepts an argument with request information.
 module.exports = (requestInfo) => {
   return 'Your response data';
 };
