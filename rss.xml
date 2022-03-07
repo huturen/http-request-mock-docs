@@ -6,8 +6,8 @@
     <link>https://huturen.github.io/http-request-mock-docs/</link>
     <description>http-request-mock: A new way to speed up your development and testing.</description>
     <language>en-US</language>
-    <pubDate>Mon, 07 Mar 2022 18:07:03 GMT</pubDate>
-    <lastBuildDate>Mon, 07 Mar 2022 18:07:03 GMT</lastBuildDate>
+    <pubDate>Mon, 07 Mar 2022 18:14:57 GMT</pubDate>
+    <lastBuildDate>Mon, 07 Mar 2022 18:14:57 GMT</lastBuildDate>
     <generator>@mr-hope/vuepress-plugin-feed</generator>
     <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
     <item>
@@ -1181,7 +1181,7 @@ into the specified entry which may look like below:</li>
  */</span>
 <span>// Response body to be mocked.</span>
 <span>// It supports to export an object, function, async function, sting or any other types.</span>
-<span>// If a function was specified, the function accepts an argument with request information.</span>
+<span>// If a function is specified, the function accepts an argument with request information.</span>
 module<span>.</span><span>exports</span> <span>=</span> <span>(</span><span>requestInfo</span><span>)</span> <span>=></span> <span>{</span>
   <span>return</span> <span>'Your response data'</span><span>;</span>
 <span>}</span><span>;</span>

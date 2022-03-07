@@ -3,7 +3,7 @@
   <id>https://huturen.github.io/http-request-mock-docs/</id>
   <title>http-request-mock</title>
   <subtitle>http-request-mock: A new way to speed up your development and testing.</subtitle>
-  <updated>2022-03-07T18:07:03.032Z</updated>
+  <updated>2022-03-07T18:14:57.017Z</updated>
   <generator>@mr-hope/vuepress-plugin-feed</generator>
   <link rel="self" href="https://huturen.github.io/http-request-mock-docs/atom.xml"/>
   <link rel="alternate" href="https://huturen.github.io/http-request-mock-docs/"/>
@@ -1197,7 +1197,7 @@ into the specified entry which may look like below:</li>
     <title type="html">Mock data file</title>
     <id>https://huturen.github.io/http-request-mock-docs/usage/mock/</id>
     <link href="https://huturen.github.io/http-request-mock-docs/usage/mock/"/>
-    <updated>2022-03-07T16:55:10.000Z</updated>
+    <updated>2022-03-07T18:13:43.000Z</updated>
     <content type="html"><![CDATA[<p>You can define your mock data file like below:</p>
 <div><pre><code><span>/**
  * Note: Only the first comments block will be parsed.
@@ -1236,7 +1236,7 @@ into the specified entry which may look like below:</li>
  */</span>
 <span>// Response body to be mocked.</span>
 <span>// It supports to export an object, function, async function, sting or any other types.</span>
-<span>// If a function was specified, the function accepts an argument with request information.</span>
+<span>// If a function is specified, the function accepts an argument with request information.</span>
 module<span>.</span><span>exports</span> <span>=</span> <span>(</span><span>requestInfo</span><span>)</span> <span>=></span> <span>{</span>
   <span>return</span> <span>'Your response data'</span><span>;</span>
 <span>}</span><span>;</span>
