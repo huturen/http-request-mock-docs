@@ -6,8 +6,8 @@
     <link>https://huturen.github.io/http-request-mock-docs/</link>
     <description>http-request-mock: A new way to speed up your development and testing.</description>
     <language>en-US</language>
-    <pubDate>Mon, 07 Mar 2022 17:14:39 GMT</pubDate>
-    <lastBuildDate>Mon, 07 Mar 2022 17:14:39 GMT</lastBuildDate>
+    <pubDate>Mon, 07 Mar 2022 17:45:26 GMT</pubDate>
+    <lastBuildDate>Mon, 07 Mar 2022 17:45:26 GMT</lastBuildDate>
     <generator>@mr-hope/vuepress-plugin-feed</generator>
     <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
     <item>
@@ -518,17 +518,17 @@ module<span>.</span>exports <span>=</span> <span>'response headers mocking'</spa
 <p>By default, in a non-nodejs-enviroment, <code>http-request-mock</code> will print some necessary
 logs if a request is matched with a mock config item. The logs contain request information
 , response information and the matched mock item.</p>
-<p><img src="/http-request-mock-homepage/imgs/logs.png" alt="logs" /></p>
+<p><img src="/http-request-mock-docs/imgs/logs.png" alt="logs" /></p>
 <h2 id="editable"> Editable</h2>
 <p>You can even edit the mock config dynamically with this logs.</p>
-<p><img src="/http-request-mock-homepage/imgs/debug-logs.gif" alt="logs" /></p>
+<p><img src="/http-request-mock-docs/imgs/debug-logs.gif" alt="logs" /></p>
 <h2 id="disable"> Disable</h2>
 <p>The logs feature can be disabled.</p>
 <div><pre><code><span>import</span> HttpRequetMock <span>from</span> <span>'http-request-mock'</span><span>;</span>
 HttpRequetMock<span>.</span><span>disableLog</span><span>(</span><span>)</span><span>;</span>
 </code></pre>
 </div>]]></content:encoded>
-      <enclosure url="https://huturen.github.io/http-request-mock-docs/http-request-mock-homepage/imgs/logs.png" type="image/png"/>
+      <enclosure url="https://huturen.github.io/http-request-mock-docs/http-request-mock-docs/imgs/logs.png" type="image/png"/>
     </item>
     <item>
       <title>Probobuf</title>
@@ -676,17 +676,17 @@ module<span>.</span><span>exports</span> <span>=</span> <span>(</span><span>requ
       <source url="https://huturen.github.io/http-request-mock-docs/rss.xml">Features</source>
       <pubDate>Mon, 07 Mar 2022 16:55:10 GMT</pubDate>
       <content:encoded><![CDATA[<ul>
-<li><a href="/http-request-mock-homepage/feature/static">Static response</a></li>
-<li><a href="/http-request-mock-homepage/feature/dynamic">Dynamic response</a></li>
-<li><a href="/http-request-mock-homepage/feature/status">HTTP status</a></li>
-<li><a href="/http-request-mock-homepage/feature/headers">Response headers</a></li>
-<li><a href="/http-request-mock-homepage/feature/delay">Delaying response</a></li>
-<li><a href="/http-request-mock-homepage/feature/times">Limited number</a></li>
-<li><a href="/http-request-mock-homepage/feature/disable">Disable mocking</a></li>
-<li><a href="/http-request-mock-homepage/feature/bypass">Bypass mocking</a></li>
-<li><a href="/http-request-mock-homepage/feature/faker">Fake data</a></li>
-<li><a href="/http-request-mock-homepage/feature/cross">Cross domain</a></li>
-<li><a href="/http-request-mock-homepage/feature/logs">Logs</a></li>
+<li><a href="/http-request-mock-docs/feature/static">Static response</a></li>
+<li><a href="/http-request-mock-docs/feature/dynamic">Dynamic response</a></li>
+<li><a href="/http-request-mock-docs/feature/status">HTTP status</a></li>
+<li><a href="/http-request-mock-docs/feature/headers">Response headers</a></li>
+<li><a href="/http-request-mock-docs/feature/delay">Delaying response</a></li>
+<li><a href="/http-request-mock-docs/feature/times">Limited number</a></li>
+<li><a href="/http-request-mock-docs/feature/disable">Disable mocking</a></li>
+<li><a href="/http-request-mock-docs/feature/bypass">Bypass mocking</a></li>
+<li><a href="/http-request-mock-docs/feature/faker">Fake data</a></li>
+<li><a href="/http-request-mock-docs/feature/cross">Cross domain</a></li>
+<li><a href="/http-request-mock-docs/feature/logs">Logs</a></li>
 </ul>
 ]]></content:encoded>
     </item>
@@ -901,12 +901,12 @@ requests in low level.</p>
 <p>Because of the low-level interception, any 3th-party request libraries that
 based on the above requests can also be supported, such as:</p>
 <p><code>axios</code>, <code>jquery</code>, <code>superagent</code>, <code>ky</code>, <code>node-fetch</code>, <code>got</code>, <code>request</code> ...</p>
-<p><img src="/http-request-mock-homepage/imgs/layers-design.png" alt="layers-design" /></p>
+<p><img src="/http-request-mock-docs/imgs/layers-design.png" alt="layers-design" /></p>
 <p>It differs from the other mocking libraries in that it provides a webpack plugin and command line tool
 to separate mock data from your business code. It's a truly non-hacking mocking library. You never have
 to hack into your business code to mock something ever again after a one-time configuration.</p>
 ]]></content:encoded>
-      <enclosure url="https://huturen.github.io/http-request-mock-docs/http-request-mock-homepage/imgs/layers-design.png" type="image/png"/>
+      <enclosure url="https://huturen.github.io/http-request-mock-docs/http-request-mock-docs/imgs/layers-design.png" type="image/png"/>
     </item>
     <item>
       <title>Project home</title>
@@ -940,11 +940,11 @@ module<span>.</span><span>exports</span> <span>=</span> <span>(</span><span>req<
 <p>Intercept and mock http requests issued by XMLHttpRequest, fetch, nodejs native https/http module, wx.request, axios, jquery, superagent, ky, node-fetch, request, got or any other request libraries by intercepting XMLHttpRequest, fetch and nodejs native requests in low level.</p>
 </div>
 <div>
-<p><img src="/http-request-mock-homepage/imgs/layers-design.png" alt="Design" /></p>
+<p><img src="/http-request-mock-docs/imgs/layers-design.png" alt="Design" /></p>
 </div>
 <p><em>Note: The demos in this site do not compatible with IE11 and below.</em></p>
 ]]></content:encoded>
-      <enclosure url="https://huturen.github.io/http-request-mock-docs/http-request-mock-homepage/imgs/layers-design.png" type="image/png"/>
+      <enclosure url="https://huturen.github.io/http-request-mock-docs/http-request-mock-docs/imgs/layers-design.png" type="image/png"/>
     </item>
     <item>
       <title>Bare-bones</title>
@@ -1046,7 +1046,7 @@ Options:
 tool to integrate your project. In this way, the mock data file can be
 separated from the entry to reduce the burden of managing mock
 configuration entry file.</p>
-<p><img src="/http-request-mock-homepage/imgs/development.png" alt="unit-test" /></p>
+<p><img src="/http-request-mock-docs/imgs/development.png" alt="unit-test" /></p>
 <h2 id="integration-by-webpack-plugin"> Integration By Webpack plugin</h2>
 <p>You can set it up by the steps below:</p>
 <ol>
@@ -1135,7 +1135,7 @@ into the specified entry which may look like below:</li>
 <p>If <code>-e --enviroment</code> is not specified, mock function will be enabled by <code>NODE_ENV=development</code>.</p>
 <p>Or, you can specify another enviroment variable, such as: <code>-e MOCK=yes</code>.</p>
 ]]></content:encoded>
-      <enclosure url="https://huturen.github.io/http-request-mock-docs/http-request-mock-homepage/imgs/development.png" type="image/png"/>
+      <enclosure url="https://huturen.github.io/http-request-mock-docs/http-request-mock-docs/imgs/development.png" type="image/png"/>
     </item>
     <item>
       <title>Mock data file</title>
@@ -1196,13 +1196,13 @@ module<span>.</span><span>exports</span> <span>=</span> <span>(</span><span>requ
       <source url="https://huturen.github.io/http-request-mock-docs/rss.xml">Usage</source>
       <pubDate>Mon, 07 Mar 2022 16:55:10 GMT</pubDate>
       <content:encoded><![CDATA[<ul>
-<li><a href="/http-request-mock-homepage/usage/start">Start</a></li>
-<li><a href="/http-request-mock-homepage/usage/minimum">Bare-bones</a></li>
-<li><a href="/http-request-mock-homepage/usage/cli">CLI</a></li>
-<li><a href="/http-request-mock-homepage/usage/webpack">Webpack</a></li>
-<li><a href="/http-request-mock-homepage/usage/interceptor">Interceptor</a></li>
-<li><a href="/http-request-mock-homepage/usage/test">Unit test</a></li>
-<li><a href="/http-request-mock-homepage/usage/mock">Mock data file</a></li>
+<li><a href="/http-request-mock-docs/usage/start">Start</a></li>
+<li><a href="/http-request-mock-docs/usage/minimum">Bare-bones</a></li>
+<li><a href="/http-request-mock-docs/usage/cli">CLI</a></li>
+<li><a href="/http-request-mock-docs/usage/webpack">Webpack</a></li>
+<li><a href="/http-request-mock-docs/usage/interceptor">Interceptor</a></li>
+<li><a href="/http-request-mock-docs/usage/test">Unit test</a></li>
+<li><a href="/http-request-mock-docs/usage/mock">Mock data file</a></li>
 </ul>
 ]]></content:encoded>
     </item>
@@ -1259,9 +1259,9 @@ mocker<span>.</span><span>get</span><span>(</span><span>'https://your.api.com/pa
 </code></pre>
 </div><p>For a <code>mocha</code> example, please refer to <a href="https://github.com/huturen/http-request-mock/blob/main/experiment/mocha.js" target="_blank" rel="noopener noreferrer">experiment/mocha.js</a>.</p>
 <h2 id="design"> Design</h2>
-<p><img src="/http-request-mock-homepage/imgs/unittest.png" alt="unit-test" /></p>
+<p><img src="/http-request-mock-docs/imgs/unittest.png" alt="unit-test" /></p>
 ]]></content:encoded>
-      <enclosure url="https://huturen.github.io/http-request-mock-docs/http-request-mock-homepage/imgs/unittest.png" type="image/png"/>
+      <enclosure url="https://huturen.github.io/http-request-mock-docs/http-request-mock-docs/imgs/unittest.png" type="image/png"/>
     </item>
   </channel>
 </rss>
