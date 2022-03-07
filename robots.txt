@@ -1,0 +1,5 @@
+
+User-agent:*
+Disallow:
+
+Sitemap: https://huturen.github.io/http-request-mock-docs/sitemap.xml
