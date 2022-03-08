@@ -6,8 +6,8 @@
     <link>https://huturen.github.io/http-request-mock-docs/</link>
     <description>http-request-mock: A new way to speed up your development and testing.</description>
     <language>en-US</language>
-    <pubDate>Mon, 07 Mar 2022 18:14:57 GMT</pubDate>
-    <lastBuildDate>Mon, 07 Mar 2022 18:14:57 GMT</lastBuildDate>
+    <pubDate>Tue, 08 Mar 2022 03:02:44 GMT</pubDate>
+    <lastBuildDate>Tue, 08 Mar 2022 03:02:44 GMT</lastBuildDate>
     <generator>@mr-hope/vuepress-plugin-feed</generator>
     <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
     <item>
@@ -310,9 +310,9 @@ module<span>.</span>exports <span>=</span> <span>{</span>
 <div><pre><code><span><span><span>&lt;</span>template</span><span>></span></span>
   <span><span><span>&lt;</span>div</span> <span>class</span><span><span>=</span><span>"</span>demo<span>"</span></span><span>></span></span>
     <span><span><span>&lt;</span>button</span> <span>@click</span><span><span>=</span><span>"</span>get<span>"</span></span><span>></span></span>GET https://jsonplaceholder.typicode.com/albums/1<span><span><span>&lt;/</span>button</span><span>></span></span>
-    <span><span><span>&lt;</span>span</span><span>></span></span>Disabled: <span><span><span>&lt;</span>b</span><span>></span></span>{{ mockItem.disable }}<span><span><span>&lt;/</span>b</span><span>></span></span><span><span><span>&lt;/</span>span</span><span>></span></span>
+    <span><span><span>&lt;</span>span</span><span>></span></span>Status: <span><span><span>&lt;</span>b</span><span>></span></span>{{ mockItem.disable === 'YES' ? 'Disabled' : 'Enabled' }}<span><span><span>&lt;/</span>b</span><span>></span></span><span><span><span>&lt;/</span>span</span><span>></span></span>
     <span><span><span>&lt;</span>button</span> <span>@click</span><span><span>=</span><span>"</span>toggle<span>"</span></span><span>></span></span>
-      {{ mockItem.disable === 'no' ? 'Disable' : 'Enable' }} it
+      {{ mockItem.disable === 'NO' ? 'Disable' : 'Enable' }} it
     <span><span><span>&lt;/</span>button</span><span>></span></span>
     <span><span><span>&lt;</span>div</span> <span>class</span><span><span>=</span><span>"</span>result<span>"</span></span><span>></span></span> {{ msg }} <span><span><span>&lt;/</span>div</span><span>></span></span>
     <span><span><span>&lt;</span>div</span> <span>class</span><span><span>=</span><span>"</span>tips<span>"</span></span><span>></span></span>Hit F12 to access Developer Tools and view the console logs.<span><span><span>&lt;/</span>div</span><span>></span></span>
@@ -687,6 +687,7 @@ module<span>.</span><span>exports</span> <span>=</span> <span>(</span><span>requ
 <li><a href="/http-request-mock-docs/feature/faker">Fake data</a></li>
 <li><a href="/http-request-mock-docs/feature/cross">Cross domain</a></li>
 <li><a href="/http-request-mock-docs/feature/logs">Logs</a></li>
+<li><a href="/http-request-mock-docs/feature/proto">Proto</a></li>
 </ul>
 ]]></content:encoded>
     </item>
@@ -1055,7 +1056,7 @@ configuration entry file.</p>
 </ol>
 <div><pre><code><span>const</span> path <span>=</span> <span>require</span><span>(</span><span>'path'</span><span>)</span><span>;</span>
 <span>// The webpack plugin will parse mock files under the mock directory and generate a mock</span>
-<span>// configuration entry file named ` runtimejs`, then inject it into the your application entry file.</span>
+<span>// configuration entry file named `.runtime.js`, then inject it into the your application entry file.</span>
 <span>const</span> HttpRequestMockWebpackPlugin <span>=</span> <span>require</span><span>(</span><span>'http-request-mock/plugin/webpack.js'</span><span>)</span><span>;</span>
 module<span>.</span>exports <span>=</span> <span>{</span>
   <span>// ...</span>
