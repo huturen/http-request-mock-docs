@@ -1,9 +1,9 @@
 <template>
   <div class="demo">
     <button @click="get">GET https://jsonplaceholder.typicode.com/albums/1</button>
-    <span>Disabled: <b>{{ mockItem.disable }}</b></span>
+    <span>Status: <b>{{ mockItem.disable === 'YES' ? 'Disabled' : 'Enabled' }}</b></span>
     <button @click="toggle">
-      {{ mockItem.disable === 'no' ? 'Disable' : 'Enable' }} it
+      {{ mockItem.disable === 'NO' ? 'Disable' : 'Enable' }} it
     </button>
     <div class="result"> {{ msg }} </div>
     <div class="tips">Hit F12 to access Developer Tools and view the console logs.</div>

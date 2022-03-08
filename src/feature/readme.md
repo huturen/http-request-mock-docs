@@ -15,3 +15,4 @@ title: Features
 - [Fake data](/http-request-mock-docs/feature/faker)
 - [Cross domain](/http-request-mock-docs/feature/cross)
 - [Logs](/http-request-mock-docs/feature/logs)
+- [Proto](/http-request-mock-docs/feature/proto)
