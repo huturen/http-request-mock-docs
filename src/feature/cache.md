@@ -1,5 +1,5 @@
 ---
-icon: emmet
+icon: cache
 title: Cache
 ---
 
