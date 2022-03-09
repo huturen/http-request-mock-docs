@@ -72,7 +72,8 @@ module.exports = config({
           collapsable: false,
           children: [
             "", "static", "dynamic", "status", "headers", "delay",
-            "times", "disable", "bypass", "faker", "cross", "logs", "proto"
+            "times", "disable", "bypass", "faker", "cross", "logs",
+            "proto", "cache",
           ],
         },
         "examples",

@@ -15,6 +15,10 @@ mocker.mock({
   "body": require('./bypass1.js'),
 });
 mocker.mock({
+  "url": "https://some.api.com/todo",
+  "body": require('./cache.js'),
+});
+mocker.mock({
   "url": "https://www.api.com/delay",
   "method": "GET",
   "body": require('./delay.js'),

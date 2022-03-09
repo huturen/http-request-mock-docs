@@ -16,3 +16,4 @@ title: Features
 - [Cross domain](/http-request-mock-docs/feature/cross)
 - [Logs](/http-request-mock-docs/feature/logs)
 - [Proto](/http-request-mock-docs/feature/proto)
+- [Cache](/http-request-mock-docs/feature/cache)
