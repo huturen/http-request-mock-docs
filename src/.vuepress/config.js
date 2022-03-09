@@ -1,3 +1,4 @@
+require('localstorage-polyfill');
 const { config } = require("vuepress-theme-hope");
 const path = require('path');
 

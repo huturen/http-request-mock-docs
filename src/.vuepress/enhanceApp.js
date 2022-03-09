@@ -1,6 +1,7 @@
 /* eslint-disable */
 import '../mock/.runtime.js';
 /* eslint-enable */
+
 /**
  * Client app enhancement file.
  *
