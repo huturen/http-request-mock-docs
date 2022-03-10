@@ -17,12 +17,3 @@ export default ({
   // ...apply enhancements for the site.
 }
 
-setTimeout(() => {
-  try {
-    // avoid 'Rendering static HTML' error
-    const url = window.location.href.replace(/#.*/g, '');
-    if (!/\?\d+$/.test(url)) {
-      window.location.replace(url.replace(/\?.*/g, '') + '?' + Date.now());
-    }
-  } catch(e) {}
-});
