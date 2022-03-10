@@ -3,7 +3,7 @@
   <id>https://huturen.github.io/http-request-mock-docs/</id>
   <title>http-request-mock</title>
   <subtitle>http-request-mock: A new way to speed up your development and testing.</subtitle>
-  <updated>2022-03-10T03:32:40.003Z</updated>
+  <updated>2022-03-10T03:38:56.209Z</updated>
   <generator>@mr-hope/vuepress-plugin-feed</generator>
   <link rel="self" href="https://huturen.github.io/http-request-mock-docs/atom.xml"/>
   <link rel="alternate" href="https://huturen.github.io/http-request-mock-docs/"/>
@@ -206,7 +206,7 @@ module<span>.</span><span>exports</span> <span>=</span> <span>function</span><sp
 <span>const</span> data <span>=</span> <span>[</span><span>...</span><span>Array</span><span>(</span><span>5</span><span>)</span><span>]</span><span>.</span><span>map</span><span>(</span><span>(</span><span>)</span> <span>=></span> <span>(</span><span>{</span>
   <span>id</span><span>:</span> faker<span>.</span><span>incrementId</span><span>(</span><span>1</span><span>,</span> <span>'todos'</span><span>)</span><span>,</span>
   <span>todo</span><span>:</span> faker<span>.</span><span>sentence</span><span>(</span><span>5</span><span>)</span><span>,</span>
-  <span>done</span><span>:</span> <span>!</span><span>!</span>faker<span>.</span><span>rand</span><span>(</span><span>0</span><span>,</span> <span>1</span><span>)</span><span>,</span>
+  <span>done</span><span>:</span> <span>true</span><span>,</span>
 <span>}</span><span>)</span><span>)</span><span>;</span>
 
 <span>// The [data] will be memoried by localStorage.</span>
