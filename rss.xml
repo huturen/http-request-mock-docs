@@ -6,8 +6,8 @@
     <link>https://huturen.github.io/http-request-mock-docs/</link>
     <description>http-request-mock: A new way to speed up your development and testing.</description>
     <language>en-US</language>
-    <pubDate>Tue, 08 Mar 2022 03:02:44 GMT</pubDate>
-    <lastBuildDate>Tue, 08 Mar 2022 03:02:44 GMT</lastBuildDate>
+    <pubDate>Thu, 10 Mar 2022 03:32:40 GMT</pubDate>
+    <lastBuildDate>Thu, 10 Mar 2022 03:32:40 GMT</lastBuildDate>
     <generator>@mr-hope/vuepress-plugin-feed</generator>
     <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
     <item>
@@ -46,7 +46,7 @@
 <h3 id="mock-mockitem-mockiteminfo"> mock(mockItem: MockItemInfo)</h3>
 <p>Check specified mock item &amp; add it to global mock data configuration.</p>
 <div><pre><code><span>interface</span> <span>MockItemInfo</span> <span>{</span>
-  url<span>:</span> RegExp <span>|</span> string<span>;</span>
+  <span>url</span><span>:</span> RegExp <span>|</span> string<span>;</span>
   method<span>?</span><span>:</span> Method<span>;</span> <span>// GET, POST, PUT, PATCH, DELETE or HEAD</span>
   header<span>?</span><span>:</span> Header<span>,</span> <span>// response header</span>
   delay<span>?</span><span>:</span> number<span>;</span>
@@ -164,9 +164,9 @@ module<span>.</span><span>exports</span> <span>=</span> <span>function</span><sp
 <span>import</span> axios <span>from</span> <span>'axios'</span><span>;</span>
 <span>export</span> <span>default</span> <span>{</span>
   <span>data</span><span>(</span><span>)</span> <span>{</span>
-    <span>return</span> <span>{</span> msg<span>:</span> <span>{</span><span>0</span><span>:</span> <span>''</span><span>,</span> <span>1</span><span>:</span> <span>''</span><span>}</span> <span>}</span>
+    <span>return</span> <span>{</span> <span>msg</span><span>:</span> <span>{</span><span>0</span><span>:</span> <span>''</span><span>,</span> <span>1</span><span>:</span> <span>''</span><span>}</span> <span>}</span>
   <span>}</span><span>,</span>
-  methods<span>:</span> <span>{</span>
+  <span>methods</span><span>:</span> <span>{</span>
     <span>getResult</span><span>(</span><span>p</span><span>)</span> <span>{</span>
       axios<span>.</span><span>get</span><span>(</span><span>'https://jsonplaceholder.typicode.com/photos/1?p='</span><span>+</span>p<span>)</span><span>.</span><span>then</span><span>(</span><span>res</span> <span>=></span> <span>{</span>
         <span>this</span><span>.</span>msg<span>[</span>p<span>]</span> <span>=</span> res<span>.</span>data<span>;</span>
@@ -181,6 +181,125 @@ module<span>.</span><span>exports</span> <span>=</span> <span>function</span><sp
 </code></pre>
 </div><hr>
 ]]></content:encoded>
+    </item>
+    <item>
+      <title>Cache</title>
+      <link>https://huturen.github.io/http-request-mock-docs/feature/cache/</link>
+      <guid>https://huturen.github.io/http-request-mock-docs/feature/cache/</guid>
+      <source url="https://huturen.github.io/http-request-mock-docs/rss.xml">Cache</source>
+      <pubDate>Wed, 09 Mar 2022 15:21:54 GMT</pubDate>
+      <content:encoded><![CDATA[<p><code>http-request-mock</code> supports the cache of data changes.</p>
+<feature-cache />
+<hr>
+<h2 id="mock-data-file"> Mock data file</h2>
+<div><pre><code><span>/**
+ * @url https://some.api.com/todo
+ */</span>
+<span>const</span> faker <span>=</span> <span>require</span><span>(</span><span>'http-request-mock/plugin/faker'</span><span>)</span><span>;</span>
+<span>const</span> cache <span>=</span> <span>require</span><span>(</span><span>'http-request-mock/plugin/cache'</span><span>)</span><span>;</span>
+
+<span>const</span> data <span>=</span> <span>[</span><span>...</span><span>Array</span><span>(</span><span>5</span><span>)</span><span>]</span><span>.</span><span>map</span><span>(</span><span>(</span><span>)</span> <span>=></span> <span>(</span><span>{</span>
+  <span>id</span><span>:</span> faker<span>.</span><span>incrementId</span><span>(</span><span>1</span><span>,</span> <span>'todos'</span><span>)</span><span>,</span>
+  <span>todo</span><span>:</span> faker<span>.</span><span>sentence</span><span>(</span><span>5</span><span>)</span><span>,</span>
+  <span>done</span><span>:</span> <span>!</span><span>!</span>faker<span>.</span><span>rand</span><span>(</span><span>0</span><span>,</span> <span>1</span><span>)</span><span>,</span>
+<span>}</span><span>)</span><span>)</span><span>;</span>
+
+<span>// The [data] will be memoried by localStorage.</span>
+<span>// You can check it by localStorage.getItem('mock-todos').</span>
+<span>const</span> todos <span>=</span> <span>cache</span><span>(</span><span>'mock-todos'</span><span>,</span> data<span>)</span><span>;</span>
+
+module<span>.</span><span>exports</span> <span>=</span> <span>(</span><span>request</span><span>)</span> <span>=></span> <span>{</span>
+  <span>if</span> <span>(</span>request<span>.</span>query<span>.</span>action <span>===</span> <span>'add'</span><span>)</span> <span>{</span>
+    <span>return</span> <span>add</span><span>(</span>request<span>.</span>query<span>)</span><span>;</span>
+  <span>}</span>
+  <span>if</span> <span>(</span>request<span>.</span>query<span>.</span>action <span>===</span> <span>'del'</span><span>)</span> <span>{</span>
+    <span>return</span> <span>del</span><span>(</span>request<span>.</span>query<span>)</span><span>;</span>
+  <span>}</span>
+  <span>return</span> todos<span>;</span>
+<span>}</span><span>;</span>
+
+<span>function</span> <span>add</span><span>(</span><span>query</span><span>)</span> <span>{</span>
+  todos<span>.</span><span>push</span><span>(</span><span>{</span>
+    <span>id</span><span>:</span> <span>(</span><span>(</span>todos<span>[</span>todos<span>.</span>length<span>-</span><span>1</span><span>]</span> <span>||</span> <span>{</span><span>}</span><span>)</span><span>.</span>id <span>||</span> <span>0</span><span>)</span> <span>+</span> <span>1</span><span>,</span>
+    <span>todo</span><span>:</span> query<span>.</span>todo<span>,</span>
+    <span>done</span><span>:</span> <span>false</span>
+  <span>}</span><span>)</span><span>;</span>
+  <span>return</span> <span>{</span> <span>code</span><span>:</span> <span>0</span><span>,</span> <span>msg</span><span>:</span> <span>'ok'</span> <span>}</span><span>;</span>
+<span>}</span>
+
+<span>function</span> <span>del</span><span>(</span><span>query</span><span>)</span> <span>{</span>
+  <span>const</span> index <span>=</span> todos<span>.</span><span>findIndex</span><span>(</span><span>todo</span> <span>=></span> todo<span>.</span>id <span>===</span> <span>+</span>query<span>.</span>id<span>)</span><span>;</span>
+  todos<span>.</span><span>splice</span><span>(</span>index<span>,</span> <span>1</span><span>)</span><span>;</span>
+  <span>return</span> <span>{</span> <span>code</span><span>:</span> <span>0</span><span>,</span> <span>msg</span><span>:</span> <span>'ok'</span> <span>}</span><span>;</span>
+<span>}</span>
+</code></pre>
+</div><h2 id="vue-code"> Vue code</h2>
+<div><pre><code><span><span><span>&lt;</span>template</span><span>></span></span>
+  <span><span><span>&lt;</span>div</span> <span>class</span><span><span>=</span><span>"</span>demo<span>"</span></span><span>></span></span>
+    <span><span><span>&lt;</span>div</span><span>></span></span>
+      Todo: <span><span><span>&lt;</span>input</span> <span>v-model.trim</span><span><span>=</span><span>"</span>todo<span>"</span></span> <span>type</span><span><span>=</span><span>"</span>text<span>"</span></span> <span>maxlength</span><span><span>=</span><span>"</span>30<span>"</span></span> <span>size</span><span><span>=</span><span>"</span>30<span>"</span></span> <span>/></span></span>
+      <span><span><span>&lt;</span>button</span> <span>@click</span><span><span>=</span><span>"</span>add<span>"</span></span><span>></span></span>Add<span><span><span>&lt;/</span>button</span><span>></span></span>
+    <span><span><span>&lt;/</span>div</span><span>></span></span>
+
+    <span><span><span>&lt;</span>table</span><span>></span></span>
+      <span><span><span>&lt;</span>tr</span><span>></span></span><span><span><span>&lt;</span>th</span><span>></span></span>ID<span><span><span>&lt;/</span>th</span><span>></span></span><span><span><span>&lt;</span>th</span><span>></span></span>Todo<span><span><span>&lt;/</span>th</span><span>></span></span><span><span><span>&lt;</span>th</span><span>></span></span>Status<span><span><span>&lt;/</span>th</span><span>></span></span><span><span><span>&lt;</span>th</span><span>></span></span>Delete<span><span><span>&lt;/</span>th</span><span>></span></span><span><span><span>&lt;/</span>tr</span><span>></span></span>
+      <span><span><span>&lt;</span>tr</span> <span>v-for</span><span><span>=</span><span>"</span>item in todos<span>"</span></span><span>></span></span>
+        <span><span><span>&lt;</span>td</span><span>></span></span>{{item.id}}<span><span><span>&lt;/</span>td</span><span>></span></span>
+        <span><span><span>&lt;</span>td</span><span>></span></span>{{item.todo}}<span><span><span>&lt;/</span>td</span><span>></span></span>
+        <span><span><span>&lt;</span>td</span><span>></span></span>{{item.done ? 'Completed' : 'Pending'}}<span><span><span>&lt;/</span>td</span><span>></span></span>
+        <span><span><span>&lt;</span>td</span><span>></span></span><span><span><span>&lt;</span>button</span> <span>@click</span><span><span>=</span><span>"</span>del(item.id)<span>"</span></span><span>></span></span>Delete<span><span><span>&lt;/</span>button</span><span>></span></span><span><span><span>&lt;/</span>td</span><span>></span></span>
+      <span><span><span>&lt;/</span>tr</span><span>></span></span>
+    <span><span><span>&lt;/</span>table</span><span>></span></span>
+    <span><span><span>&lt;</span>div</span> <span>class</span><span><span>=</span><span>"</span>tips<span>"</span></span><span>></span></span>Hit F12 to access Developer Tools and view the console logs.<span><span><span>&lt;/</span>div</span><span>></span></span>
+  <span><span><span>&lt;/</span>div</span><span>></span></span>
+<span><span><span>&lt;/</span>template</span><span>></span></span>
+
+<span><span><span>&lt;</span>script</span><span>></span></span><span><span>
+<span>import</span> axios <span>from</span> <span>'axios'</span><span>;</span>
+<span>export</span> <span>default</span> <span>{</span>
+  <span>data</span><span>(</span><span>)</span> <span>{</span>
+    <span>return</span> <span>{</span>
+      <span>todo</span><span>:</span> <span>''</span><span>,</span>
+      <span>todos</span><span>:</span> <span>[</span><span>]</span>
+    <span>}</span>
+  <span>}</span><span>,</span>
+  <span>mounted</span><span>(</span><span>)</span> <span>{</span>
+    <span>this</span><span>.</span><span>getList</span><span>(</span><span>)</span><span>;</span>
+  <span>}</span><span>,</span>
+  <span>methods</span><span>:</span> <span>{</span>
+    <span>getList</span><span>(</span><span>)</span> <span>{</span>
+      axios<span>.</span><span>get</span><span>(</span><span>'https://some.api.com/todo'</span><span>)</span><span>.</span><span>then</span><span>(</span><span>res</span> <span>=></span> <span>(</span><span>this</span><span>.</span>todos <span>=</span> res<span>.</span>data<span>)</span><span>)</span><span>;</span>
+    <span>}</span><span>,</span>
+
+    <span>async</span> <span>add</span><span>(</span><span>)</span> <span>{</span>
+      <span>if</span> <span>(</span><span>!</span><span>this</span><span>.</span>todo<span>)</span> <span>{</span>
+        <span>return</span> <span>alert</span><span>(</span><span>'please input a todo item.'</span><span>)</span><span>;</span>
+      <span>}</span>
+
+      <span>const</span> api <span>=</span> <span>'https://some.api.com/todo?action=add&amp;todo='</span><span>+</span><span>this</span><span>.</span>todo<span>;</span>
+
+      <span>await</span> axios<span>.</span><span>get</span><span>(</span>api<span>)</span><span>.</span><span>then</span><span>(</span><span>res</span> <span>=></span> <span>alert</span><span>(</span><span>'Result:'</span> <span>+</span> res<span>.</span>data<span>.</span>msg<span>)</span><span>)</span><span>;</span>
+      <span>this</span><span>.</span>todo <span>=</span> <span>''</span><span>;</span>
+      <span>this</span><span>.</span><span>getList</span><span>(</span><span>)</span><span>;</span>
+    <span>}</span><span>,</span>
+
+    <span>async</span> <span>del</span><span>(</span><span>id</span><span>)</span> <span>{</span>
+      <span>const</span> sure <span>=</span> window<span>.</span><span>confirm</span><span>(</span><span>'Are you sure?'</span><span>)</span><span>;</span>
+      <span>if</span> <span>(</span><span>!</span>sure<span>)</span> <span>return</span><span>;</span>
+
+      <span>const</span> api <span>=</span> <span>'https://some.api.com/todo?action=del&amp;id='</span><span>+</span>id<span>;</span>
+
+      <span>await</span> axios<span>.</span><span>get</span><span>(</span>api<span>)</span><span>.</span><span>then</span><span>(</span><span>res</span> <span>=></span> <span>alert</span><span>(</span><span>'Result:'</span> <span>+</span> res<span>.</span>data<span>.</span>msg<span>)</span><span>)</span><span>;</span>
+      <span>this</span><span>.</span><span>getList</span><span>(</span><span>)</span><span>;</span>
+    <span>}</span>
+  <span>}</span>
+<span>}</span>
+</span></span><span><span><span>&lt;/</span>script</span><span>></span></span>
+<span><span><span>&lt;</span>style</span> <span>scoped</span><span>></span></span><span><span>
+
+</span></span><span><span><span>&lt;/</span>style</span><span>></span></span>
+</code></pre>
+</div>]]></content:encoded>
     </item>
     <item>
       <title>Cross domain</title>
@@ -208,7 +327,7 @@ module<span>.</span><span>exports</span> <span>=</span> <span>function</span><sp
 <span>export</span> <span>default</span> <span>{</span>
   <span>data</span><span>(</span><span>)</span> <span>{</span>
     <span>return</span> <span>{</span>
-      urls<span>:</span> <span>[</span>
+      <span>urls</span><span>:</span> <span>[</span>
         <span>'https://www.api.com/cross'</span><span>,</span>
         <span>'https://some.api.com/cross'</span><span>,</span>
         <span>'http://some.abc.com:8899/cross'</span><span>,</span>
@@ -216,7 +335,7 @@ module<span>.</span><span>exports</span> <span>=</span> <span>function</span><sp
         <span>'https://www.example.com/cross'</span><span>,</span>
         <span>'http://other.domain.com/cross'</span><span>,</span>
       <span>]</span><span>,</span>
-      msg<span>:</span> <span>''</span><span>,</span>
+      <span>msg</span><span>:</span> <span>''</span><span>,</span>
     <span>}</span>
   <span>}</span><span>,</span>
   <span>mounted</span> <span>(</span><span>)</span> <span>{</span>
@@ -225,7 +344,7 @@ module<span>.</span><span>exports</span> <span>=</span> <span>function</span><sp
       mocker<span>.</span><span>get</span><span>(</span>url<span>,</span> <span><span>`</span><span>Requested </span><span><span>${</span>url<span>}</span></span><span> at: </span><span><span>${</span><span>new</span> <span>Date</span><span>(</span><span>)</span><span>.</span><span>toLocaleString</span><span>(</span><span>)</span><span>}</span></span><span>`</span></span><span>)</span><span>;</span>
     <span>}</span><span>)</span>
   <span>}</span><span>,</span>
-  methods<span>:</span> <span>{</span>
+  <span>methods</span><span>:</span> <span>{</span>
     <span>get</span><span>(</span>index<span>)</span> <span>{</span>
       axios<span>.</span><span>get</span><span>(</span><span>this</span><span>.</span>urls<span>[</span>index<span>]</span><span>)</span><span>.</span><span>then</span><span>(</span><span>res</span> <span>=></span> <span>{</span>
         <span>this</span><span>.</span>msg <span>=</span> res<span>.</span>data<span>;</span>
@@ -269,9 +388,9 @@ module<span>.</span>exports <span>=</span> <span>'delay mocking'</span><span>;</
 <span>import</span> axios <span>from</span> <span>'axios'</span><span>;</span>
 <span>export</span> <span>default</span> <span>{</span>
   <span>data</span><span>(</span><span>)</span> <span>{</span>
-    <span>return</span> <span>{</span> msg<span>:</span> <span>''</span> <span>}</span>
+    <span>return</span> <span>{</span> <span>msg</span><span>:</span> <span>''</span> <span>}</span>
   <span>}</span><span>,</span>
-  methods<span>:</span> <span>{</span>
+  <span>methods</span><span>:</span> <span>{</span>
     <span>get</span><span>(</span><span>)</span> <span>{</span>
       <span>this</span><span>.</span>msg <span>=</span> <span>'loading...'</span><span>;</span>
       <span>const</span> now <span>=</span> Date<span>.</span><span>now</span><span>(</span><span>)</span><span>;</span>
@@ -300,9 +419,9 @@ module<span>.</span>exports <span>=</span> <span>'delay mocking'</span><span>;</
  * @method get
  */</span>
 module<span>.</span>exports <span>=</span> <span>{</span>
-  userId<span>:</span> <span>1</span><span>,</span>
-  id<span>:</span> <span>1</span><span>,</span>
-  title<span>:</span> <span>'Mock Data'</span>
+  <span>userId</span><span>:</span> <span>1</span><span>,</span>
+  <span>id</span><span>:</span> <span>1</span><span>,</span>
+  <span>title</span><span>:</span> <span>'Mock Data'</span>
 <span>}</span>
 
 </code></pre>
@@ -324,13 +443,13 @@ module<span>.</span>exports <span>=</span> <span>{</span>
 <span>import</span> HttpRequestMock <span>from</span> <span>'http-request-mock'</span><span>;</span>
 <span>export</span> <span>default</span> <span>{</span>
   <span>data</span><span>(</span><span>)</span> <span>{</span>
-    <span>return</span> <span>{</span> msg<span>:</span> <span>''</span><span>,</span> mockItem<span>:</span> <span>{</span><span>}</span> <span>}</span>
+    <span>return</span> <span>{</span> <span>msg</span><span>:</span> <span>''</span><span>,</span> <span>mockItem</span><span>:</span> <span>{</span><span>}</span> <span>}</span>
   <span>}</span><span>,</span>
   <span>mounted</span> <span>(</span><span>)</span> <span>{</span>
     <span>const</span> mocker <span>=</span> HttpRequestMock<span>.</span><span>setup</span><span>(</span><span>)</span><span>;</span>
     <span>this</span><span>.</span>mockItem <span>=</span> mocker<span>.</span><span>matchMockItem</span><span>(</span><span>'https://jsonplaceholder.typicode.com/albums/1'</span><span>)</span><span>;</span>
   <span>}</span><span>,</span>
-  methods<span>:</span> <span>{</span>
+  <span>methods</span><span>:</span> <span>{</span>
     <span>get</span><span>(</span><span>)</span> <span>{</span>
       axios<span>.</span><span>get</span><span>(</span><span>'https://jsonplaceholder.typicode.com/albums/1'</span><span>)</span><span>.</span><span>then</span><span>(</span><span>res</span> <span>=></span> <span>{</span>
         <span>this</span><span>.</span>msg <span>=</span> res<span>.</span>data<span>;</span>
@@ -365,7 +484,7 @@ so as to simulate a complex business logic in the real world.</p>
 <span>let</span> times <span>=</span> <span>0</span><span>;</span>
 module<span>.</span><span>exports</span> <span>=</span> <span>(</span><span>requestInfo</span><span>)</span> <span>=></span> <span>{</span>
   <span>const</span> <span>{</span> url<span>,</span> query <span>}</span> <span>=</span> requestInfo<span>;</span>
-  <span>return</span> <span>{</span> times<span>:</span> <span>'times: '</span> <span>+</span> <span>(</span><span>++</span>times<span>)</span><span>,</span> url<span>,</span> query <span>}</span><span>;</span>
+  <span>return</span> <span>{</span> <span>times</span><span>:</span> <span>'times: '</span> <span>+</span> <span>(</span><span>++</span>times<span>)</span><span>,</span> url<span>,</span> query <span>}</span><span>;</span>
 <span>}</span><span>;</span>
 </code></pre>
 </div><hr>
@@ -382,9 +501,9 @@ module<span>.</span><span>exports</span> <span>=</span> <span>(</span><span>requ
 <span>import</span> axios <span>from</span> <span>'axios'</span><span>;</span>
 <span>export</span> <span>default</span> <span>{</span>
   <span>data</span><span>(</span><span>)</span> <span>{</span>
-    <span>return</span> <span>{</span> index<span>:</span> <span>0</span><span>,</span> msg<span>:</span> <span>''</span> <span>}</span>
+    <span>return</span> <span>{</span> <span>index</span><span>:</span> <span>0</span><span>,</span> <span>msg</span><span>:</span> <span>''</span> <span>}</span>
   <span>}</span><span>,</span>
-  methods<span>:</span> <span>{</span>
+  <span>methods</span><span>:</span> <span>{</span>
     <span>get</span><span>(</span><span>)</span> <span>{</span>
       axios<span>.</span><span>get</span><span>(</span><span>'https://www.api.com/dynamic-response?i='</span> <span>+</span> <span>(</span><span>++</span><span>this</span><span>.</span>index<span>)</span><span>)</span><span>.</span><span>then</span><span>(</span><span>res</span> <span>=></span> <span>{</span>
         <span>this</span><span>.</span>msg <span>=</span> res<span>.</span>data<span>;</span>
@@ -397,9 +516,9 @@ module<span>.</span><span>exports</span> <span>=</span> <span>(</span><span>requ
 </code></pre>
 </div><h2 id="request-information"> Request information</h2>
 <div><pre><code><span>export</span> <span>interface</span> <span>RequestInfo</span> <span>{</span>
-  url<span>:</span> string<span>;</span>
-  method<span>:</span> Method<span>;</span>
-  query<span>:</span> object<span>;</span> <span>// url search query</span>
+  <span>url</span><span>:</span> string<span>;</span>
+  <span>method</span><span>:</span> Method<span>;</span>
+  <span>query</span><span>:</span> object<span>;</span> <span>// url search query</span>
   headers<span>?</span><span>:</span> object<span>;</span> <span>// request header</span>
   body<span>?</span><span>:</span> any<span>;</span> <span>// post body</span>
 <span>}</span>
@@ -423,12 +542,12 @@ module<span>.</span><span>exports</span> <span>=</span> <span>(</span><span>requ
 <span>const</span> faker <span>=</span> <span>require</span><span>(</span><span>'http-request-mock/plugin/faker'</span><span>)</span><span>;</span>
 module<span>.</span><span>exports</span> <span>=</span> <span>function</span><span>(</span><span>)</span> <span>{</span>
   <span>return</span> <span>{</span>
-    id<span>:</span> faker<span>.</span><span>incrementId</span><span>(</span><span>)</span><span>,</span>
-    name<span>:</span> faker<span>.</span><span>name</span><span>(</span><span>)</span><span>,</span>
-    age<span>:</span> <span>10</span> <span>+</span> faker<span>.</span><span>rand</span><span>(</span><span>0</span><span>,</span> <span>90</span><span>)</span><span>,</span>
-    phone<span>:</span> faker<span>.</span><span>phone</span><span>(</span><span>'(###) ###-####'</span><span>)</span><span>,</span>
-    gender<span>:</span> faker<span>.</span>chance<span>.</span><span>gender</span><span>(</span><span>)</span><span>,</span>
-    avatar<span>:</span> faker<span>.</span><span>avatar</span><span>(</span><span>)</span><span>,</span>
+    <span>id</span><span>:</span> faker<span>.</span><span>incrementId</span><span>(</span><span>)</span><span>,</span>
+    <span>name</span><span>:</span> faker<span>.</span><span>name</span><span>(</span><span>)</span><span>,</span>
+    <span>age</span><span>:</span> <span>10</span> <span>+</span> faker<span>.</span><span>rand</span><span>(</span><span>0</span><span>,</span> <span>90</span><span>)</span><span>,</span>
+    <span>phone</span><span>:</span> faker<span>.</span><span>phone</span><span>(</span><span>'(###) ###-####'</span><span>)</span><span>,</span>
+    <span>gender</span><span>:</span> faker<span>.</span>chance<span>.</span><span>gender</span><span>(</span><span>)</span><span>,</span>
+    <span>avatar</span><span>:</span> faker<span>.</span><span>avatar</span><span>(</span><span>)</span><span>,</span>
   <span>}</span><span>;</span>
 <span>}</span><span>;</span>
 </code></pre>
@@ -446,9 +565,9 @@ module<span>.</span><span>exports</span> <span>=</span> <span>function</span><sp
 <span>import</span> axios <span>from</span> <span>'axios'</span><span>;</span>
 <span>export</span> <span>default</span> <span>{</span>
   <span>data</span><span>(</span><span>)</span> <span>{</span>
-    <span>return</span> <span>{</span> msg<span>:</span> <span>''</span> <span>}</span>
+    <span>return</span> <span>{</span> <span>msg</span><span>:</span> <span>''</span> <span>}</span>
   <span>}</span><span>,</span>
-  methods<span>:</span> <span>{</span>
+  <span>methods</span><span>:</span> <span>{</span>
     <span>get</span><span>(</span><span>)</span> <span>{</span>
       axios<span>.</span><span>get</span><span>(</span><span>'https://www.api.com/faker'</span><span>)</span><span>.</span><span>then</span><span>(</span><span>res</span> <span>=></span> <span>{</span>
         <span>this</span><span>.</span>msg <span>=</span> <span>JSON</span><span>.</span><span>stringify</span><span>(</span>res<span>.</span>data<span>,</span> <span>null</span><span>,</span> <span>4</span><span>)</span><span>;</span>
@@ -493,9 +612,9 @@ module<span>.</span>exports <span>=</span> <span>'response headers mocking'</spa
 <span>import</span> axios <span>from</span> <span>'axios'</span><span>;</span>
 <span>export</span> <span>default</span> <span>{</span>
   <span>data</span><span>(</span><span>)</span> <span>{</span>
-    <span>return</span> <span>{</span> msg<span>:</span> <span>''</span> <span>}</span>
+    <span>return</span> <span>{</span> <span>msg</span><span>:</span> <span>''</span> <span>}</span>
   <span>}</span><span>,</span>
-  methods<span>:</span> <span>{</span>
+  <span>methods</span><span>:</span> <span>{</span>
     <span>get</span><span>(</span><span>)</span> <span>{</span>
       axios<span>.</span><span>get</span><span>(</span><span>'https://www.api.com/headers'</span><span>)</span><span>.</span><span>then</span><span>(</span><span>res</span> <span>=></span> <span>{</span>
         <span>this</span><span>.</span>msg <span>=</span> <span>JSON</span><span>.</span><span>stringify</span><span>(</span>res<span>.</span>headers<span>)</span><span>;</span>
@@ -556,68 +675,68 @@ the second time, the relevant mock files will be generated.</p>
 <span>const</span> path <span>=</span> <span>require</span><span>(</span><span>'path'</span><span>)</span><span>;</span>
 
 module<span>.</span>exports <span>=</span> <span>{</span>
-  overwrite<span>:</span> <span>true</span><span>,</span>
+  <span>overwrite</span><span>:</span> <span>true</span><span>,</span>
 
-  apiPrefix<span>:</span> <span>''</span><span>,</span>
+  <span>apiPrefix</span><span>:</span> <span>''</span><span>,</span>
 
   <span>// The proto entry file. Absolute path.</span>
-  protoEntry<span>:</span> <span>'/some/path/to/your/proto/files.proto'</span><span>,</span>
+  <span>protoEntry</span><span>:</span> <span>'/some/path/to/your/proto/files.proto'</span><span>,</span>
 
   <span>// A list of search paths that are absolute for imported .proto files.</span>
-  protoPaths<span>:</span> <span>[</span><span>]</span><span>,</span>
+  <span>protoPaths</span><span>:</span> <span>[</span><span>]</span><span>,</span>
 
 
   <span>// Generate mock files that match specified methods, such as: ['getUser', /^getUser.*/].</span>
   <span>// Note: this option is exclusive with `exclude_methods`.</span>
-  includeMethods<span>:</span> <span>[</span><span>]</span><span>,</span>
+  <span>includeMethods</span><span>:</span> <span>[</span><span>]</span><span>,</span>
 
   <span>// Skip methods that match specified items, such as: ['getUser', /^getUser.*/].</span>
   <span>// Note: this option is exclusive with `include_methods`.</span>
-  excludeMethods<span>:</span> <span>[</span><span>]</span><span>,</span>
+  <span>excludeMethods</span><span>:</span> <span>[</span><span>]</span><span>,</span>
 
   <span>// Whether or not to generate proto request fields, default to false.</span>
-  generateProtoRequestFields<span>:</span> <span>false</span><span>,</span>
+  <span>generateProtoRequestFields</span><span>:</span> <span>false</span><span>,</span>
 
   <span>// The default length of a repeated field</span>
   <span>repeatedLength</span><span>:</span> <span>(</span><span>)</span> <span>=></span> faker<span>.</span><span>rand</span><span>(</span><span>2</span><span>,</span> <span>5</span><span>)</span><span>,</span>
 
   <span>// Set global default values for specified types</span>
-  globalTypes<span>:</span> <span>{</span>
-    int32<span>:</span> faker<span>.</span><span>integer</span><span>(</span><span>1</span><span>,</span> <span>10000</span><span>)</span><span>,</span>
-    int64<span>:</span> <span>'faker.integer(1, 10000).toString()'</span><span>,</span>
-    string<span>:</span> faker<span>.</span><span>string</span><span>(</span><span>5</span><span>,</span> <span>12</span><span>)</span><span>,</span>
-    bool<span>:</span> faker<span>.</span><span>bool</span><span>(</span><span>)</span><span>,</span>
-    double<span>:</span> faker<span>.</span><span>float</span><span>(</span><span>0</span><span>,</span> <span>10000</span><span>,</span> <span>2</span><span>)</span><span>,</span>
-    float<span>:</span> faker<span>.</span><span>float</span><span>(</span><span>0</span><span>,</span> <span>10000</span><span>,</span> <span>2</span><span>)</span><span>,</span>
-    uint32<span>:</span> faker<span>.</span><span>integer</span><span>(</span><span>0</span><span>,</span> <span>10000</span><span>)</span><span>,</span>
-    uint64<span>:</span> faker<span>.</span><span>integer</span><span>(</span><span>0</span><span>,</span> <span>10000</span><span>)</span><span>,</span>
-    sint32<span>:</span> faker<span>.</span><span>integer</span><span>(</span><span>-</span><span>10000</span><span>,</span> <span>10000</span><span>)</span><span>,</span>
-    sint64<span>:</span> faker<span>.</span><span>integer</span><span>(</span><span>-</span><span>10000</span><span>,</span> <span>10000</span><span>)</span><span>,</span>
-    fixed32<span>:</span> faker<span>.</span><span>integer</span><span>(</span><span>0</span><span>,</span> <span>10000</span><span>)</span><span>,</span>
-    fixed64<span>:</span> faker<span>.</span><span>integer</span><span>(</span><span>0</span><span>,</span> <span>10000</span><span>)</span><span>,</span>
-    sfixed32<span>:</span> faker<span>.</span><span>integer</span><span>(</span><span>-</span><span>10000</span><span>,</span> <span>10000</span><span>)</span><span>,</span>
-    sfixed64<span>:</span> faker<span>.</span><span>integer</span><span>(</span><span>-</span><span>10000</span><span>,</span> <span>10000</span><span>)</span><span>,</span>
-    bytes<span>:</span> faker<span>.</span><span>bytes</span><span>(</span><span>)</span><span>,</span>
+  <span>globalTypes</span><span>:</span> <span>{</span>
+    <span>int32</span><span>:</span> faker<span>.</span><span>integer</span><span>(</span><span>1</span><span>,</span> <span>10000</span><span>)</span><span>,</span>
+    <span>int64</span><span>:</span> <span>'faker.integer(1, 10000).toString()'</span><span>,</span>
+    <span>string</span><span>:</span> faker<span>.</span><span>string</span><span>(</span><span>5</span><span>,</span> <span>12</span><span>)</span><span>,</span>
+    <span>bool</span><span>:</span> faker<span>.</span><span>bool</span><span>(</span><span>)</span><span>,</span>
+    <span>double</span><span>:</span> faker<span>.</span><span>float</span><span>(</span><span>0</span><span>,</span> <span>10000</span><span>,</span> <span>2</span><span>)</span><span>,</span>
+    <span>float</span><span>:</span> faker<span>.</span><span>float</span><span>(</span><span>0</span><span>,</span> <span>10000</span><span>,</span> <span>2</span><span>)</span><span>,</span>
+    <span>uint32</span><span>:</span> faker<span>.</span><span>integer</span><span>(</span><span>0</span><span>,</span> <span>10000</span><span>)</span><span>,</span>
+    <span>uint64</span><span>:</span> faker<span>.</span><span>integer</span><span>(</span><span>0</span><span>,</span> <span>10000</span><span>)</span><span>,</span>
+    <span>sint32</span><span>:</span> faker<span>.</span><span>integer</span><span>(</span><span>-</span><span>10000</span><span>,</span> <span>10000</span><span>)</span><span>,</span>
+    <span>sint64</span><span>:</span> faker<span>.</span><span>integer</span><span>(</span><span>-</span><span>10000</span><span>,</span> <span>10000</span><span>)</span><span>,</span>
+    <span>fixed32</span><span>:</span> faker<span>.</span><span>integer</span><span>(</span><span>0</span><span>,</span> <span>10000</span><span>)</span><span>,</span>
+    <span>fixed64</span><span>:</span> faker<span>.</span><span>integer</span><span>(</span><span>0</span><span>,</span> <span>10000</span><span>)</span><span>,</span>
+    <span>sfixed32</span><span>:</span> faker<span>.</span><span>integer</span><span>(</span><span>-</span><span>10000</span><span>,</span> <span>10000</span><span>)</span><span>,</span>
+    <span>sfixed64</span><span>:</span> faker<span>.</span><span>integer</span><span>(</span><span>-</span><span>10000</span><span>,</span> <span>10000</span><span>)</span><span>,</span>
+    <span>bytes</span><span>:</span> faker<span>.</span><span>bytes</span><span>(</span><span>)</span><span>,</span>
   <span>}</span><span>,</span>
 
   <span>// Set global default values for specified fields.</span>
-  globalFields<span>:</span> <span>{</span>
-    code<span>:</span> <span>0</span><span>,</span>
-    msg<span>:</span> <span>'ok'</span><span>,</span>
+  <span>globalFields</span><span>:</span> <span>{</span>
+    <span>code</span><span>:</span> <span>0</span><span>,</span>
+    <span>msg</span><span>:</span> <span>'ok'</span><span>,</span>
     <span>id</span><span>:</span> <span>(</span><span>messageType</span><span>)</span> <span>=></span> <span>{</span>
       <span>return</span> faker<span>.</span><span>incrementId</span><span>(</span><span>1</span><span>,</span> messageType<span>)</span><span>;</span>
     <span>}</span><span>,</span>
-    title<span>:</span> faker<span>.</span><span>text</span><span>(</span><span>)</span><span>,</span>
-    name<span>:</span> faker<span>.</span><span>name</span><span>(</span><span>)</span><span>,</span>
-    url<span>:</span> faker<span>.</span><span>url</span><span>(</span><span>)</span><span>,</span>
-    email<span>:</span> faker<span>.</span><span>email</span><span>(</span><span>)</span><span>,</span>
-    avatar<span>:</span> faker<span>.</span><span>avatar</span><span>(</span><span>)</span><span>,</span>
-    image<span>:</span> faker<span>.</span><span>image</span><span>(</span><span>)</span><span>,</span>
-    datetime<span>:</span> faker<span>.</span><span>datetime</span><span>(</span><span>)</span><span>,</span>
-    ip<span>:</span> faker<span>.</span><span>ip</span><span>(</span><span>)</span><span>,</span>
-    phone<span>:</span> faker<span>.</span><span>phone</span><span>(</span><span>)</span><span>,</span>
-    address<span>:</span> faker<span>.</span><span>address</span><span>(</span><span>)</span><span>,</span>
-    guid<span>:</span> faker<span>.</span><span>guid</span><span>(</span><span>)</span><span>,</span>
+    <span>title</span><span>:</span> faker<span>.</span><span>text</span><span>(</span><span>)</span><span>,</span>
+    <span>name</span><span>:</span> faker<span>.</span><span>name</span><span>(</span><span>)</span><span>,</span>
+    <span>url</span><span>:</span> faker<span>.</span><span>url</span><span>(</span><span>)</span><span>,</span>
+    <span>email</span><span>:</span> faker<span>.</span><span>email</span><span>(</span><span>)</span><span>,</span>
+    <span>avatar</span><span>:</span> faker<span>.</span><span>avatar</span><span>(</span><span>)</span><span>,</span>
+    <span>image</span><span>:</span> faker<span>.</span><span>image</span><span>(</span><span>)</span><span>,</span>
+    <span>datetime</span><span>:</span> faker<span>.</span><span>datetime</span><span>(</span><span>)</span><span>,</span>
+    <span>ip</span><span>:</span> faker<span>.</span><span>ip</span><span>(</span><span>)</span><span>,</span>
+    <span>phone</span><span>:</span> faker<span>.</span><span>phone</span><span>(</span><span>)</span><span>,</span>
+    <span>address</span><span>:</span> faker<span>.</span><span>address</span><span>(</span><span>)</span><span>,</span>
+    <span>guid</span><span>:</span> faker<span>.</span><span>guid</span><span>(</span><span>)</span><span>,</span>
   <span>}</span>
 <span>}</span><span>;</span>
 </code></pre>
@@ -656,13 +775,13 @@ service Api {
 <span>const</span> faker <span>=</span> <span>require</span><span>(</span><span>'http-request-mock/plugin/faker.js'</span><span>)</span><span>;</span>
 module<span>.</span><span>exports</span> <span>=</span> <span>(</span><span>request</span><span>)</span> <span>=></span> <span>{</span>
   <span>return</span> <span>{</span>
-    code<span>:</span> <span>0</span><span>,</span>
-    msg<span>:</span> <span>"ok"</span><span>,</span>
-    data<span>:</span> <span>{</span>
-      id<span>:</span> faker<span>.</span><span>incrementId</span><span>(</span><span>1</span><span>,</span> <span>"Record"</span><span>)</span><span>,</span>
-      name<span>:</span> faker<span>.</span><span>name</span><span>(</span><span>)</span><span>,</span>
-      age<span>:</span> faker<span>.</span><span>integer</span><span>(</span><span>0</span><span>,</span> <span>10000</span><span>)</span><span>,</span>
-      email<span>:</span> faker<span>.</span><span>email</span><span>(</span><span>)</span><span>,</span>
+    <span>code</span><span>:</span> <span>0</span><span>,</span>
+    <span>msg</span><span>:</span> <span>"ok"</span><span>,</span>
+    <span>data</span><span>:</span> <span>{</span>
+      <span>id</span><span>:</span> faker<span>.</span><span>incrementId</span><span>(</span><span>1</span><span>,</span> <span>"Record"</span><span>)</span><span>,</span>
+      <span>name</span><span>:</span> faker<span>.</span><span>name</span><span>(</span><span>)</span><span>,</span>
+      <span>age</span><span>:</span> faker<span>.</span><span>integer</span><span>(</span><span>0</span><span>,</span> <span>10000</span><span>)</span><span>,</span>
+      <span>email</span><span>:</span> faker<span>.</span><span>email</span><span>(</span><span>)</span><span>,</span>
     <span>}</span><span>,</span>
   <span>}</span>
 <span>}</span><span>;</span>
@@ -688,6 +807,7 @@ module<span>.</span><span>exports</span> <span>=</span> <span>(</span><span>requ
 <li><a href="/http-request-mock-docs/feature/cross">Cross domain</a></li>
 <li><a href="/http-request-mock-docs/feature/logs">Logs</a></li>
 <li><a href="/http-request-mock-docs/feature/proto">Proto</a></li>
+<li><a href="/http-request-mock-docs/feature/cache">Cache</a></li>
 </ul>
 ]]></content:encoded>
     </item>
@@ -710,7 +830,7 @@ module<span>.</span>exports <span>=</span> <span>'&lt;html>mock response content
  * @url https://www.api.com/json-response
  * @method post
  */</span>
-module<span>.</span>exports <span>=</span> <span>{</span> ret<span>:</span> <span>0</span><span>,</span> msg<span>:</span> <span>'ok'</span> <span>}</span>
+module<span>.</span>exports <span>=</span> <span>{</span> <span>ret</span><span>:</span> <span>0</span><span>,</span> <span>msg</span><span>:</span> <span>'ok'</span> <span>}</span>
 </code></pre>
 </div><h2 id="vue-code"> Vue code</h2>
 <div><pre><code><span><span><span>&lt;</span>template</span><span>></span></span>
@@ -726,9 +846,9 @@ module<span>.</span>exports <span>=</span> <span>{</span> ret<span>:</span> <spa
 <span>import</span> axios <span>from</span> <span>'axios'</span><span>;</span>
 <span>export</span> <span>default</span> <span>{</span>
   <span>data</span><span>(</span><span>)</span> <span>{</span>
-    <span>return</span> <span>{</span> msg<span>:</span> <span>''</span> <span>}</span>
+    <span>return</span> <span>{</span> <span>msg</span><span>:</span> <span>''</span> <span>}</span>
   <span>}</span><span>,</span>
-  methods<span>:</span> <span>{</span>
+  <span>methods</span><span>:</span> <span>{</span>
     <span>get</span><span>(</span><span>)</span> <span>{</span>
       axios<span>.</span><span>get</span><span>(</span><span>'https://www.api.com/text-response'</span><span>)</span><span>.</span><span>then</span><span>(</span><span>res</span> <span>=></span> <span>{</span>
         <span>this</span><span>.</span>msg <span>=</span> res<span>.</span>data<span>;</span>
@@ -736,7 +856,7 @@ module<span>.</span>exports <span>=</span> <span>{</span> ret<span>:</span> <spa
     <span>}</span><span>,</span>
 
     <span>post</span><span>(</span><span>)</span> <span>{</span>
-      axios<span>.</span><span>post</span><span>(</span><span>'https://www.api.com/json-response'</span><span>,</span> <span>{</span>abc<span>:</span> <span>123</span><span>}</span><span>)</span><span>.</span><span>then</span><span>(</span><span>res</span> <span>=></span> <span>{</span>
+      axios<span>.</span><span>post</span><span>(</span><span>'https://www.api.com/json-response'</span><span>,</span> <span>{</span><span>abc</span><span>:</span> <span>123</span><span>}</span><span>)</span><span>.</span><span>then</span><span>(</span><span>res</span> <span>=></span> <span>{</span>
         <span>this</span><span>.</span>msg <span>=</span> res<span>.</span>data<span>;</span>
       <span>}</span><span>)</span><span>;</span>
     <span>}</span>
@@ -776,9 +896,9 @@ module<span>.</span>exports <span>=</span> <span>'Not Found'</span>
 <span>import</span> axios <span>from</span> <span>'axios'</span><span>;</span>
 <span>export</span> <span>default</span> <span>{</span>
   <span>data</span><span>(</span><span>)</span> <span>{</span>
-    <span>return</span> <span>{</span> msg<span>:</span> <span>''</span> <span>}</span>
+    <span>return</span> <span>{</span> <span>msg</span><span>:</span> <span>''</span> <span>}</span>
   <span>}</span><span>,</span>
-  methods<span>:</span> <span>{</span>
+  <span>methods</span><span>:</span> <span>{</span>
     <span>get</span><span>(</span><span>)</span> <span>{</span>
       axios<span>.</span><span>get</span><span>(</span><span>'https://www.api.com/status404'</span><span>)</span><span>.</span><span>catch</span><span>(</span><span>err</span> <span>=></span> <span>{</span>
         <span>this</span><span>.</span>msg <span>=</span> err<span>.</span>message<span>;</span> <span>// Request failed with status code 404</span>
@@ -811,7 +931,7 @@ module<span>.</span>exports <span>=</span> <span>'Not Found'</span>
  * @method any
  * @times 2
  */</span>
-module<span>.</span>exports <span>=</span> <span>{</span> mock<span>:</span> <span>'some response data'</span> <span>}</span><span>;</span>
+module<span>.</span>exports <span>=</span> <span>{</span> <span>mock</span><span>:</span> <span>'some response data'</span> <span>}</span><span>;</span>
 </code></pre>
 </div><hr>
 <h2 id="business-code"> Business code</h2>
@@ -830,13 +950,13 @@ module<span>.</span>exports <span>=</span> <span>{</span> mock<span>:</span> <sp
 <span>import</span> HttpRequestMock <span>from</span> <span>'http-request-mock'</span><span>;</span>
 <span>export</span> <span>default</span> <span>{</span>
   <span>data</span><span>(</span><span>)</span> <span>{</span>
-    <span>return</span> <span>{</span> msg<span>:</span> <span>''</span><span>,</span> mockItem<span>:</span> <span>null</span><span>,</span> count<span>:</span> <span>0</span> <span>}</span>
+    <span>return</span> <span>{</span> <span>msg</span><span>:</span> <span>''</span><span>,</span> <span>mockItem</span><span>:</span> <span>null</span><span>,</span> <span>count</span><span>:</span> <span>0</span> <span>}</span>
   <span>}</span><span>,</span>
   <span>mounted</span> <span>(</span><span>)</span> <span>{</span>
     <span>const</span> mocker <span>=</span> HttpRequestMock<span>.</span><span>setup</span><span>(</span><span>)</span><span>;</span>
     <span>this</span><span>.</span>mockItem <span>=</span> mocker<span>.</span><span>matchMockItem</span><span>(</span><span>'https://jsonplaceholder.typicode.com/todos/1'</span><span>)</span><span>;</span>
   <span>}</span><span>,</span>
-  methods<span>:</span> <span>{</span>
+  <span>methods</span><span>:</span> <span>{</span>
     <span>get</span><span>(</span><span>)</span> <span>{</span>
       <span>++</span><span>this</span><span>.</span>count<span>;</span>
       axios<span>.</span><span>get</span><span>(</span><span>'https://jsonplaceholder.typicode.com/todos/1'</span><span>)</span><span>.</span><span>then</span><span>(</span><span>res</span> <span>=></span> <span>{</span>
@@ -926,7 +1046,7 @@ to hack into your business code to mock something ever again after a one-time co
  * @delay 300
  */</span>
 module<span>.</span><span>exports</span> <span>=</span> <span>(</span><span>req</span><span>)</span> <span>=></span> <span>{</span>
-  <span>return</span> <span>{</span> msg<span>:</span> <span>'some mock data'</span><span>,</span> query<span>:</span> req<span>.</span>query <span>}</span><span>;</span>
+  <span>return</span> <span>{</span> <span>msg</span><span>:</span> <span>'some mock data'</span><span>,</span> <span>query</span><span>:</span> req<span>.</span>query <span>}</span><span>;</span>
 <span>}</span>
 </code></pre>
 </div><home-index />
@@ -972,13 +1092,13 @@ your mock datas there. Take a Vue project as an example:</p>
 <span>import</span> axios <span>from</span> <span>'axios'</span><span>;</span>
 <span>export</span> <span>default</span> <span>{</span>
   <span>data</span><span>(</span><span>)</span> <span>{</span>
-    <span>return</span> <span>{</span> msg<span>:</span> <span>''</span> <span>}</span>
+    <span>return</span> <span>{</span> <span>msg</span><span>:</span> <span>''</span> <span>}</span>
   <span>}</span><span>,</span>
   <span>mounted</span><span>(</span><span>)</span> <span>{</span>
     <span>const</span> mocker <span>=</span> HttpRequestMock<span>.</span><span>setup</span><span>(</span><span>)</span>
     mocker<span>.</span><span>get</span><span>(</span><span>'https://some.api.com/some-path'</span><span>,</span> <span>'&lt;div>some result&lt;/div>'</span><span>)</span><span>;</span>
   <span>}</span><span>,</span>
-  methods<span>:</span> <span>{</span>
+  <span>methods</span><span>:</span> <span>{</span>
     <span>getResult</span><span>(</span><span>)</span> <span>{</span>
       axios<span>.</span><span>get</span><span>(</span><span>'https://some.api.com/some-path'</span><span>)</span><span>.</span><span>then</span><span>(</span><span>res</span> <span>=></span> <span>{</span>
         <span>this</span><span>.</span>msg <span>=</span> res<span>.</span>data<span>;</span>
@@ -1060,11 +1180,11 @@ configuration entry file.</p>
 <span>const</span> HttpRequestMockWebpackPlugin <span>=</span> <span>require</span><span>(</span><span>'http-request-mock/plugin/webpack.js'</span><span>)</span><span>;</span>
 module<span>.</span>exports <span>=</span> <span>{</span>
   <span>// ...</span>
-  plugins<span>:</span> <span>[</span>
+  <span>plugins</span><span>:</span> <span>[</span>
     <span>new</span> <span>HttpRequestMockWebpackPlugin</span><span>(</span>
-      enable<span>:</span> process<span>.</span>env<span>.</span><span>NODE_ENV</span> <span>===</span> <span>'development'</span><span>,</span> <span>// activate/deactivate</span>
-      entry<span>:</span> <span><span>/</span><span>src\/main\.js$</span><span>/</span></span><span>,</span> <span>// web application entry</span>
-      dir<span>:</span> path<span>.</span><span>resolve</span><span>(</span>__dirname<span>,</span> <span>'mock/'</span><span>)</span><span>,</span> <span>// mock directory</span>
+      <span>enable</span><span>:</span> process<span>.</span>env<span>.</span><span>NODE_ENV</span> <span>===</span> <span>'development'</span><span>,</span> <span>// activate/deactivate</span>
+      <span>entry</span><span>:</span> <span><span>/</span><span>src\/main\.js$</span><span>/</span></span><span>,</span> <span>// web application entry</span>
+      <span>dir</span><span>:</span> path<span>.</span><span>resolve</span><span>(</span>__dirname<span>,</span> <span>'mock/'</span><span>)</span><span>,</span> <span>// mock directory</span>
     <span>)</span><span>,</span>
   <span>]</span>
   <span>// ...</span>
@@ -1218,8 +1338,8 @@ module<span>.</span><span>exports</span> <span>=</span> <span>(</span><span>requ
 <span>const</span> mocker <span>=</span> HttpRequestMock<span>.</span><span>setup</span><span>(</span><span>)</span><span>;</span>
 
 mocker<span>.</span><span>mock</span><span>(</span><span>{</span>
-  url<span>:</span> <span>'https://www.api.com/some-api'</span> <span>// or RegExp: /.*\/some-api$/</span>
-  body<span>:</span> <span>'some response data'</span>
+  <span>url</span><span>:</span> <span>'https://www.api.com/some-api'</span> <span>// or RegExp: /.*\/some-api$/</span>
+  <span>body</span><span>:</span> <span>'some response data'</span>
 <span>}</span><span>)</span><span>;</span>
 
 <span>// or using http verb method:</span>
@@ -1250,12 +1370,12 @@ axios<span>.</span>defaults<span>.</span>adapter <span>=</span> xhrAdapter<span>
 <span>const</span> mocker <span>=</span> HttpRequestMock<span>.</span><span>setupForUnitTest</span><span>(</span><span>'xhr'</span><span>)</span><span>;</span>
 
 mocker<span>.</span><span>get</span><span>(</span><span>'https://your.api.com/path'</span><span>,</span> <span>function</span><span>(</span><span>)</span> <span>{</span>
-  <span>return</span> <span>{</span> abc<span>:</span> <span>123</span> <span>}</span><span>;</span>
+  <span>return</span> <span>{</span> <span>abc</span><span>:</span> <span>123</span> <span>}</span><span>;</span>
 <span>}</span><span>)</span><span>;</span>
 
 <span>it</span><span>(</span><span>'should match object`'</span><span>,</span> <span>async</span> <span>(</span><span>)</span> <span>=></span> <span>{</span>
   <span>const</span> res <span>=</span> <span>await</span> axios<span>.</span><span>get</span><span>(</span><span>'https://your.api.com/path'</span><span>)</span><span>;</span>
-  <span>expect</span><span>(</span>res<span>.</span>data<span>)</span><span>.</span><span>toMatchObject</span><span>(</span><span>{</span>abc<span>:</span> <span>123</span><span>}</span><span>)</span><span>;</span>
+  <span>expect</span><span>(</span>res<span>.</span>data<span>)</span><span>.</span><span>toMatchObject</span><span>(</span><span>{</span><span>abc</span><span>:</span> <span>123</span><span>}</span><span>)</span><span>;</span>
 <span>}</span><span>)</span><span>;</span>
 </code></pre>
 </div><p>For a <code>mocha</code> example, please refer to <a href="https://github.com/huturen/http-request-mock/blob/main/experiment/mocha.js" target="_blank" rel="noopener noreferrer">experiment/mocha.js</a>.</p>
