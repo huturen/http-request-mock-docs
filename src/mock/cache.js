@@ -7,7 +7,7 @@ const cache = require('http-request-mock/plugin/cache');
 const data = [...Array(5)].map(() => ({
   id: faker.incrementId(1, 'todos'),
   todo: faker.sentence(5),
-  done: !!faker.rand(0, 1),
+  done: true,
 }));
 
 // The [data] will be memoried by localStorage.
