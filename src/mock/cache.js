@@ -10,6 +10,8 @@ const data = [...Array(5)].map(() => ({
   done: !!faker.rand(0, 1),
 }));
 
+// The [data] will be memoried by localStorage.
+// You can check it by localStorage.getItem('mock-todos').
 const todos = cache('mock-todos', data);
 
 module.exports = (request) => {
