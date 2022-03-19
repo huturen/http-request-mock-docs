@@ -17,3 +17,4 @@ title: Features
 - [Logs](/http-request-mock-docs/feature/logs)
 - [Proto](/http-request-mock-docs/feature/proto)
 - [Cache](/http-request-mock-docs/feature/cache)
+- [Remote mock data](/http-request-mock-docs/feature/remote)

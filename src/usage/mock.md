@@ -40,6 +40,10 @@ You can define your mock data file like below:
  * 'yes' for real network request, 'no' for mock request.
  * Default: no
  * @disable no
+ *
+ * Remote mock data.
+ * In browser, the specified remote url must conform to the cross-domain specification.
+ * @remote https://remote.api.com/some/mock/data
  */
 // Response body to be mocked.
 // It supports to export an object, function, async function, sting or any other types.

@@ -47,6 +47,10 @@ features:
     details: Easy to generate massive amounts of fake data.
     link: /feature/faker/
 
+  - title: Remote
+    details: Support for using remote mock data.
+    link: /feature/remote/
+
 copyrightText: false
 footer: MIT Licensed | Copyright © 2021-present huturen
 ---

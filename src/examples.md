@@ -20,3 +20,5 @@ title: Examples
   [Codesandbox](https://codesandbox.io/s/objective-snowflake-txt9qc),
   [Github](https://github.com/huturen/http-request-mock-integration-with-nodejs)
 
+- Mock data separation:
+  [Codesandbox](https://codesandbox.io/s/fwicq9),

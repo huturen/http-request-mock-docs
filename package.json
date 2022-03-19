@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "axios": "^0.21.3",
-    "http-request-mock": "^1.6.5",
+    "http-request-mock": "^1.6.7",
     "localstorage-polyfill": "^1.0.1"
   }
 }
