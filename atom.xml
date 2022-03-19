@@ -3,7 +3,7 @@
   <id>https://huturen.github.io/http-request-mock-docs/</id>
   <title>http-request-mock</title>
   <subtitle>http-request-mock: A new way to speed up your development and testing.</subtitle>
-  <updated>2022-03-10T10:24:51.686Z</updated>
+  <updated>2022-03-19T09:18:50.501Z</updated>
   <generator>@mr-hope/vuepress-plugin-feed</generator>
   <link rel="self" href="https://huturen.github.io/http-request-mock-docs/atom.xml"/>
   <link rel="alternate" href="https://huturen.github.io/http-request-mock-docs/"/>
@@ -87,7 +87,7 @@
     <title type="html">Examples</title>
     <id>https://huturen.github.io/http-request-mock-docs/examples/</id>
     <link href="https://huturen.github.io/http-request-mock-docs/examples/"/>
-    <updated>2022-03-07T16:55:10.000Z</updated>
+    <updated>2022-03-19T09:17:06.000Z</updated>
     <content type="html"><![CDATA[<ul>
 <li>
 <p>Integration with vue by webpack plugin:
@@ -108,6 +108,10 @@
 <p>Integration with nodejs:
 <a href="https://codesandbox.io/s/objective-snowflake-txt9qc" target="_blank" rel="noopener noreferrer">Codesandbox</a>,
 <a href="https://github.com/huturen/http-request-mock-integration-with-nodejs" target="_blank" rel="noopener noreferrer">Github</a></p>
+</li>
+<li>
+<p>Mock data separation:
+<a href="https://codesandbox.io/s/fwicq9" target="_blank" rel="noopener noreferrer">Codesandbox</a>,</p>
 </li>
 </ul>
 ]]></content>
@@ -550,8 +554,8 @@ module<span>.</span><span>exports</span> <span>=</span> <span>(</span><span>requ
     <title type="html">Fake data</title>
     <id>https://huturen.github.io/http-request-mock-docs/feature/faker/</id>
     <link href="https://huturen.github.io/http-request-mock-docs/feature/faker/"/>
-    <updated>2022-03-07T16:55:10.000Z</updated>
-    <content type="html"><![CDATA[<p><code>http-request-mock</code> has been integrated with <a href="https://chancejs.com/" target="_blank" rel="noopener noreferrer">chance</a>.</p>
+    <updated>2022-03-19T09:17:06.000Z</updated>
+    <content type="html"><![CDATA[<p><code>http-request-mock</code> has integrated with <a href="https://chancejs.com/" target="_blank" rel="noopener noreferrer">chance</a>.</p>
 <p>You can use it to generate massive amounts of fake data.</p>
 <feature-faker />
 <h2 id="mock-data-file"> Mock data file</h2>
@@ -824,7 +828,7 @@ module<span>.</span><span>exports</span> <span>=</span> <span>(</span><span>requ
     <title type="html">Features</title>
     <id>https://huturen.github.io/http-request-mock-docs/feature/</id>
     <link href="https://huturen.github.io/http-request-mock-docs/feature/"/>
-    <updated>2022-03-09T15:21:54.000Z</updated>
+    <updated>2022-03-19T09:17:06.000Z</updated>
     <content type="html"><![CDATA[<ul>
 <li><a href="/http-request-mock-docs/feature/static">Static response</a></li>
 <li><a href="/http-request-mock-docs/feature/dynamic">Dynamic response</a></li>
@@ -839,12 +843,66 @@ module<span>.</span><span>exports</span> <span>=</span> <span>(</span><span>requ
 <li><a href="/http-request-mock-docs/feature/logs">Logs</a></li>
 <li><a href="/http-request-mock-docs/feature/proto">Proto</a></li>
 <li><a href="/http-request-mock-docs/feature/cache">Cache</a></li>
+<li><a href="/http-request-mock-docs/feature/remote">Remote mock data</a></li>
 </ul>
 ]]></content>
     <contributor>
       <name/>
     </contributor>
     <published>2022-03-07T16:55:10.000Z</published>
+  </entry>
+  <entry>
+    <title type="html">Remote mock data</title>
+    <id>https://huturen.github.io/http-request-mock-docs/feature/remote/</id>
+    <link href="https://huturen.github.io/http-request-mock-docs/feature/remote/"/>
+    <updated>2022-03-19T09:17:06.000Z</updated>
+    <content type="html"><![CDATA[<p><code>http-request-mock</code> supports for using remote mock data.</p>
+<feature-remote />
+<h2 id="mock-data-file"> Mock data file</h2>
+<div><pre><code><span>/**
+ * @url https://www.api.com/remote
+ *
+ * In browser, the specified remote url must conform to the cross-domain specification.
+ * @remote https://jsonplaceholder.typicode.com/todos/1
+ * @method get
+ */</span>
+module<span>.</span>exports <span>=</span> <span>'The exported object will be ignored.'</span><span>;</span>
+</code></pre>
+</div><hr>
+<h2 id="vue-code"> Vue code</h2>
+<div><pre><code><span><span><span>&lt;</span>template</span><span>></span></span>
+  <span><span><span>&lt;</span>div</span> <span>class</span><span><span>=</span><span>"</span>demo<span>"</span></span><span>></span></span>
+    <span><span><span>&lt;</span>button</span> <span>@click</span><span><span>=</span><span>"</span>get<span>"</span></span><span>></span></span>GET https://www.api.com/remote<span><span><span>&lt;/</span>button</span><span>></span></span>
+    <span><span><span>&lt;</span>div</span> <span>class</span><span><span>=</span><span>"</span>result<span>"</span></span><span>></span></span> {{ msg }} <span><span><span>&lt;/</span>div</span><span>></span></span>
+    <span><span><span>&lt;</span>div</span> <span>class</span><span><span>=</span><span>"</span>tips<span>"</span></span><span>></span></span>Hit F12 to access Developer Tools and view the console logs.<span><span><span>&lt;/</span>div</span><span>></span></span>
+  <span><span><span>&lt;/</span>div</span><span>></span></span>
+<span><span><span>&lt;/</span>template</span><span>></span></span>
+
+<span><span><span>&lt;</span>script</span><span>></span></span><span><span>
+<span>import</span> axios <span>from</span> <span>'axios'</span><span>;</span>
+<span>export</span> <span>default</span> <span>{</span>
+  <span>data</span><span>(</span><span>)</span> <span>{</span>
+    <span>return</span> <span>{</span> <span>msg</span><span>:</span> <span>''</span> <span>}</span>
+  <span>}</span><span>,</span>
+  <span>methods</span><span>:</span> <span>{</span>
+    <span>get</span><span>(</span><span>)</span> <span>{</span>
+      <span>this</span><span>.</span>msg <span>=</span> <span>'loading...'</span><span>;</span>
+      axios<span>.</span><span>get</span><span>(</span><span>'https://www.api.com/remote'</span><span>)</span><span>.</span><span>then</span><span>(</span><span>res</span> <span>=></span> <span>{</span>
+        <span>this</span><span>.</span>msg <span>=</span> <span>JSON</span><span>.</span><span>stringify</span><span>(</span>res<span>.</span>data<span>)</span><span>;</span>
+      <span>}</span><span>)</span><span>.</span><span>catch</span><span>(</span><span>err</span> <span>=></span> <span>{</span>
+        <span>this</span><span>.</span>msg <span>=</span> err<span>.</span>message<span>;</span>
+      <span>}</span><span>)</span><span>;</span>
+    <span>}</span><span>,</span>
+  <span>}</span>
+<span>}</span>
+</span></span><span><span><span>&lt;/</span>script</span><span>></span></span>
+<span><span><span>&lt;</span>style</span> <span>scoped</span> <span>src</span><span><span>=</span><span>"</span>./demo.css<span>"</span></span><span>></span></span>
+</code></pre>
+</div>]]></content>
+    <contributor>
+      <name/>
+    </contributor>
+    <published>2022-03-19T09:17:06.000Z</published>
   </entry>
   <entry>
     <title type="html">Static response</title>
@@ -1082,7 +1140,7 @@ to hack into your business code to mock something ever again after a one-time co
     <title type="html">Project home</title>
     <id>https://huturen.github.io/http-request-mock-docs/</id>
     <link href="https://huturen.github.io/http-request-mock-docs/"/>
-    <updated>2022-03-07T17:35:09.000Z</updated>
+    <updated>2022-03-19T09:17:06.000Z</updated>
     <content type="html"><![CDATA[<hr>
 <p>You can define your mock data like below:</p>
 <div><pre><code><span>/**
@@ -1321,7 +1379,7 @@ into the specified entry which may look like below:</li>
     <title type="html">Mock data file</title>
     <id>https://huturen.github.io/http-request-mock-docs/usage/mock/</id>
     <link href="https://huturen.github.io/http-request-mock-docs/usage/mock/"/>
-    <updated>2022-03-07T18:13:43.000Z</updated>
+    <updated>2022-03-19T09:17:06.000Z</updated>
     <content type="html"><![CDATA[<p>You can define your mock data file like below:</p>
 <div><pre><code><span>/**
  * Note: Only the first comments block will be parsed.
@@ -1357,6 +1415,10 @@ into the specified entry which may look like below:</li>
  * 'yes' for real network request, 'no' for mock request.
  * Default: no
  * @disable no
+ *
+ * Remote mock data.
+ * In browser, the specified remote url must conform to the cross-domain specification.
+ * @remote https://remote.api.com/some/mock/data
  */</span>
 <span>// Response body to be mocked.</span>
 <span>// It supports to export an object, function, async function, sting or any other types.</span>
