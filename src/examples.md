@@ -21,4 +21,4 @@ title: Examples
   [Github](https://github.com/huturen/http-request-mock-integration-with-nodejs)
 
 - Mock data separation:
-  [Codesandbox](https://codesandbox.io/s/fwicq9),
+  [Codesandbox](https://codesandbox.io/s/fwicq9)
