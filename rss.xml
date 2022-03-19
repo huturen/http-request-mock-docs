@@ -6,8 +6,8 @@
     <link>https://huturen.github.io/http-request-mock-docs/</link>
     <description>http-request-mock: A new way to speed up your development and testing.</description>
     <language>en-US</language>
-    <pubDate>Sat, 19 Mar 2022 09:18:50 GMT</pubDate>
-    <lastBuildDate>Sat, 19 Mar 2022 09:18:50 GMT</lastBuildDate>
+    <pubDate>Sat, 19 Mar 2022 09:48:08 GMT</pubDate>
+    <lastBuildDate>Sat, 19 Mar 2022 09:48:08 GMT</lastBuildDate>
     <generator>@mr-hope/vuepress-plugin-feed</generator>
     <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
     <item>
@@ -112,7 +112,7 @@
 </li>
 <li>
 <p>Mock data separation:
-<a href="https://codesandbox.io/s/fwicq9" target="_blank" rel="noopener noreferrer">Codesandbox</a>,</p>
+<a href="https://codesandbox.io/s/fwicq9" target="_blank" rel="noopener noreferrer">Codesandbox</a></p>
 </li>
 </ul>
 ]]></content:encoded>

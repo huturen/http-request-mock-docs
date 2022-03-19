@@ -3,7 +3,7 @@
   <id>https://huturen.github.io/http-request-mock-docs/</id>
   <title>http-request-mock</title>
   <subtitle>http-request-mock: A new way to speed up your development and testing.</subtitle>
-  <updated>2022-03-19T09:18:50.501Z</updated>
+  <updated>2022-03-19T09:48:08.021Z</updated>
   <generator>@mr-hope/vuepress-plugin-feed</generator>
   <link rel="self" href="https://huturen.github.io/http-request-mock-docs/atom.xml"/>
   <link rel="alternate" href="https://huturen.github.io/http-request-mock-docs/"/>
@@ -87,7 +87,7 @@
     <title type="html">Examples</title>
     <id>https://huturen.github.io/http-request-mock-docs/examples/</id>
     <link href="https://huturen.github.io/http-request-mock-docs/examples/"/>
-    <updated>2022-03-19T09:17:06.000Z</updated>
+    <updated>2022-03-19T09:47:01.000Z</updated>
     <content type="html"><![CDATA[<ul>
 <li>
 <p>Integration with vue by webpack plugin:
@@ -111,7 +111,7 @@
 </li>
 <li>
 <p>Mock data separation:
-<a href="https://codesandbox.io/s/fwicq9" target="_blank" rel="noopener noreferrer">Codesandbox</a>,</p>
+<a href="https://codesandbox.io/s/fwicq9" target="_blank" rel="noopener noreferrer">Codesandbox</a></p>
 </li>
 </ul>
 ]]></content>
