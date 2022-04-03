@@ -3,7 +3,7 @@
   <id>https://huturen.github.io/http-request-mock-docs/</id>
   <title>http-request-mock</title>
   <subtitle>http-request-mock: A new way to speed up your development and testing.</subtitle>
-  <updated>2022-03-19T09:48:08.021Z</updated>
+  <updated>2022-04-03T07:33:34.743Z</updated>
   <generator>@mr-hope/vuepress-plugin-feed</generator>
   <link rel="self" href="https://huturen.github.io/http-request-mock-docs/atom.xml"/>
   <link rel="alternate" href="https://huturen.github.io/http-request-mock-docs/"/>
@@ -1140,7 +1140,7 @@ to hack into your business code to mock something ever again after a one-time co
     <title type="html">Project home</title>
     <id>https://huturen.github.io/http-request-mock-docs/</id>
     <link href="https://huturen.github.io/http-request-mock-docs/"/>
-    <updated>2022-03-19T09:17:06.000Z</updated>
+    <updated>2022-04-03T07:32:22.000Z</updated>
     <content type="html"><![CDATA[<hr>
 <p>You can define your mock data like below:</p>
 <div><pre><code><span>/**
