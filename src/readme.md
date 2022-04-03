@@ -11,10 +11,6 @@ action:
     link: /intro/
     type: primary
 features:
-  - title: Easy to set up
-    details: No complex servers, no proxies, no lots of URL replacements.
-    link: /usage/start/
-
   - title: Cross domain
     details: Out of the box, with no configuration, support for cross domain.
     link: /feature/cross/
