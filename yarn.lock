@@ -5960,18 +5960,16 @@ http-proxy@^1.17.0, http-proxy@^1.18.1:
     follow-redirects "^1.0.0"
     requires-port "^1.0.0"
 
-http-request-mock@^1.6.7:
-  version "1.6.7"
-  resolved "https://registry.npmjs.org/http-request-mock/-/http-request-mock-1.6.7.tgz"
-  integrity sha512-5U6yPOc/Z6WcylxJfS4FwpusPIyC6rr7yixSxxmGTHR9V8SDzaphBzCp7E2ZWWB77k9iXPDat5tuyFYR1M0tlw==
+http-request-mock@^1.6.11:
+  version "1.6.11"
+  resolved "https://registry.npmjs.org/http-request-mock/-/http-request-mock-1.6.11.tgz"
+  integrity sha512-MDuS3KPHCWbHXIBf4T1P7L/RY5V0HZBoy097sYWfARMhYetfYUckxvA99Q6kKtbGjhXdQkRKRR3UFRHBlJf7xg==
   dependencies:
     chance "^1.1.8"
     chokidar "^3.5.2"
     commander "^2.20.3"
     http-proxy "^1.18.1"
     protobufjs "^6.11.2"
-  optionalDependencies:
-    simple-functional-loader "^1.2.1"
 
 http-signature@~1.2.0:
   version "1.2.0"
@@ -6910,15 +6908,6 @@ loader-utils@^1.0.2, loader-utils@^1.1.0, loader-utils@^1.2.3, loader-utils@^1.4
     big.js "^5.2.2"
     emojis-list "^3.0.0"
     json5 "^1.0.1"
-
-loader-utils@^2.0.0:
-  version "2.0.2"
-  resolved "https://registry.npmjs.org/loader-utils/-/loader-utils-2.0.2.tgz"
-  integrity sha512-TM57VeHptv569d/GKh6TAYdzKblwDNiumOdkFnejjD0XwTH87K90w3O7AiJRqdQoXygvi1VQTJTLGhJl7WqA7A==
-  dependencies:
-    big.js "^5.2.2"
-    emojis-list "^3.0.0"
-    json5 "^2.1.2"
 
 localstorage-memory@^1.0.1, localstorage-memory@^1.0.2:
   version "1.0.3"
@@ -9290,13 +9279,6 @@ signal-exit@^3.0.0, signal-exit@^3.0.2, signal-exit@^3.0.3:
   version "3.0.7"
   resolved "https://registry.npmjs.org/signal-exit/-/signal-exit-3.0.7.tgz"
   integrity sha512-wnD2ZE+l+SPC/uoS0vXeE9L1+0wuaMqKlfz9AMUo38JsyLSBWSFcHR1Rri62LZc12vLr1gb3jl7iwQhgwpAbGQ==
-
-simple-functional-loader@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.npmjs.org/simple-functional-loader/-/simple-functional-loader-1.2.1.tgz"
-  integrity sha512-GPDrxrQkE7ijm35QlfPFVp5hBHR6ZcaUq42TEDgf1U5iTL3IDLFvKAbHE/ODqpdfJJ7Xn4cr/slBn12jjNPkaQ==
-  dependencies:
-    loader-utils "^2.0.0"
 
 simple-swizzle@^0.2.2:
   version "0.2.2"
