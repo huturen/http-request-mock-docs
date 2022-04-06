@@ -6,8 +6,8 @@
     <link>https://huturen.github.io/http-request-mock-docs/</link>
     <description>http-request-mock: A new way to speed up your development and testing.</description>
     <language>en-US</language>
-    <pubDate>Sun, 03 Apr 2022 07:33:34 GMT</pubDate>
-    <lastBuildDate>Sun, 03 Apr 2022 07:33:34 GMT</lastBuildDate>
+    <pubDate>Wed, 06 Apr 2022 13:39:10 GMT</pubDate>
+    <lastBuildDate>Wed, 06 Apr 2022 13:39:10 GMT</lastBuildDate>
     <generator>@mr-hope/vuepress-plugin-feed</generator>
     <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
     <item>
@@ -92,27 +92,28 @@
       <content:encoded><![CDATA[<ul>
 <li>
 <p>Integration with vue by webpack plugin:
-<a href="https://codesandbox.io/s/tender-bird-te01lt" target="_blank" rel="noopener noreferrer">Codesandbox</a>,
+<a href="https://codesandbox.io/s/github/huturen/http-request-mock-integration-with-vue-by-webpack-plugin/tree/main" target="_blank" rel="noopener noreferrer">Codesandbox</a>,
 <a href="https://github.com/huturen/http-request-mock-integration-with-vue-by-webpack-plugin" target="_blank" rel="noopener noreferrer">Github</a></p>
 </li>
 <li>
 <p>Integration with vue by webpack CLI:
-<a href="https://codesandbox.io/s/hardcore-wright-y3lixj" target="_blank" rel="noopener noreferrer">Codesandbox</a>,
+<a href="https://codesandbox.io/s/github/huturen/http-request-mock-integration-with-vue-by-cli/tree/main" target="_blank" rel="noopener noreferrer">Codesandbox</a>,
 <a href="https://github.com/huturen/http-request-mock-integration-with-vue-by-cli" target="_blank" rel="noopener noreferrer">Github</a></p>
 </li>
 <li>
 <p>Integration with react:
-<a href="https://codesandbox.io/s/charming-mayer-gij9yd" target="_blank" rel="noopener noreferrer">Codesandbox</a>,
+<a href="https://codesandbox.io/s/github/huturen/http-request-mock-integration-with-react-by-cli/tree/main" target="_blank" rel="noopener noreferrer">Codesandbox</a>,
 <a href="https://github.com/huturen/http-request-mock-integration-with-react-by-cli" target="_blank" rel="noopener noreferrer">Github</a></p>
 </li>
 <li>
 <p>Integration with nodejs:
-<a href="https://codesandbox.io/s/objective-snowflake-txt9qc" target="_blank" rel="noopener noreferrer">Codesandbox</a>,
+<a href="https://codesandbox.io/s/github/huturen/http-request-mock-integration-with-nodejs/tree/main" target="_blank" rel="noopener noreferrer">Codesandbox</a>,
 <a href="https://github.com/huturen/http-request-mock-integration-with-nodejs" target="_blank" rel="noopener noreferrer">Github</a></p>
 </li>
 <li>
-<p>Mock data separation:
-<a href="https://codesandbox.io/s/fwicq9" target="_blank" rel="noopener noreferrer">Codesandbox</a></p>
+<p>Unit test:
+<a href="https://codesandbox.io/s/github/huturen/http-request-mock-unit-test/tree/main" target="_blank" rel="noopener noreferrer">Codesandbox</a>,
+<a href="https://github.com/huturen/http-request-mock-unit-test" target="_blank" rel="noopener noreferrer">Github</a></p>
 </li>
 </ul>
 ]]></content:encoded>
@@ -1188,26 +1189,25 @@ Example:
     npx http-request-mock-cli -i
 
 Options:
-  -d, --directory [directory]       The mock directory relative to the working directory. (default: &quot;mock&quot;)
-  -e, --enviroment [variable-pair]  Enable mock function by enviroment variable for .runtime.js.
-                                    (default: &quot;NODE_ENV=development&quot;)
-  -i, --init                        Initialize some samples &amp; a .runtime.js in the mock directory.
-  -w, --watch [command]             Watch mock directory &amp; update .runtime.js. If the [command] is specified,
-                                    ths specified command will be executed together with watching.
-  -j, --inject &lt;app-entry-file&gt;     Inject .runtime.js into the specified entry relative to the working directory.
-  -t, --type [module-type]          The module type of .runtime.js.
-                                    Possible values are: es6, cjs(alias of commonjs).
-                                    (default: &quot;cjs&quot;)
-  -p, --proxy [mode]                Proxy mode. In proxy mode, http-request-mock will start
-                                    a proxy server which recives incoming requests on localhost.
-                                    The module type of .runtime.js will be changed to cjs and
-                                    mock files will be run in a node enviroment.
-                                    Note: proxy mode is still under experimental stage, only for experts.
-                                    [matched] Proxy requests which are matched your defined mock items.
-                                    [all] Proxy all incoming requests.
-                                    [none] Do not start a proxy server. (default: &quot;none&quot;)
-  --proto                           Generate mock files by proto files.
-  -h, --help                        output usage information
+  -d, --directory [directory]        The mock directory relative to the working directory. (default: &quot;mock&quot;)
+  -e, --environment [variable-pair]  Enable mock function by environment variable for .runtime.js.
+                                     (default: &quot;NODE_ENV=development&quot;)
+  -i, --init                         Initialize some samples &amp; a .runtime.js in the mock directory.
+  -w, --watch [command]              Watch mock directory &amp; update .runtime.js. If the [command] is specified,
+                                     ths specified command will be executed together with watching.
+  -j, --inject &lt;app-entry-file&gt;      Inject .runtime.js into the specified entry relative to the working directory.
+  -t, --type [module-type]           The module type of .runtime.js.
+                                     Possible values are: es6, cjs(alias of commonjs).
+                                     (default: &quot;cjs&quot;)
+  -p, --proxy [mode]                 Proxy mode. In proxy mode, http-request-mock will start
+                                     a proxy server which recives incoming requests on localhost.
+                                     The mock files will be run in a nodejs environment.
+                                     This feature is designed for browser, so do not use it in a nodjs project.
+                                     Note: proxy mode is still under experimental stage, only for experts.
+                                     [matched] All requests matched by @url will be proxied to a proxy server.
+                                     [marked] All requests marked by @proxy will be proxied to a proxy server. (default: &quot;none&quot;)
+  --proto                            Generate mock files by proto files.
+  -h, --help                         output usage information
 </code></pre>
 </div>]]></content:encoded>
     </item>
