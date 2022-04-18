@@ -27,7 +27,7 @@ Set up request mock for fetch.
 
 Set up request mock for http.get, https.get, http.request and https.request in nodejs envrioment.
 
-### setupForUnitTest(type: 'wx' | 'xhr' | 'fetch' | 'node' | 'node.http.request' | 'all') : Mocker:
+### setupForUnitTest(type: 'wx' | 'xhr' | 'fetch' | 'node' | 'all') : Mocker:
 
 Set up request mock for unit test.
 

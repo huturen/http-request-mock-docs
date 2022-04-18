@@ -9,7 +9,7 @@ module.exports = function() {
     name: faker.name(),
     age: 10 + faker.rand(0, 90),
     phone: faker.phone('(###) ###-####'),
-    gender: faker.chance.gender(),
+    gender: faker.gender(),
     avatar: faker.avatar(),
   };
 };
