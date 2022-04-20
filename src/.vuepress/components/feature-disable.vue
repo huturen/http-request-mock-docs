@@ -12,7 +12,7 @@
 
 <script>
 import axios from 'axios';
-import HttpRequestMock from 'http-request-mock';
+import HttpRequestMock from 'http-request-mock/http-request-mock.js';
 export default {
   data() {
     return { msg: '', mockItem: {} }

@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import HttpRequestMock from 'http-request-mock';
+import HttpRequestMock from 'http-request-mock/http-request-mock.js';
 import axios from 'axios';
 export default {
   data() {

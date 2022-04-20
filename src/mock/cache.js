@@ -1,8 +1,7 @@
 /**
  * @url https://some.api.com/todo
  */
-const faker = require('http-request-mock/plugin/faker');
-const cache = require('http-request-mock/plugin/cache');
+const { faker, cache } = require('http-request-mock/http-request-mock.js');
 
 const data = [...Array(5)].map(() => ({
   id: faker.incrementId(1, 'todos'),

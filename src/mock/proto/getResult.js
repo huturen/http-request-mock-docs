@@ -4,7 +4,7 @@
  * @method any
  */
 /* eslint-disable */
-const faker = require('http-request-mock/plugin/faker.js');
+const { faker } = require('http-request-mock/http-request-mock.js');
 module.exports = (request) => {
   return {
     code: 0,
