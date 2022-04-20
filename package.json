@@ -6,7 +6,7 @@
   "scripts": {
     "build": "vuepress build src",
     "clean-dev": "vuepress dev src --no-cache",
-    "dev": "http-request-mock-cli -e none -d src/mock -w \"vuepress dev src\"",
+    "dev": "http-request-mock-cli --index http-request-mock.js -e none -d src/mock -w \"vuepress dev src\"",
     "eject-theme": "vuepress eject-hope src"
   },
   "devDependencies": {
@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "axios": "^0.21.3",
-    "http-request-mock": "^1.6.20",
+    "http-request-mock": "^1.6.24",
     "localstorage-polyfill": "^1.0.1"
   }
 }
