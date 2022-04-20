@@ -6,8 +6,8 @@
     <link>https://huturen.github.io/http-request-mock-docs/</link>
     <description>http-request-mock: A new way to speed up your development and testing.</description>
     <language>en-US</language>
-    <pubDate>Wed, 06 Apr 2022 13:39:10 GMT</pubDate>
-    <lastBuildDate>Wed, 06 Apr 2022 13:39:10 GMT</lastBuildDate>
+    <pubDate>Wed, 20 Apr 2022 18:15:32 GMT</pubDate>
+    <lastBuildDate>Wed, 20 Apr 2022 18:15:32 GMT</lastBuildDate>
     <generator>@mr-hope/vuepress-plugin-feed</generator>
     <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
     <item>
@@ -27,7 +27,7 @@
 <p>Set up request mock for fetch.</p>
 <h3 id="setupfornode-mocker"> setupForNode() : Mocker:</h3>
 <p>Set up request mock for http.get, https.get, http.request and https.request in nodejs envrioment.</p>
-<h3 id="setupforunittest-type-wx-xhr-fetch-node-node-http-request-all-mocker"> setupForUnitTest(type: 'wx' | 'xhr' | 'fetch' | 'node' | 'node.http.request' | 'all') : Mocker:</h3>
+<h3 id="setupforunittest-type-wx-xhr-fetch-node-all-mocker"> setupForUnitTest(type: 'wx' | 'xhr' | 'fetch' | 'node' | 'all') : Mocker:</h3>
 <p>Set up request mock for unit test.</p>
 <h3 id="enable-mocker"> enable() : Mocker:</h3>
 <p>Enable mock function temporarily.</p>
@@ -109,6 +109,11 @@
 <p>Integration with nodejs:
 <a href="https://codesandbox.io/s/github/huturen/http-request-mock-integration-with-nodejs/tree/main" target="_blank" rel="noopener noreferrer">Codesandbox</a>,
 <a href="https://github.com/huturen/http-request-mock-integration-with-nodejs" target="_blank" rel="noopener noreferrer">Github</a></p>
+</li>
+<li>
+<p>A CURD demo (http-request-mock + vite + vue3 + ES2015+ + TypeScript):
+<a href="https://huturen.github.io/http-request-mock-curd/#/dashboard" target="_blank" rel="noopener noreferrer">Website</a>,
+<a href="https://github.com/huturen/http-request-mock-curd" target="_blank" rel="noopener noreferrer">Github</a></p>
 </li>
 <li>
 <p>Unit test:
@@ -200,8 +205,7 @@ module<span>.</span><span>exports</span> <span>=</span> <span>function</span><sp
 <div><pre><code><span>/**
  * @url https://some.api.com/todo
  */</span>
-<span>const</span> faker <span>=</span> <span>require</span><span>(</span><span>'http-request-mock/plugin/faker'</span><span>)</span><span>;</span>
-<span>const</span> cache <span>=</span> <span>require</span><span>(</span><span>'http-request-mock/plugin/cache'</span><span>)</span><span>;</span>
+<span>const</span> <span>{</span> faker<span>,</span> cache <span>}</span> <span>=</span> <span>require</span><span>(</span><span>'http-request-mock/http-request-mock.js'</span><span>)</span><span>;</span>
 
 <span>const</span> data <span>=</span> <span>[</span><span>...</span><span>Array</span><span>(</span><span>5</span><span>)</span><span>]</span><span>.</span><span>map</span><span>(</span><span>(</span><span>)</span> <span>=></span> <span>(</span><span>{</span>
   <span>id</span><span>:</span> faker<span>.</span><span>incrementId</span><span>(</span><span>1</span><span>,</span> <span>'todos'</span><span>)</span><span>,</span>
@@ -328,7 +332,8 @@ module<span>.</span><span>exports</span> <span>=</span> <span>(</span><span>requ
 
 <span><span><span>&lt;</span>script</span><span>></span></span><span><span>
 <span>import</span> axios <span>from</span> <span>'axios'</span><span>;</span>
-<span>import</span> HttpRequestMock <span>from</span> <span>'http-request-mock'</span><span>;</span>
+<span>import</span> HttpRequestMock <span>from</span> <span>'http-request-mock/http-request-mock.js'</span><span>;</span>
+
 <span>export</span> <span>default</span> <span>{</span>
   <span>data</span><span>(</span><span>)</span> <span>{</span>
     <span>return</span> <span>{</span>
@@ -445,7 +450,7 @@ module<span>.</span>exports <span>=</span> <span>{</span>
 
 <span><span><span>&lt;</span>script</span><span>></span></span><span><span>
 <span>import</span> axios <span>from</span> <span>'axios'</span><span>;</span>
-<span>import</span> HttpRequestMock <span>from</span> <span>'http-request-mock'</span><span>;</span>
+<span>import</span> HttpRequestMock <span>from</span> <span>'http-request-mock/http-request-mock.js'</span><span>;</span>
 <span>export</span> <span>default</span> <span>{</span>
   <span>data</span><span>(</span><span>)</span> <span>{</span>
     <span>return</span> <span>{</span> <span>msg</span><span>:</span> <span>''</span><span>,</span> <span>mockItem</span><span>:</span> <span>{</span><span>}</span> <span>}</span>
@@ -536,7 +541,7 @@ module<span>.</span><span>exports</span> <span>=</span> <span>(</span><span>requ
       <guid>https://huturen.github.io/http-request-mock-docs/feature/faker/</guid>
       <source url="https://huturen.github.io/http-request-mock-docs/rss.xml">Fake data</source>
       <pubDate>Mon, 07 Mar 2022 16:55:10 GMT</pubDate>
-      <content:encoded><![CDATA[<p><code>http-request-mock</code> has integrated with <a href="https://chancejs.com/" target="_blank" rel="noopener noreferrer">chance</a>.</p>
+      <content:encoded><![CDATA[<p><code>http-request-mock</code> has integrated with <a href="https://github.com/ngneat/falso" target="_blank" rel="noopener noreferrer">@ngneat/falso</a>.</p>
 <p>You can use it to generate massive amounts of fake data.</p>
 <feature-faker />
 <h2 id="mock-data-file"> Mock data file</h2>
@@ -544,14 +549,14 @@ module<span>.</span><span>exports</span> <span>=</span> <span>(</span><span>requ
  * @url https://www.api.com/faker
  * @method any
  */</span>
-<span>const</span> faker <span>=</span> <span>require</span><span>(</span><span>'http-request-mock/plugin/faker'</span><span>)</span><span>;</span>
+<span>const</span> <span>{</span> faker <span>}</span> <span>=</span> <span>require</span><span>(</span><span>'http-request-mock/http-request-mock.js'</span><span>)</span><span>;</span>
 module<span>.</span><span>exports</span> <span>=</span> <span>function</span><span>(</span><span>)</span> <span>{</span>
   <span>return</span> <span>{</span>
     <span>id</span><span>:</span> faker<span>.</span><span>incrementId</span><span>(</span><span>)</span><span>,</span>
     <span>name</span><span>:</span> faker<span>.</span><span>name</span><span>(</span><span>)</span><span>,</span>
     <span>age</span><span>:</span> <span>10</span> <span>+</span> faker<span>.</span><span>rand</span><span>(</span><span>0</span><span>,</span> <span>90</span><span>)</span><span>,</span>
     <span>phone</span><span>:</span> faker<span>.</span><span>phone</span><span>(</span><span>'(###) ###-####'</span><span>)</span><span>,</span>
-    <span>gender</span><span>:</span> faker<span>.</span>chance<span>.</span><span>gender</span><span>(</span><span>)</span><span>,</span>
+    <span>gender</span><span>:</span> faker<span>.</span><span>gender</span><span>(</span><span>)</span><span>,</span>
     <span>avatar</span><span>:</span> faker<span>.</span><span>avatar</span><span>(</span><span>)</span><span>,</span>
   <span>}</span><span>;</span>
 <span>}</span><span>;</span>
@@ -777,7 +782,7 @@ service Api {
  * @method any
  */</span>
 <span>/* eslint-disable */</span>
-<span>const</span> faker <span>=</span> <span>require</span><span>(</span><span>'http-request-mock/plugin/faker.js'</span><span>)</span><span>;</span>
+<span>const</span> <span>{</span> faker <span>}</span> <span>=</span> <span>require</span><span>(</span><span>'http-request-mock/http-request-mock.js'</span><span>)</span><span>;</span>
 module<span>.</span><span>exports</span> <span>=</span> <span>(</span><span>request</span><span>)</span> <span>=></span> <span>{</span>
   <span>return</span> <span>{</span>
     <span>code</span><span>:</span> <span>0</span><span>,</span>
@@ -1003,7 +1008,7 @@ module<span>.</span>exports <span>=</span> <span>{</span> <span>mock</span><span
 
 <span><span><span>&lt;</span>script</span><span>></span></span><span><span>
 <span>import</span> axios <span>from</span> <span>'axios'</span><span>;</span>
-<span>import</span> HttpRequestMock <span>from</span> <span>'http-request-mock'</span><span>;</span>
+<span>import</span> HttpRequestMock <span>from</span> <span>'http-request-mock/http-request-mock.js'</span><span>;</span>
 <span>export</span> <span>default</span> <span>{</span>
   <span>data</span><span>(</span><span>)</span> <span>{</span>
     <span>return</span> <span>{</span> <span>msg</span><span>:</span> <span>''</span><span>,</span> <span>mockItem</span><span>:</span> <span>null</span><span>,</span> <span>count</span><span>:</span> <span>0</span> <span>}</span>
@@ -1144,7 +1149,7 @@ your mock datas there. Take a Vue project as an example:</p>
 <span><span><span>&lt;/</span>template</span><span>></span></span>
 
 <span><span><span>&lt;</span>script</span><span>></span></span><span><span>
-<span>import</span> HttpRequestMock <span>from</span> <span>'http-request-mock'</span><span>;</span>
+<span>import</span> HttpRequestMock <span>from</span> <span>'http-request-mock/http-request-mock.js'</span><span>;</span>
 <span>import</span> axios <span>from</span> <span>'axios'</span><span>;</span>
 <span>export</span> <span>default</span> <span>{</span>
   <span>data</span><span>(</span><span>)</span> <span>{</span>
