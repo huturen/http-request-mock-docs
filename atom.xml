@@ -3,7 +3,7 @@
   <id>https://huturen.github.io/http-request-mock-docs/</id>
   <title>http-request-mock</title>
   <subtitle>http-request-mock: A new way to speed up your development and testing.</subtitle>
-  <updated>2022-04-20T20:11:10.054Z</updated>
+  <updated>2022-04-30T16:12:51.211Z</updated>
   <generator>@mr-hope/vuepress-plugin-feed</generator>
   <link rel="self" href="https://huturen.github.io/http-request-mock-docs/atom.xml"/>
   <link rel="alternate" href="https://huturen.github.io/http-request-mock-docs/"/>
@@ -861,24 +861,43 @@ module<span>.</span><span>exports</span> <span>=</span> <span>(</span><span>requ
     <title type="html">Remote mock data</title>
     <id>https://huturen.github.io/http-request-mock-docs/feature/remote/</id>
     <link href="https://huturen.github.io/http-request-mock-docs/feature/remote/"/>
-    <updated>2022-03-19T09:17:06.000Z</updated>
+    <updated>2022-04-30T16:11:05.000Z</updated>
     <content type="html"><![CDATA[<p><code>http-request-mock</code> supports for using remote mock data.</p>
 <feature-remote />
 <h2 id="mock-data-file"> Mock data file</h2>
+<h4 id="support-for-using-remote-mock-data"> Support for using remote mock data.</h4>
 <div><pre><code><span>/**
- * @url https://www.api.com/remote
+ * @url https://www.api.com/remote1
  *
  * In browser, the specified remote url must conform to the cross-domain specification.
  * @remote https://jsonplaceholder.typicode.com/todos/1
  * @method get
  */</span>
-module<span>.</span>exports <span>=</span> <span>'The exported object will be ignored.'</span><span>;</span>
+module<span>.</span><span>exports</span> <span>=</span> <span>remote</span> <span>=></span> remote<span>.</span>responseJson<span>;</span>
+</code></pre>
+</div><h4 id="you-can-dynamically-modify-the-data-returned-from-the-remote"> You can dynamically modify the data returned from the remote.</h4>
+<div><pre><code><span>/**
+ * @url https://www.api.com/remote2
+ *
+ * In browser, the specified remote url must conform to the cross-domain specification.
+ * @remote https://jsonplaceholder.typicode.com/todos/1
+ * @method get
+ */</span>
+module<span>.</span><span>exports</span> <span>=</span> <span>remote</span> <span>=></span> <span>{</span>
+  <span>return</span> <span>{</span>
+    <span>code</span><span>:</span> <span>0</span><span>,</span>
+    <span>msg</span><span>:</span> <span>'OK'</span><span>,</span>
+    <span>data</span><span>:</span> remote<span>.</span>responseJson
+  <span>}</span>
+<span>}</span>
 </code></pre>
 </div><hr>
 <h2 id="vue-code"> Vue code</h2>
 <div><pre><code><span><span><span>&lt;</span>template</span><span>></span></span>
   <span><span><span>&lt;</span>div</span> <span>class</span><span><span>=</span><span>"</span>demo<span>"</span></span><span>></span></span>
-    <span><span><span>&lt;</span>button</span> <span>@click</span><span><span>=</span><span>"</span>get<span>"</span></span><span>></span></span>GET https://www.api.com/remote<span><span><span>&lt;/</span>button</span><span>></span></span>
+    <span><span><span>&lt;</span>button</span> <span>@click</span><span><span>=</span><span>"</span>getRemote1<span>"</span></span><span>></span></span>GET https://www.api.com/remote1<span><span><span>&lt;/</span>button</span><span>></span></span>
+    <span title="&nbsp;">&amp;nbsp;</span><span title="&nbsp;">&amp;nbsp;</span>
+    <span><span><span>&lt;</span>button</span> <span>@click</span><span><span>=</span><span>"</span>getRemote2<span>"</span></span><span>></span></span>GET https://www.api.com/remote2<span><span><span>&lt;/</span>button</span><span>></span></span>
     <span><span><span>&lt;</span>div</span> <span>class</span><span><span>=</span><span>"</span>result<span>"</span></span><span>></span></span> {{ msg }} <span><span><span>&lt;/</span>div</span><span>></span></span>
     <span><span><span>&lt;</span>div</span> <span>class</span><span><span>=</span><span>"</span>tips<span>"</span></span><span>></span></span>Hit F12 to access Developer Tools and view the console logs.<span><span><span>&lt;/</span>div</span><span>></span></span>
   <span><span><span>&lt;/</span>div</span><span>></span></span>
@@ -891,9 +910,18 @@ module<span>.</span>exports <span>=</span> <span>'The exported object will be ig
     <span>return</span> <span>{</span> <span>msg</span><span>:</span> <span>''</span> <span>}</span>
   <span>}</span><span>,</span>
   <span>methods</span><span>:</span> <span>{</span>
-    <span>get</span><span>(</span><span>)</span> <span>{</span>
+    <span>getRemote1</span><span>(</span><span>)</span> <span>{</span>
       <span>this</span><span>.</span>msg <span>=</span> <span>'loading...'</span><span>;</span>
-      axios<span>.</span><span>get</span><span>(</span><span>'https://www.api.com/remote'</span><span>)</span><span>.</span><span>then</span><span>(</span><span>res</span> <span>=></span> <span>{</span>
+      axios<span>.</span><span>get</span><span>(</span><span>'https://www.api.com/remote1'</span><span>)</span><span>.</span><span>then</span><span>(</span><span>res</span> <span>=></span> <span>{</span>
+        <span>this</span><span>.</span>msg <span>=</span> <span>JSON</span><span>.</span><span>stringify</span><span>(</span>res<span>.</span>data<span>)</span><span>;</span>
+      <span>}</span><span>)</span><span>.</span><span>catch</span><span>(</span><span>err</span> <span>=></span> <span>{</span>
+        <span>this</span><span>.</span>msg <span>=</span> err<span>.</span>message<span>;</span>
+      <span>}</span><span>)</span><span>;</span>
+    <span>}</span><span>,</span>
+
+    <span>getRemote2</span><span>(</span><span>)</span> <span>{</span>
+      <span>this</span><span>.</span>msg <span>=</span> <span>'loading...'</span><span>;</span>
+      axios<span>.</span><span>get</span><span>(</span><span>'https://www.api.com/remote2'</span><span>)</span><span>.</span><span>then</span><span>(</span><span>res</span> <span>=></span> <span>{</span>
         <span>this</span><span>.</span>msg <span>=</span> <span>JSON</span><span>.</span><span>stringify</span><span>(</span>res<span>.</span>data<span>)</span><span>;</span>
       <span>}</span><span>)</span><span>.</span><span>catch</span><span>(</span><span>err</span> <span>=></span> <span>{</span>
         <span>this</span><span>.</span>msg <span>=</span> err<span>.</span>message<span>;</span>
