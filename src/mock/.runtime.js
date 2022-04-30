@@ -68,9 +68,15 @@ mocker.mock({
   "delay": 10
 });
 mocker.mock({
-  "url": "https://www.api.com/remote",
+  "url": "https://www.api.com/remote1",
   "method": "GET",
-  "body": require('./remote.js'),
+  "body": require('./remote1.js'),
+  "remote": "https://jsonplaceholder.typicode.com/todos/1"
+});
+mocker.mock({
+  "url": "https://www.api.com/remote2",
+  "method": "GET",
+  "body": require('./remote2.js'),
   "remote": "https://jsonplaceholder.typicode.com/todos/1"
 });
 mocker.mock({

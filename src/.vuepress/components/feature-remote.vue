@@ -1,6 +1,8 @@
 <template>
   <div class="demo">
-    <button @click="get">GET https://www.api.com/remote</button>
+    <button @click="getRemote1">GET https://www.api.com/remote1</button>
+    &nbsp;&nbsp;
+    <button @click="getRemote2">GET https://www.api.com/remote2</button>
     <div class="result"> {{ msg }} </div>
     <div class="tips">Hit F12 to access Developer Tools and view the console logs.</div>
   </div>
@@ -13,9 +15,18 @@ export default {
     return { msg: '' }
   },
   methods: {
-    get() {
+    getRemote1() {
       this.msg = 'loading...';
-      axios.get('https://www.api.com/remote').then(res => {
+      axios.get('https://www.api.com/remote1').then(res => {
+        this.msg = JSON.stringify(res.data);
+      }).catch(err => {
+        this.msg = err.message;
+      });
+    },
+
+    getRemote2() {
+      this.msg = 'loading...';
+      axios.get('https://www.api.com/remote2').then(res => {
         this.msg = JSON.stringify(res.data);
       }).catch(err => {
         this.msg = err.message;

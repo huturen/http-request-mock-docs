@@ -10,7 +10,11 @@ title: Remote mock data
 
 ## Mock data file
 
-<<< @/src/mock/remote.js
+#### Support for using remote mock data.
+<<< @/src/mock/remote1.js
+
+#### You can dynamically modify the data returned from the remote.
+<<< @/src/mock/remote2.js
 
 ---
 ## Vue code
