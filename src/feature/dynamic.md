@@ -22,7 +22,7 @@ so as to simulate a complex business logic in the real world.
 ```javascript
 export interface RequestInfo {
   url: string;
-  method: Method;
+  method: HttpVerb;
   query: object; // url search query
   headers?: object; // request header
   body?: any; // post body

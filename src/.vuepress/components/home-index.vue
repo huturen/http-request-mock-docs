@@ -2,7 +2,7 @@
   <div class="demo">
     <button @click="get">GET https://api.com/xyz?a=1&b=2</button>
     <span class="tips"> => </span>
-    <span class="result">{{msg}}</span>
+    <pre class="result pre">{{msg}}</pre>
     <div class="tips">Hit F12 to access Developer Tools and view the console logs.</div>
   </div>
 </template>
@@ -20,10 +20,15 @@ export default {
     get() {
       this.msg = 'loading...';
       axios.get('https://api.com/xyz?a=1&b=2').then(res => {
-        this.msg = JSON.stringify(res.data);
+        this.msg = JSON.stringify(res.data, null, 2);
       });
     },
   }
 }
 </script>
-<style scoped src="./demo.css">
+<style scoped src="./demo.css"></style>
+<style scoped>
+.pre {
+  white-space: pre;
+}
+</style>

@@ -65,7 +65,7 @@ Check specified mock item & add it to global mock data configuration.
 ```javascript
 interface MockItemInfo {
   url: RegExp | string;
-  method?: Method; // GET, POST, PUT, PATCH, DELETE or HEAD
+  method?: HttpVerb; // GET, POST, PUT, PATCH, DELETE or HEAD
   header?: Header, // response header
   delay?: number;
   disable?: Disable; // yes or no
@@ -115,7 +115,7 @@ Make a mock item that matches an HTTP HEAD request.
 
 Make a mock item that matches an HTTP GET, POST, PUT, PATCH, DELETE or HEAD  request.
 
-### matchMockItem(reqUrl: string, reqMethod: Method | undefined)
+### matchMockItem(reqUrl: string, reqMethod: HttpVerb | undefined)
 
 Check whether the specified request url matchs a defined mock item.
 

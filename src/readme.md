@@ -28,15 +28,15 @@ features:
     link: /intro/
 
   - title: More 3rd-party libraries
-    details: It supports axios, jquery, superagent, ky, node-fetch, got, request...
+    details: It supports axios, jquery, superagent, ky, node-fetch, got, you name it.
     link: /intro/
 
   - title: Dynamic mocking
-    details: Dynamically resolve response based on request query, payloads...
+    details: Dynamically resolve response based on request headers, query and payloads.
     link: /feature/dynamic/
 
   - title: Test capability
-    details: It has built-in support for unit test and works in jest, mocha and ava.
+    details: It has built-in support for unit test and works in jest and mocha environments.
     link: /usage/test/
 
   - title: Fake data
@@ -44,7 +44,7 @@ features:
     link: /feature/faker/
 
   - title: Remote
-    details: Support for using remote mock data.
+    details: Support for using remote mock data, where you can dynamically modify the data returned from the remote.
     link: /feature/remote/
 
 copyrightText: false
@@ -70,7 +70,7 @@ fetch('https://api.com/xyz?bbb=1').then(res => res.json()).then(console.log);
 
 
 ::: info Introduction
-Intercept and mock http requests issued by XMLHttpRequest, fetch, nodejs native https/http module, wx.request, axios, jquery, superagent, ky, node-fetch, request, got or any other request libraries by intercepting XMLHttpRequest, fetch and nodejs native requests in low level.
+It mocks http requests issued by axios, jquery, superagent, node-fetch, got, (… you name it) by intercepting XMLHttpRequest, fetch, and nodejs native HTTP/HTTPS module requests at the low level.
 :::
 
 ::: center

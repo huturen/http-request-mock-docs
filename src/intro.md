@@ -3,10 +3,8 @@
 title: Introduction
 
 ---
-It mocks http requests issued by XMLHttpRequest, fetch, nodejs native https/http module,
-wx.request, axios, jquery, superagent, ky, node-fetch, got, request or any other request
-libraries by intercepting XMLHttpRequest, fetch and nodejs native HTTP/HTTPS module
-requests in low level.
+It mocks http requests issued by axios, jquery, superagent, node-fetch, got, (… you name it) by
+intercepting XMLHttpRequest, fetch, and nodejs native HTTP/HTTPS module requests at the low level.
 
 1. XMLHttpRequest <span class="iconfont icon-chrome"></span>
 2. fetch <span class="iconfont icon-chrome"></span>
