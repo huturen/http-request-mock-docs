@@ -48,7 +48,7 @@ mocker.mock({ url: 'https://some.api.com/', delay: 300, body: function(req) {
   return {
     url: req.url,
     time: new Date(),
-    cn: {
+    info: {
       id: faker.incrementId(),
       enName: faker.name(),
       cnName: faker.name(true),
