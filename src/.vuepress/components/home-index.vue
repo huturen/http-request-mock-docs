@@ -1,7 +1,7 @@
 <template>
   <div class="demo">
     <button @click="get">GET https://api.com/xyz?a=1&b=2</button>
-    <span class="tips"> => </span>
+    <span class="tips"> (<- Try to click it.) </span>
     <pre class="result pre">{{msg}}</pre>
     <div class="tips">Hit F12 to access Developer Tools and view the console logs.</div>
   </div>
