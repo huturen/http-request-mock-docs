@@ -10,9 +10,7 @@
       .result {border: 1px dashed red}
       a {color: #0000cc; }
     </style>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.4/axios.min.js"></script> -->
-    <!-- <script src="https://unpkg.com/http-request-mock/dist/http-request-mock.pure.js"></script> -->
+    <!-- <script src="https://unpkg.com/http-request-mock/http-request-mock.js"></script> -->
     <script src="./jquery.min.js"></script>
     <script src="./axios.min.js"></script>
     <script src="./http-request-mock.js"></script>
@@ -42,15 +40,25 @@
 </html>
 
 <script>
-var mocker = HttpRequestMock.setup();
-var result = document.getElementById('result');
+const mocker = HttpRequestMock.setup();
+const result = document.getElementById('result');
+const { faker } = HttpRequestMock;
 
 mocker.mock({ url: 'https://some.api.com/', delay: 300, body: function(req) {
   return {
     url: req.url,
-    query: req.query,
-    headers: req.headers,
     time: new Date(),
+    cn: {
+      id: faker.incrementId(),
+      enName: faker.name(),
+      cnName: faker.name(true),
+      enAddress: faker.address(),
+      cnAddress: faker.address(true),
+      age: 10 + faker.rand(0, 90),
+      phone: faker.phone('(###) ###-####'),
+      gender: faker.gender(),
+      avatar: faker.avatar(),
+    },
   };
 }});
 

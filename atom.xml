@@ -3,7 +3,7 @@
   <id>https://huturen.github.io/http-request-mock-docs/</id>
   <title>http-request-mock</title>
   <subtitle>http-request-mock: A new way to speed up your development and testing.</subtitle>
-  <updated>2022-04-30T16:12:51.211Z</updated>
+  <updated>2022-05-13T03:33:39.502Z</updated>
   <generator>@mr-hope/vuepress-plugin-feed</generator>
   <link rel="self" href="https://huturen.github.io/http-request-mock-docs/atom.xml"/>
   <link rel="alternate" href="https://huturen.github.io/http-request-mock-docs/"/>
@@ -11,7 +11,7 @@
     <title type="html">API</title>
     <id>https://huturen.github.io/http-request-mock-docs/api/</id>
     <link href="https://huturen.github.io/http-request-mock-docs/api/"/>
-    <updated>2022-04-18T17:26:11.000Z</updated>
+    <updated>2022-05-13T03:31:47.000Z</updated>
     <content type="html"><![CDATA[<h2 id="for-httprequestmock"> For HttpRequestMock</h2>
 <h3 id="setup-mocker"> setup() : Mocker:</h3>
 <p>Auto detect request enviroment and set up request mock.</p>
@@ -43,7 +43,7 @@
 <p>Check specified mock item &amp; add it to global mock data configuration.</p>
 <div><pre><code><span>interface</span> <span>MockItemInfo</span> <span>{</span>
   <span>url</span><span>:</span> RegExp <span>|</span> string<span>;</span>
-  method<span>?</span><span>:</span> Method<span>;</span> <span>// GET, POST, PUT, PATCH, DELETE or HEAD</span>
+  method<span>?</span><span>:</span> HttpVerb<span>;</span> <span>// GET, POST, PUT, PATCH, DELETE or HEAD</span>
   header<span>?</span><span>:</span> Header<span>,</span> <span>// response header</span>
   delay<span>?</span><span>:</span> number<span>;</span>
   disable<span>?</span><span>:</span> Disable<span>;</span> <span>// yes or no</span>
@@ -74,7 +74,7 @@
 <p>Make a mock item that matches an HTTP HEAD request.</p>
 <h3 id="any-url-regexp-string-body-any-opts-mockitemext"> any(url: RegExp | String, body: any, opts: MockItemExt)</h3>
 <p>Make a mock item that matches an HTTP GET, POST, PUT, PATCH, DELETE or HEAD  request.</p>
-<h3 id="matchmockitem-requrl-string-reqmethod-method-undefined"> matchMockItem(reqUrl: string, reqMethod: Method | undefined)</h3>
+<h3 id="matchmockitem-requrl-string-reqmethod-httpverb-undefined"> matchMockItem(reqUrl: string, reqMethod: HttpVerb | undefined)</h3>
 <p>Check whether the specified request url matchs a defined mock item.</p>
 <p>If a match is found, return the matched mock item, otherwise a null is returned.</p>
 ]]></content>
@@ -499,7 +499,7 @@ module<span>.</span>exports <span>=</span> <span>{</span>
     <title type="html">Dynamic response</title>
     <id>https://huturen.github.io/http-request-mock-docs/feature/dynamic/</id>
     <link href="https://huturen.github.io/http-request-mock-docs/feature/dynamic/"/>
-    <updated>2022-03-07T16:55:10.000Z</updated>
+    <updated>2022-05-13T03:31:47.000Z</updated>
     <content type="html"><![CDATA[<p>You can export a function instead of an object to resolve a dynamic response,
 so as to simulate a complex business logic in the real world.</p>
 <feature-dynamic />
@@ -544,7 +544,7 @@ module<span>.</span><span>exports</span> <span>=</span> <span>(</span><span>requ
 </div><h2 id="request-information"> Request information</h2>
 <div><pre><code><span>export</span> <span>interface</span> <span>RequestInfo</span> <span>{</span>
   <span>url</span><span>:</span> string<span>;</span>
-  <span>method</span><span>:</span> Method<span>;</span>
+  <span>method</span><span>:</span> HttpVerb<span>;</span>
   <span>query</span><span>:</span> object<span>;</span> <span>// url search query</span>
   headers<span>?</span><span>:</span> object<span>;</span> <span>// request header</span>
   body<span>?</span><span>:</span> any<span>;</span> <span>// post body</span>
@@ -1116,7 +1116,7 @@ module<span>.</span>exports <span>=</span> <span>{</span> <span>mock</span><span
     <title type="html">Installation</title>
     <id>https://huturen.github.io/http-request-mock-docs/install/</id>
     <link href="https://huturen.github.io/http-request-mock-docs/install/"/>
-    <updated>2022-03-07T16:55:10.000Z</updated>
+    <updated>2022-05-13T03:31:47.000Z</updated>
     <content type="html"><![CDATA[<p>You can use <code>http-request-mock</code> to speed up your development and testing.</p>
 <p><strong>NPM</strong>:</p>
 <p><code>npm install --save-dev http-request-mock</code></p>
@@ -1127,12 +1127,9 @@ module<span>.</span>exports <span>=</span> <span>{</span> <span>mock</span><span
 <span>const</span> HttpRequestMock <span>=</span> <span>require</span><span>(</span><span>'http-request-mock'</span><span>)</span><span>;</span>
 </code></pre>
 </div><p><strong>CDN</strong>:</p>
-<p>The UMD build is also available on <code>unpkg</code> and <code>cdnjs</code>:</p>
+<p>The UMD build is also available on <code>unpkg</code>:</p>
 <div><pre><code><span>&lt;!-- unpkg --></span>
-<span><span><span>&lt;</span>script</span> <span>src</span><span><span>=</span><span>"</span>https://unpkg.com/http-request-mock/dist/http-request-mock.js<span>"</span></span><span>></span></span><span></span><span><span><span>&lt;/</span>script</span><span>></span></span>
-
-<span>&lt;!-- cdnjs --></span>
-<span><span><span>&lt;</span>script</span> <span>src</span><span><span>=</span><span>"</span>https://cdnjs.cloudflare.com/ajax/libs/http-request-mock/1.5.10/http-request-mock.js<span>"</span></span><span>></span></span><span></span><span><span><span>&lt;/</span>script</span><span>></span></span>
+<span><span><span>&lt;</span>script</span> <span>src</span><span><span>=</span><span>"</span>https://unpkg.com/http-request-mock/http-request-mock.js<span>"</span></span><span>></span></span><span></span><span><span><span>&lt;/</span>script</span><span>></span></span>
 </code></pre>
 </div><p>You can find the library on window.HttpRequestMock.</p>
 ]]></content>
@@ -1145,11 +1142,9 @@ module<span>.</span>exports <span>=</span> <span>{</span> <span>mock</span><span
     <title type="html">Introduction</title>
     <id>https://huturen.github.io/http-request-mock-docs/intro/</id>
     <link href="https://huturen.github.io/http-request-mock-docs/intro/"/>
-    <updated>2022-03-07T17:35:09.000Z</updated>
-    <content type="html"><![CDATA[<p>It mocks http requests issued by XMLHttpRequest, fetch, nodejs native https/http module,
-wx.request, axios, jquery, superagent, ky, node-fetch, got, request or any other request
-libraries by intercepting XMLHttpRequest, fetch and nodejs native HTTP/HTTPS module
-requests in low level.</p>
+    <updated>2022-05-13T03:31:47.000Z</updated>
+    <content type="html"><![CDATA[<p>It mocks http requests issued by axios, jquery, superagent, node-fetch, got, (… you name it) by
+intercepting XMLHttpRequest, fetch, and nodejs native HTTP/HTTPS module requests at the low level.</p>
 <ol>
 <li>XMLHttpRequest <span></span></li>
 <li>fetch <span></span></li>
@@ -1174,7 +1169,7 @@ to hack into your business code to mock something ever again after a one-time co
     <title type="html">Project home</title>
     <id>https://huturen.github.io/http-request-mock-docs/</id>
     <link href="https://huturen.github.io/http-request-mock-docs/"/>
-    <updated>2022-04-03T07:32:22.000Z</updated>
+    <updated>2022-05-13T03:31:47.000Z</updated>
     <content type="html"><![CDATA[<hr>
 <p>You can define your mock data like below:</p>
 <div><pre><code><span>/**
@@ -1185,8 +1180,16 @@ to hack into your business code to mock something ever again after a one-time co
  * @status 200
  * @delay 300
  */</span>
+<span>const</span> faker <span>=</span> <span>require</span><span>(</span><span>'http-request-mock/plugin/faker.js'</span><span>)</span><span>;</span>
 module<span>.</span><span>exports</span> <span>=</span> <span>(</span><span>req</span><span>)</span> <span>=></span> <span>{</span>
-  <span>return</span> <span>{</span> <span>msg</span><span>:</span> <span>'some mock data'</span><span>,</span> <span>query</span><span>:</span> req<span>.</span>query <span>}</span><span>;</span>
+  <span>return</span> <span>{</span>
+    <span>url</span><span>:</span> req<span>.</span>url<span>,</span>
+    <span>id</span><span>:</span> faker<span>.</span><span>incrementId</span><span>(</span><span>)</span><span>,</span>
+    <span>enName</span><span>:</span> faker<span>.</span><span>name</span><span>(</span><span>)</span><span>,</span>
+    <span>cnName</span><span>:</span> faker<span>.</span><span>name</span><span>(</span><span>true</span><span>)</span><span>,</span>
+    <span>age</span><span>:</span> faker<span>.</span><span>rand</span><span>(</span><span>10</span><span>,</span> <span>40</span><span>)</span><span>,</span>
+    <span>phone</span><span>:</span> faker<span>.</span><span>phone</span><span>(</span><span>'(###) ###-####'</span><span>)</span><span>,</span>
+   <span>}</span><span>;</span>
 <span>}</span>
 </code></pre>
 </div><home-index />
@@ -1198,7 +1201,7 @@ module<span>.</span><span>exports</span> <span>=</span> <span>(</span><span>req<
 </code></pre>
 </div><hr>
 <div><p>Introduction</p>
-<p>Intercept and mock http requests issued by XMLHttpRequest, fetch, nodejs native https/http module, wx.request, axios, jquery, superagent, ky, node-fetch, request, got or any other request libraries by intercepting XMLHttpRequest, fetch and nodejs native requests in low level.</p>
+<p>It mocks http requests issued by axios, jquery, superagent, node-fetch, got, (… you name it) by intercepting XMLHttpRequest, fetch, and nodejs native HTTP/HTTPS module requests at the low level.</p>
 </div>
 <div>
 <p><img src="/http-request-mock-docs/imgs/layers-design.png" alt="Design" /></p>
