@@ -1529,6 +1529,13 @@
     "@types/qs" "*"
     "@types/serve-static" "*"
 
+"@types/follow-redirects@^1.14.1":
+  version "1.14.1"
+  resolved "https://registry.npmjs.org/@types/follow-redirects/-/follow-redirects-1.14.1.tgz#c08b173be7517ddc53725d0faf9648d4dc7a9cdb"
+  integrity sha512-THBEFwqsLuU/K62B5JRwab9NW97cFmL4Iy34NTMX0bMycQVzq2q7PKOkhfivIwxdpa/J72RppgC42vCHfwKJ0Q==
+  dependencies:
+    "@types/node" "*"
+
 "@types/fs-extra@^9.0.12":
   version "9.0.13"
   resolved "https://registry.npmjs.org/@types/fs-extra/-/fs-extra-9.0.13.tgz"
@@ -5339,6 +5346,11 @@ follow-redirects@^1.0.0, follow-redirects@^1.14.0:
   resolved "https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.14.9.tgz"
   integrity sha512-MQDfihBQYMcyy5dhRDJUHcw7lb2Pv/TuE6xP1vyraLukNDHKbDxDNaOE3NbCAdKQApno+GPRyo1YAp89yCjK4w==
 
+follow-redirects@^1.15.0:
+  version "1.15.0"
+  resolved "https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.15.0.tgz#06441868281c86d0dda4ad8bdaead2d02dca89d4"
+  integrity sha512-aExlJShTV4qOUOL7yF1U5tvLCB0xQuudbf6toyYA0E/acBNw71mvjFTnLaRp50aQaYocMR0a/RMMBIHeZnGyjQ==
+
 for-in@^1.0.2:
   version "1.0.2"
   resolved "https://registry.npmjs.org/for-in/-/for-in-1.0.2.tgz"
@@ -5963,14 +5975,16 @@ http-proxy@^1.17.0, http-proxy@^1.18.1:
     follow-redirects "^1.0.0"
     requires-port "^1.0.0"
 
-http-request-mock@^1.7.8:
-  version "1.7.8"
-  resolved "https://registry.npmjs.org/http-request-mock/-/http-request-mock-1.7.8.tgz#36c94b9f7abecbb112c92d402c9182611d43a2f8"
-  integrity sha512-VO3928zn/6HpWlox01qRcfps83JcKpcEa4oQwxHuTtHP6npVxHr48SOkentlxKuBR2UEJxjpmMpyuKYD8Gadeg==
+http-request-mock@^1.7.9:
+  version "1.7.9"
+  resolved "https://registry.npmjs.org/http-request-mock/-/http-request-mock-1.7.9.tgz#a159f82fc5ac0e407eca0e12c1010b2fbde4c0c8"
+  integrity sha512-xt12KGoDlXNQQjCB3BvsC+6YQHHu0fNT4lQ4Uh6/MFp8iVIHqLyVC+kTrZ60aMNWNxwXdnzsWW9P9ndlRMWQQA==
   dependencies:
     "@ngneat/falso" "^4.0.0"
+    "@types/follow-redirects" "^1.14.1"
     chokidar "^3.5.2"
     commander "^2.20.3"
+    follow-redirects "^1.15.0"
     http-proxy "^1.18.1"
     protobufjs "^6.11.2"
 

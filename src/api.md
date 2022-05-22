@@ -9,7 +9,7 @@ title: API
 
 ### setup() : Mocker:
 
-Auto detect request enviroment and set up request mock.
+Auto detect request environment and set up request mock.
 
 ### setupForWx() : Mocker:
 
@@ -25,7 +25,7 @@ Set up request mock for fetch.
 
 ### setupForNode() : Mocker:
 
-Set up request mock for http.get, https.get, http.request and https.request in nodejs envrioment.
+Set up request mock for http.get, https.get, http.request and https.request in nodejs environment.
 
 ### setupForUnitTest(type: 'wx' | 'xhr' | 'fetch' | 'node' | 'all') : Mocker:
 
