@@ -6,8 +6,8 @@
     <link>https://huturen.github.io/http-request-mock-docs/</link>
     <description>http-request-mock: A new way to speed up your development and testing.</description>
     <language>en-US</language>
-    <pubDate>Fri, 13 May 2022 04:19:19 GMT</pubDate>
-    <lastBuildDate>Fri, 13 May 2022 04:19:19 GMT</lastBuildDate>
+    <pubDate>Sun, 22 May 2022 13:49:40 GMT</pubDate>
+    <lastBuildDate>Sun, 22 May 2022 13:49:40 GMT</lastBuildDate>
     <generator>@mr-hope/vuepress-plugin-feed</generator>
     <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
     <item>
@@ -90,6 +90,11 @@
       <source url="https://huturen.github.io/http-request-mock-docs/rss.xml">Examples</source>
       <pubDate>Mon, 07 Mar 2022 16:55:10 GMT</pubDate>
       <content:encoded><![CDATA[<ul>
+<li>
+<p>Integration with webpack-dev-server:
+<a href="https://codesandbox.io/s/github/huturen/http-request-mock-integration-with-webpack-dev-server/tree/main" target="_blank" rel="noopener noreferrer">Codesandbox</a>,
+<a href="https://github.com/huturen/http-request-mock-integration-with-webpack-dev-server" target="_blank" rel="noopener noreferrer">Github</a></p>
+</li>
 <li>
 <p>Integration with vue by webpack plugin:
 <a href="https://codesandbox.io/s/github/huturen/http-request-mock-integration-with-vue-by-webpack-plugin/tree/main" target="_blank" rel="noopener noreferrer">Codesandbox</a>,
@@ -1145,7 +1150,6 @@ module<span>.</span><span>exports</span> <span>=</span> <span>(</span><span>req<
 <p>Try to type the code below in the console to play with http-request-mock.</p>
 <div><pre><code>axios<span>.</span><span>get</span><span>(</span><span>'https://api.com/xyz?aaa=1'</span><span>)</span><span>.</span><span>then</span><span>(</span><span>res</span> <span>=></span> console<span>.</span><span>log</span><span>(</span>res<span>.</span>data<span>)</span><span>)</span><span>;</span>
 
-<span>// Or use "fetch" if current browser supports it.</span>
 <span>fetch</span><span>(</span><span>'https://api.com/xyz?bbb=1'</span><span>)</span><span>.</span><span>then</span><span>(</span><span>res</span> <span>=></span> res<span>.</span><span>json</span><span>(</span><span>)</span><span>)</span><span>.</span><span>then</span><span>(</span>console<span>.</span>log<span>)</span><span>;</span>
 </code></pre>
 </div><hr>
@@ -1233,15 +1237,22 @@ Options:
                                      ths specified command will be executed together with watching.
   -j, --inject &lt;app-entry-file&gt;      Inject .runtime.js into the specified entry relative to the working directory.
   -t, --type [module-type]           The module type of .runtime.js.
-                                     Possible values are: es6, cjs(alias of commonjs).
+                                     Possible values are: es6(alias of ESM), cjs(alias of commonjs).
                                      (default: &quot;cjs&quot;)
+  --index [index-entry]              Index entry, automatic detection by default.
+                                     Possible values are: src/index.js, http-request-mock.js and http-request-mock.esm.mjs.
+                                     [src/index.js] for commonJS
+                                     [http-request-mock.js] for UMD
+                                     [http-request-mock.pure.js] An alternative version without faker and cache plugins for UMD.
+                                     [http-request-mock.esm.mjs] for ESM
+                                     [http-request-mock.pure.esm.mjs] for ESM An alternative version without faker and cache plugins for ESM.
+
   -p, --proxy [mode]                 Proxy mode. In proxy mode, http-request-mock will start
-                                     a proxy server which recives incoming requests on localhost.
+                                     a proxy server which receives incoming requests on localhost.
                                      The mock files will be run in a nodejs environment.
                                      This feature is designed for browser, so do not use it in a nodjs project.
                                      Note: proxy mode is still under experimental stage, only for experts.
-                                     [matched] All requests matched by @url will be proxied to a proxy server.
-                                     [marked] All requests marked by @proxy will be proxied to a proxy server. (default: &quot;none&quot;)
+                                     [matched] All requests matched by @url will be proxied to a proxy server. (default: &quot;none&quot;)
   --proto                            Generate mock files by proto files.
   -h, --help                         output usage information
 </code></pre>
