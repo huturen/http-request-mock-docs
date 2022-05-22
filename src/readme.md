@@ -63,7 +63,6 @@ Try to type the code below in the console to play with http-request-mock.
 ```javascript
 axios.get('https://api.com/xyz?aaa=1').then(res => console.log(res.data));
 
-// Or use "fetch" if current browser supports it.
 fetch('https://api.com/xyz?bbb=1').then(res => res.json()).then(console.log);
 ```
 ---
