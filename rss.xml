@@ -6,8 +6,8 @@
     <link>https://huturen.github.io/http-request-mock-docs/</link>
     <description>http-request-mock: A new way to speed up your development and testing.</description>
     <language>en-US</language>
-    <pubDate>Sun, 22 May 2022 13:49:40 GMT</pubDate>
-    <lastBuildDate>Sun, 22 May 2022 13:49:40 GMT</lastBuildDate>
+    <pubDate>Sun, 22 May 2022 13:53:06 GMT</pubDate>
+    <lastBuildDate>Sun, 22 May 2022 13:53:06 GMT</lastBuildDate>
     <generator>@mr-hope/vuepress-plugin-feed</generator>
     <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
     <item>
@@ -18,7 +18,7 @@
       <pubDate>Mon, 07 Mar 2022 16:55:10 GMT</pubDate>
       <content:encoded><![CDATA[<h2 id="for-httprequestmock"> For HttpRequestMock</h2>
 <h3 id="setup-mocker"> setup() : Mocker:</h3>
-<p>Auto detect request enviroment and set up request mock.</p>
+<p>Auto detect request environment and set up request mock.</p>
 <h3 id="setupforwx-mocker"> setupForWx() : Mocker:</h3>
 <p>Set up request mock for wx.request.</p>
 <h3 id="setupforxhr-mocker"> setupForXhr() : Mocker:</h3>
@@ -26,7 +26,7 @@
 <h3 id="setupforfetch-mocker"> setupForFetch() : Mocker:</h3>
 <p>Set up request mock for fetch.</p>
 <h3 id="setupfornode-mocker"> setupForNode() : Mocker:</h3>
-<p>Set up request mock for http.get, https.get, http.request and https.request in nodejs envrioment.</p>
+<p>Set up request mock for http.get, https.get, http.request and https.request in nodejs environment.</p>
 <h3 id="setupforunittest-type-wx-xhr-fetch-node-all-mocker"> setupForUnitTest(type: 'wx' | 'xhr' | 'fetch' | 'node' | 'all') : Mocker:</h3>
 <p>Set up request mock for unit test.</p>
 <h3 id="enable-mocker"> enable() : Mocker:</h3>
