@@ -6,8 +6,8 @@
     <link>https://huturen.github.io/http-request-mock-docs/</link>
     <description>http-request-mock: A new way to speed up your development and testing.</description>
     <language>en-US</language>
-    <pubDate>Sun, 22 May 2022 13:53:06 GMT</pubDate>
-    <lastBuildDate>Sun, 22 May 2022 13:53:06 GMT</lastBuildDate>
+    <pubDate>Wed, 20 Jul 2022 15:01:53 GMT</pubDate>
+    <lastBuildDate>Wed, 20 Jul 2022 15:01:53 GMT</lastBuildDate>
     <generator>@mr-hope/vuepress-plugin-feed</generator>
     <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
     <item>
@@ -48,7 +48,7 @@
 <div><pre><code><span>interface</span> <span>MockItemInfo</span> <span>{</span>
   <span>url</span><span>:</span> RegExp <span>|</span> string<span>;</span>
   method<span>?</span><span>:</span> HttpVerb<span>;</span> <span>// GET, POST, PUT, PATCH, DELETE or HEAD</span>
-  header<span>?</span><span>:</span> Header<span>,</span> <span>// response header</span>
+  headers<span>?</span><span>:</span> Header<span>,</span> <span>// response header</span>
   delay<span>?</span><span>:</span> number<span>;</span>
   disable<span>?</span><span>:</span> Disable<span>;</span> <span>// yes or no</span>
   times<span>?</span><span>:</span> number<span>;</span>
@@ -59,7 +59,7 @@
 </div><h3 id="get-url-regexp-string-body-any-opts-mockitemext"> get(url: RegExp | String, body: any, opts: MockItemExt)</h3>
 <p>Make a mock item that matches an HTTP GET request.</p>
 <div><pre><code><span>interface</span> <span>MockItemExt</span> <span>{</span>
-  header<span>?</span><span>:</span> Header<span>,</span> <span>// response header</span>
+  headers<span>?</span><span>:</span> Header<span>,</span> <span>// response headers</span>
   disable<span>?</span><span>:</span> Disable<span>;</span> <span>// yes or no</span>
   delay<span>?</span><span>:</span> number<span>;</span>
   times<span>?</span><span>:</span> number<span>;</span>
