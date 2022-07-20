@@ -66,7 +66,7 @@ Check specified mock item & add it to global mock data configuration.
 interface MockItemInfo {
   url: RegExp | string;
   method?: HttpVerb; // GET, POST, PUT, PATCH, DELETE or HEAD
-  header?: Header, // response header
+  headers?: Header, // response header
   delay?: number;
   disable?: Disable; // yes or no
   times?: number;
@@ -81,7 +81,7 @@ Make a mock item that matches an HTTP GET request.
 
 ```javascript
 interface MockItemExt {
-  header?: Header, // response header
+  headers?: Header, // response headers
   disable?: Disable; // yes or no
   delay?: number;
   times?: number;

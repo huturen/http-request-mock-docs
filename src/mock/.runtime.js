@@ -42,7 +42,7 @@ mocker.mock({
   "url": "https://www.api.com/headers",
   "method": "GET",
   "body": require('./headers.js'),
-  "header": {
+  "headers": {
     "application": "application/json",
     "abc": "123",
     "xyz": [
@@ -57,7 +57,7 @@ mocker.mock({
   "body": require('./home.js'),
   "delay": 300,
   "status": 200,
-  "header": {
+  "headers": {
     "content-type": "application/json",
     "abc": "xyz"
   }

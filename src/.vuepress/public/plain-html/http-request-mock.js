@@ -20311,7 +20311,7 @@ if ( true && module.exports) {
 
 /***/ }),
 
-/***/ 280:
+/***/ 287:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -20320,20 +20320,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var cache_js_1 = __importDefault(__webpack_require__(612));
-var faker_js_1 = __importDefault(__webpack_require__(975));
 var fetch_1 = __importDefault(__webpack_require__(676));
 var wx_request_1 = __importDefault(__webpack_require__(833));
 var xml_http_request_1 = __importDefault(__webpack_require__(219));
 var mocker_1 = __importDefault(__webpack_require__(819));
-var BrowserIndex = /** @class */ (function () {
-    function BrowserIndex() {
+var BrowserPureIndex = /** @class */ (function () {
+    function BrowserPureIndex() {
     }
     /**
      * Auto detect request environment and setup request mock for wx.request, fetch and XHR.
      * @param {string} proxyServer A proxy server which is used by proxy mode.
      */
-    BrowserIndex.setup = function (proxyServer) {
+    BrowserPureIndex.setup = function (proxyServer) {
         if (proxyServer === void 0) { proxyServer = ''; }
         var mocker = new mocker_1.default(proxyServer);
         if (this.isEnabled && typeof wx !== 'undefined' && typeof wx.request === 'function') {
@@ -20351,7 +20349,7 @@ var BrowserIndex = /** @class */ (function () {
      * Setup request mock for wx.request.
      * @param {string} proxyServer A proxy server which is used by proxy mode.
      */
-    BrowserIndex.setupForWx = function (proxyServer) {
+    BrowserPureIndex.setupForWx = function (proxyServer) {
         if (proxyServer === void 0) { proxyServer = ''; }
         var mocker = new mocker_1.default(proxyServer);
         this.isEnabled && wx_request_1.default.setup(mocker, proxyServer);
@@ -20361,7 +20359,7 @@ var BrowserIndex = /** @class */ (function () {
      * Setup request mock for XMLHttpRequest.
      * @param {string} proxyServer A proxy server which is used by proxy mode.
      */
-    BrowserIndex.setupForXhr = function (proxyServer) {
+    BrowserPureIndex.setupForXhr = function (proxyServer) {
         if (proxyServer === void 0) { proxyServer = ''; }
         var mocker = new mocker_1.default(proxyServer);
         this.isEnabled && xml_http_request_1.default.setup(mocker, proxyServer);
@@ -20371,7 +20369,7 @@ var BrowserIndex = /** @class */ (function () {
      * Setup request mock for fetch.
      * @param {string} proxyServer A proxy server which is used by proxy mode.
      */
-    BrowserIndex.setupForFetch = function (proxyServer) {
+    BrowserPureIndex.setupForFetch = function (proxyServer) {
         if (proxyServer === void 0) { proxyServer = ''; }
         var mocker = new mocker_1.default(proxyServer);
         this.isEnabled && fetch_1.default.setup(mocker, proxyServer);
@@ -20381,7 +20379,7 @@ var BrowserIndex = /** @class */ (function () {
      * Enable mock function temporarily.
      * Not available in proxy mode.
      */
-    BrowserIndex.enable = function () {
+    BrowserPureIndex.enable = function () {
         this.isEnabled = true;
         return mocker_1.default.getInstance().enable();
     };
@@ -20389,7 +20387,7 @@ var BrowserIndex = /** @class */ (function () {
      * Disable mock function temporarily.
      * Not available in proxy mode.
      */
-    BrowserIndex.disable = function () {
+    BrowserPureIndex.disable = function () {
         this.isEnabled = false;
         return mocker_1.default.getInstance().disable();
     };
@@ -20397,22 +20395,65 @@ var BrowserIndex = /** @class */ (function () {
      * Enable verbose log.
      * Not available in proxy mode.
      */
-    BrowserIndex.enableLog = function () {
+    BrowserPureIndex.enableLog = function () {
         return mocker_1.default.getInstance().enableLog();
     };
     /**
      * Disable verbose log.
      * Not available in proxy mode.
      */
-    BrowserIndex.disableLog = function () {
+    BrowserPureIndex.disableLog = function () {
         return mocker_1.default.getInstance().disableLog();
     };
-    BrowserIndex.isEnabled = true;
+    BrowserPureIndex.isEnabled = true;
+    BrowserPureIndex.default = BrowserPureIndex; // for backward compatibility
+    return BrowserPureIndex;
+}());
+exports["default"] = BrowserPureIndex;
+
+
+/***/ }),
+
+/***/ 280:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var cache_js_1 = __importDefault(__webpack_require__(612));
+var faker_js_1 = __importDefault(__webpack_require__(975));
+var browser_pure_1 = __importDefault(__webpack_require__(287));
+/**
+ * The same as BrowserPureIndex, but with "faker" and "cache" plugins.
+ */
+var BrowserIndex = /** @class */ (function (_super) {
+    __extends(BrowserIndex, _super);
+    function BrowserIndex() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
     BrowserIndex.faker = faker_js_1.default;
     BrowserIndex.cache = cache_js_1.default;
     BrowserIndex.default = BrowserIndex; // for backward compatibility
     return BrowserIndex;
-}());
+}(browser_pure_1.default));
 exports["default"] = BrowserIndex;
 
 
@@ -20445,20 +20486,42 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.getCallerFile = exports.isImported = exports.isPromise = exports.isNodejs = exports.currentDatetime = exports.currentTime = exports.currentDate = exports.isArrayBuffer = exports.str2arrayBuffer = exports.sleep = exports.tryToParseJson = exports.tryToParseObject = exports.isObject = exports.queryObject2String = exports.getQuery = void 0;
 /**
  * Get query parameters from the specified request url.
+ * https://www.sitepoint.com/get-url-parameters-with-javascript/
+ *
  * @param {string} reqUrl
  */
 function getQuery(reqUrl) {
-    return /\?/.test(reqUrl)
-        ? reqUrl
-            .replace(/.*?\?/g, '') // no protocol, domain and path
-            .replace(/#.*$/g, '') // no hash tag
-            .split('&')
-            .reduce(function (res, item) {
-            var _a = item.split('='), k = _a[0], v = _a[1];
-            res[k] = (v || '').trim();
-            return res;
-        }, {})
-        : {};
+    var _a;
+    // no protocol, domain, path and hash tag
+    var query = (reqUrl || '').replace(/^.*?\?/g, '').replace(/#.*$/g, '');
+    var obj = {};
+    if (query) {
+        var parts = query.split('&');
+        for (var i = 0; i < parts.length; i++) {
+            var _b = parts[i].split('='), key = _b[0], _c = _b[1], val = _c === void 0 ? '' : _c;
+            // for keys which ends with square brackets, such as list[] or list[1]
+            if (key.match(/\[(\d+)?\]$/)) {
+                var field = key.replace(/\[(\d+)?\]/, '');
+                obj[field] = obj[field] || [];
+                if (key.match(/\[\d+\]$/)) {
+                    // set array index, if it's an indexed array e.g. list[2]
+                    obj[field][Number((_a = /\[(\d+)\]/.exec(key)) === null || _a === void 0 ? void 0 : _a[1])] = val;
+                }
+                else {
+                    obj[field].push(val);
+                }
+            }
+            else {
+                if (key in obj) {
+                    obj[key] = [].concat(obj[key], val);
+                }
+                else {
+                    obj[key] = val;
+                }
+            }
+        }
+    }
+    return obj;
 }
 exports.getQuery = getQuery;
 /**
@@ -20468,7 +20531,15 @@ exports.getQuery = getQuery;
 function queryObject2String(queryObj) {
     var str = [];
     for (var key in queryObj) {
-        str.push(key + '=' + queryObj[key]);
+        if (Array.isArray(queryObj[key])) {
+            for (var _i = 0, _a = queryObj[key]; _i < _a.length; _i++) {
+                var val = _a[_i];
+                str.push(key + '=' + val);
+            }
+        }
+        else {
+            str.push(key + '=' + queryObj[key]);
+        }
     }
     return str.join('&');
 }
@@ -20599,7 +20670,7 @@ function currentDatetime() {
 }
 exports.currentDatetime = currentDatetime;
 /**
- * Check current envrioment: nodejs or not.
+ * Check current environment: nodejs or not.
  * Note: arrow function is required.
  */
 function isNodejs() {
@@ -20740,7 +20811,7 @@ var BaseInterceptor = /** @class */ (function () {
         this.proxyServer = '';
         this.proxyMode = '';
         this.mocker = mocker;
-        if (/^(matched|marked)@localhost:\d+$/.test(proxyServer)) {
+        if (/^(matched@localhost:\d+)|(middleware@\/)$/.test(proxyServer)) {
             _a = proxyServer.split('@'), this.proxyMode = _a[0], this.proxyServer = _a[1];
         }
         this.global = BaseInterceptor.getGlobal();
@@ -20766,19 +20837,23 @@ var BaseInterceptor = /** @class */ (function () {
         throw new Error('Detect global variable error');
     };
     /**
-     * Check whether the specified request url matchs a defined mock item.
+     * Check whether the specified request url matches a defined mock item.
      * If a match is found, return mock meta information, otherwise a null is returned.
      * @param {string} reqUrl
      * @param {string} reqMethod
      */
     BaseInterceptor.prototype.matchMockRequest = function (reqUrl, reqMethod) {
-        // ignore matching when it is a server mode
-        if (this.proxyServer && reqUrl.indexOf("http://".concat(this.proxyServer)) === 0) {
+        // ignore matching when it is a proxy mode
+        if (this.proxyMode === 'matched' && reqUrl.indexOf("http://".concat(this.proxyServer)) === 0) {
             return null;
         }
         var mockItem = this.mocker.matchMockItem(reqUrl, reqMethod);
         if (mockItem && mockItem.times !== undefined) {
             mockItem.times -= 1;
+        }
+        // "mockItem" should be returned if current request is under proxy mode of middleware and is marked by @deProxy
+        if (this.proxyMode === 'middleware' && reqUrl.indexOf(this.getMiddlewareHost()) === 0) {
+            return mockItem && mockItem.deProxy ? mockItem : null;
         }
         return mockItem;
     };
@@ -20819,18 +20894,21 @@ var BaseInterceptor = /** @class */ (function () {
      * @param {string} url
      */
     BaseInterceptor.prototype.checkProxyUrl = function (url, method) {
-        if (!['matched', 'marked'].includes(this.proxyMode) || !this.proxyServer) {
+        if (!['matched', 'middleware'].includes(this.proxyMode) || !this.proxyServer) {
             return url;
         }
         var mockItem = this.mocker.matchMockItem(url, method);
         if (!mockItem) {
             return url;
         }
-        var proxyUrl = "http://".concat(this.proxyServer).concat(url.replace(/^(https?):\/\//, '/$1/'));
-        if (this.proxyMode === 'marked') {
-            return mockItem.proxy ? proxyUrl : url;
-        }
-        return proxyUrl;
+        var proxyUrl = this.proxyMode === 'middleware'
+            ? "".concat(this.getMiddlewareHost()).concat(url.replace(/^(https?):\/\//, '/$1/'))
+            : "http://".concat(this.proxyServer).concat(url.replace(/^(https?):\/\//, '/$1/'));
+        return mockItem.deProxy ? url : proxyUrl;
+    };
+    BaseInterceptor.prototype.getMiddlewareHost = function () {
+        var _a = window.location, protocol = _a.protocol, host = _a.host;
+        return "".concat(protocol, "//").concat(host);
     };
     return BaseInterceptor;
 }());
@@ -21074,8 +21152,8 @@ var FetchInterceptor = /** @class */ (function (_super) {
         var status = mockItem.status;
         var statusText = config_1.HTTPStatusCodes[status] || '';
         var headers = typeof Headers === 'function'
-            ? new Headers(__assign(__assign({}, mockItem.header), { 'x-powered-by': 'http-request-mock' }))
-            : Object.entries(__assign(__assign({}, mockItem.header), { 'x-powered-by': 'http-request-mock' }));
+            ? new Headers(__assign(__assign({}, mockItem.headers), { 'x-powered-by': 'http-request-mock' }))
+            : Object.entries(__assign(__assign({}, mockItem.headers), { 'x-powered-by': 'http-request-mock' }));
         var body = typeof Blob === 'function'
             ? new Blob([typeof data === 'string' ? data : JSON.stringify(data)])
             : data;
@@ -21348,11 +21426,11 @@ var WxRequestInterceptor = /** @class */ (function (_super) {
     WxRequestInterceptor.prototype.getWxResponse = function (responseBody, mockItem) {
         var _a;
         // https://developers.weixin.qq.com/miniprogram/dev/api/network/request/wx.request.html
-        var setCookieHeader = [].concat((((_a = mockItem.header) === null || _a === void 0 ? void 0 : _a['set-cookie']) || []));
+        var setCookieHeader = [].concat((((_a = mockItem.headers) === null || _a === void 0 ? void 0 : _a['set-cookie']) || []));
         return {
             data: responseBody,
             statusCode: mockItem.status || 200,
-            header: __assign(__assign({}, mockItem.header), { 'x-powered-by': 'http-request-mock' }),
+            header: __assign(__assign({}, mockItem.headers), { 'x-powered-by': 'http-request-mock' }),
             cookies: setCookieHeader,
             profile: {},
         };
@@ -21734,7 +21812,7 @@ var XMLHttpRequestInterceptor = /** @class */ (function (_super) {
                 var _this = this;
                 return function () {
                     if (_this.isMockRequest) {
-                        return Object.entries(__assign(__assign({}, _this.mockItem.header), { 'x-powered-by': 'http-request-mock' }))
+                        return Object.entries(__assign(__assign({}, _this.mockItem.headers), { 'x-powered-by': 'http-request-mock' }))
                             .map(function (_a) {
                             var key = _a[0], val = _a[1];
                             return key.toLowerCase() + ': ' + val;
@@ -21761,7 +21839,7 @@ var XMLHttpRequestInterceptor = /** @class */ (function (_super) {
                         if (/^x-powered-by$/i.test(field)) {
                             return 'http-request-mock';
                         }
-                        var item = Object.entries(_this.mockItem.header).find(function (_a) {
+                        var item = Object.entries(_this.mockItem.headers).find(function (_a) {
                             var key = _a[0];
                             return key.toLowerCase() === field;
                         });
@@ -22035,6 +22113,7 @@ var MockItem = /** @class */ (function () {
      */
     function MockItem(mockItem) {
         var _a;
+        this.deProxy = false; // Use this option to make the mock use case run in the browser instead of nodejs.
         if (!mockItem.url || (typeof mockItem.url !== 'string' && !(mockItem.url instanceof RegExp))) {
             return;
         }
@@ -22042,7 +22121,9 @@ var MockItem = /** @class */ (function () {
         this.method = /^(get|post|put|patch|delete|head|any)$/i.test(mockItem.method || '')
             ? (_a = mockItem.method) === null || _a === void 0 ? void 0 : _a.toUpperCase()
             : 'ANY';
-        this.header = typeof mockItem.header === 'object' ? mockItem.header : {};
+        var headers = mockItem.headers || mockItem.header || {};
+        this.header = headers && typeof headers === 'object' ? headers : {};
+        this.headers = headers && typeof headers === 'object' ? headers : {};
         this.delay = mockItem.delay !== undefined && /^\d{0,15}$/.test(mockItem.delay + '') ? (+mockItem.delay) : 0;
         this.times = mockItem.times !== undefined && /^-?\d{0,15}$/.test(mockItem.times + '') ? +mockItem.times : Infinity;
         this.status = mockItem.status && /^[1-5][0-9][0-9]$/.test(mockItem.status + '') ? +mockItem.status : 200;
@@ -22051,7 +22132,7 @@ var MockItem = /** @class */ (function () {
         if (mockItem.remote && /^((get|post|put|patch|delete|head)\s+)?https?:\/\//i.test(mockItem.remote)) {
             this.remote = mockItem.remote;
         }
-        this.proxy = !!mockItem.proxy;
+        this.deProxy = !!mockItem.deProxy;
         this.key = "".concat(this.url, "-").concat(this.method);
     }
     MockItem.prototype.setBody = function (mockItem) {
@@ -22118,7 +22199,8 @@ var MockItem = /** @class */ (function () {
         }
         var query = (0, utils_1.getQuery)(requestUrl);
         for (var key in query) {
-            url = url.replace(new RegExp('\\$query\.' + key, 'g'), query[key]);
+            var queryString = Array.isArray(query[key]) ? query[key].join(',') : query[key];
+            url = url.replace(new RegExp('\\$query\.' + key, 'g'), queryString);
         }
         url = url.replace(/\$query/g, (0, utils_1.queryObject2String)(query));
         return { method: method, url: url };
@@ -22164,7 +22246,7 @@ var Mocker = /** @class */ (function () {
         if (Mocker.instance) {
             return Mocker.instance;
         }
-        if (/^(matched|marked)@localhost:\d+$/.test(proxyServer)) {
+        if (/^(matched@localhost:\d+)|(middleware@\/)$/.test(proxyServer)) {
             _a = proxyServer.split('@'), this.proxyMode = _a[0], this.proxyServer = _a[1];
         }
         Mocker.instance = this;
@@ -22259,12 +22341,12 @@ var Mocker = /** @class */ (function () {
         return this;
     };
     /**
-     * Note: this method is only for a nodejs envrionment(test environment).
+     * Note: this method is only for a nodejs environment(test environment).
      * Use a mock file & add it to global mock data configuration.
      * @param {string} file
      */
     Mocker.prototype.use = function (file) {
-        throw new Error("Can not use mock case: ".concat(file, ", only for a nodejs envrionment"));
+        throw new Error("Can not use mock case: ".concat(file, ", only for a nodejs environment"));
     };
     /**
      * Check specified mock item & add it to global mock data configuration.
@@ -22289,6 +22371,7 @@ var Mocker = /** @class */ (function () {
      *    @param {number} delay
      *    @param {number} status
      *    @param {object} header
+     *    @param {object} headers
      *    @param {number} times
      * }
      */
@@ -22297,10 +22380,11 @@ var Mocker = /** @class */ (function () {
             delay: 0,
             status: 200,
             times: Infinity,
-            header: {}
+            header: {},
+            headers: {}
         }; }
-        var delay = opts.delay, status = opts.status, times = opts.times, header = opts.header;
-        this.mock({ url: url, method: 'GET', body: body, delay: delay, status: status, header: header, times: times });
+        var delay = opts.delay, status = opts.status, times = opts.times, header = opts.header, headers = opts.headers;
+        this.mock({ url: url, method: 'GET', body: body, delay: delay, status: status, header: header, headers: headers, times: times });
         return this;
     };
     /**
@@ -22311,6 +22395,7 @@ var Mocker = /** @class */ (function () {
      *    @param {number} delay
      *    @param {number} status
      *    @param {object} header
+     *    @param {object} headers
      *    @param {number} times
      * }
      */
@@ -22319,10 +22404,11 @@ var Mocker = /** @class */ (function () {
             delay: 0,
             status: 200,
             times: Infinity,
-            header: {}
+            header: {},
+            headers: {}
         }; }
-        var delay = opts.delay, status = opts.status, times = opts.times, header = opts.header;
-        this.mock({ url: url, method: 'POST', body: body, delay: delay, status: status, header: header, times: times });
+        var delay = opts.delay, status = opts.status, times = opts.times, header = opts.header, headers = opts.headers;
+        this.mock({ url: url, method: 'POST', body: body, delay: delay, status: status, header: header, headers: headers, times: times });
         return this;
     };
     /**
@@ -22333,6 +22419,7 @@ var Mocker = /** @class */ (function () {
      *    @param {number} delay
      *    @param {number} status
      *    @param {object} header
+     *    @param {object} headers
      *    @param {number} times
      * }
      */
@@ -22341,10 +22428,11 @@ var Mocker = /** @class */ (function () {
             delay: 0,
             status: 200,
             times: Infinity,
-            header: {}
+            header: {},
+            headers: {}
         }; }
-        var delay = opts.delay, status = opts.status, times = opts.times, header = opts.header;
-        this.mock({ url: url, method: 'PUT', body: body, delay: delay, status: status, header: header, times: times });
+        var delay = opts.delay, status = opts.status, times = opts.times, header = opts.header, headers = opts.headers;
+        this.mock({ url: url, method: 'PUT', body: body, delay: delay, status: status, header: header, headers: headers, times: times });
         return this;
     };
     /**
@@ -22355,6 +22443,7 @@ var Mocker = /** @class */ (function () {
      *    @param {number} delay
      *    @param {number} status
      *    @param {object} header
+     *    @param {object} headers
      *    @param {number} times
      * }
      */
@@ -22363,10 +22452,11 @@ var Mocker = /** @class */ (function () {
             delay: 0,
             status: 200,
             times: Infinity,
-            header: {}
+            header: {},
+            headers: {}
         }; }
-        var delay = opts.delay, status = opts.status, times = opts.times, header = opts.header;
-        this.mock({ url: url, method: 'PATCH', body: body, delay: delay, status: status, header: header, times: times });
+        var delay = opts.delay, status = opts.status, times = opts.times, header = opts.header, headers = opts.headers;
+        this.mock({ url: url, method: 'PATCH', body: body, delay: delay, status: status, header: header, headers: headers, times: times });
         return this;
     };
     /**
@@ -22377,6 +22467,7 @@ var Mocker = /** @class */ (function () {
      *    @param {number} delay
      *    @param {number} status
      *    @param {object} header
+     *    @param {object} headers
      *    @param {number} times
      * }
      */
@@ -22385,10 +22476,11 @@ var Mocker = /** @class */ (function () {
             delay: 0,
             status: 200,
             times: Infinity,
-            header: {}
+            header: {},
+            headers: {}
         }; }
-        var delay = opts.delay, status = opts.status, times = opts.times, header = opts.header;
-        this.mock({ url: url, method: 'DELETE', body: body, delay: delay, status: status, header: header, times: times });
+        var delay = opts.delay, status = opts.status, times = opts.times, header = opts.header, headers = opts.headers;
+        this.mock({ url: url, method: 'DELETE', body: body, delay: delay, status: status, header: header, headers: headers, times: times });
         return this;
     };
     /**
@@ -22404,6 +22496,7 @@ var Mocker = /** @class */ (function () {
      *    @param {number} delay
      *    @param {number} status
      *    @param {object} header
+     *    @param {object} headers
      *    @param {number} times
      * }
      */
@@ -22412,10 +22505,11 @@ var Mocker = /** @class */ (function () {
             delay: 0,
             status: 200,
             times: Infinity,
-            header: {}
+            header: {},
+            headers: {}
         }; }
-        var delay = opts.delay, status = opts.status, times = opts.times, header = opts.header;
-        this.mock({ url: url, method: 'HEAD', body: '', delay: delay, status: status, header: header, times: times });
+        var delay = opts.delay, status = opts.status, times = opts.times, header = opts.header, headers = opts.headers;
+        this.mock({ url: url, method: 'HEAD', body: '', delay: delay, status: status, header: header, headers: headers, times: times });
         return this;
     };
     /**
@@ -22426,6 +22520,7 @@ var Mocker = /** @class */ (function () {
      *    @param {number} delay
      *    @param {number} status
      *    @param {object} header
+     *    @param {object} headers
      *    @param {number} times
      * }
      */
@@ -22434,14 +22529,15 @@ var Mocker = /** @class */ (function () {
             delay: 0,
             status: 200,
             times: Infinity,
-            header: {}
+            header: {},
+            headers: {}
         }; }
-        var delay = opts.delay, status = opts.status, times = opts.times, header = opts.header;
-        this.mock({ url: url, method: 'ANY', body: body, delay: delay, status: status, header: header, times: times });
+        var delay = opts.delay, status = opts.status, times = opts.times, header = opts.header, headers = opts.headers;
+        this.mock({ url: url, method: 'ANY', body: body, delay: delay, status: status, header: header, headers: headers, times: times });
         return this;
     };
     /**
-     * Check whether the specified request url matchs a defined mock item.
+     * Check whether the specified request url matches a defined mock item.
      * If a match is found, return the matched mock item, otherwise a null is returned.
      * @param {string} reqUrl
      * @param {string} reqMethod
@@ -22529,7 +22625,7 @@ var Mocker = /** @class */ (function () {
             ['Response: ', {
                     body: body,
                     spent: spent,
-                    headers: __assign(__assign({}, mockItem.header), { 'x-powered-by': 'http-request-mock' }),
+                    headers: __assign(__assign({}, mockItem.headers), { 'x-powered-by': 'http-request-mock' }),
                     status: mockItem.status,
                     statusText: config_1.HTTPStatusCodes[mockItem.status] || ''
                 }],
@@ -22556,6 +22652,8 @@ exports["default"] = Mocker;
 
 /**
  * Set the specified mockData into localeStorage cache when it changes.
+ * In proxy mode, cached data will be reset after the server restarts.
+ *
  * @param {string} cacheKey
  * @param {object | array} mockData
  */
@@ -22654,8 +22752,7 @@ module.exports = {
    * @param {number} min
    * @param {number} max
    */
-  rand(min = 0,
-    max = Number.MAX_SAFE_INTEGER) {
+  rand(min = 0, max = Number.MAX_SAFE_INTEGER) {
     return randNumber({ min, max });
   },
 
@@ -23117,7 +23214,7 @@ function getChineseInfo () {
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
-/******/
+/******/ 	
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
 /******/ 		// Check if module is in cache
@@ -23131,17 +23228,17 @@ function getChineseInfo () {
 /******/ 			loaded: false,
 /******/ 			exports: {}
 /******/ 		};
-/******/
+/******/ 	
 /******/ 		// Execute the module function
 /******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/
+/******/ 	
 /******/ 		// Flag the module as loaded
 /******/ 		module.loaded = true;
-/******/
+/******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/
+/******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/amd define */
 /******/ 	(() => {
@@ -23149,12 +23246,12 @@ function getChineseInfo () {
 /******/ 			throw new Error('define cannot be used indirect');
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/amd options */
 /******/ 	(() => {
 /******/ 		__webpack_require__.amdO = {};
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
 /******/ 		// getDefaultExport function for compatibility with non-harmony modules
@@ -23166,7 +23263,7 @@ function getChineseInfo () {
 /******/ 			return getter;
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -23178,7 +23275,7 @@ function getChineseInfo () {
 /******/ 			}
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/global */
 /******/ 	(() => {
 /******/ 		__webpack_require__.g = (function() {
@@ -23190,12 +23287,12 @@ function getChineseInfo () {
 /******/ 			}
 /******/ 		})();
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
 /******/ 		// define __esModule on exports
@@ -23206,7 +23303,7 @@ function getChineseInfo () {
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/node module decorator */
 /******/ 	(() => {
 /******/ 		__webpack_require__.nmd = (module) => {
@@ -23215,15 +23312,15 @@ function getChineseInfo () {
 /******/ 			return module;
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /************************************************************************/
-/******/
+/******/ 	
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
 /******/ 	var __webpack_exports__ = __webpack_require__(280);
 /******/ 	__webpack_exports__ = __webpack_exports__["default"];
-/******/
+/******/ 	
 /******/ 	return __webpack_exports__;
 /******/ })()
 ;
