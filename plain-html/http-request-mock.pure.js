@@ -20,10 +20,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.Mocker = void 0;
 var fetch_1 = __importDefault(__webpack_require__(676));
 var wx_request_1 = __importDefault(__webpack_require__(833));
 var xml_http_request_1 = __importDefault(__webpack_require__(219));
 var mocker_1 = __importDefault(__webpack_require__(819));
+exports.Mocker = mocker_1.default;
 var BrowserPureIndex = /** @class */ (function () {
     function BrowserPureIndex() {
     }
@@ -1776,8 +1778,13 @@ var MockItem = /** @class */ (function () {
         this.status = mockItem.status && /^[1-5][0-9][0-9]$/.test(mockItem.status + '') ? +mockItem.status : 200;
         this.disable = (mockItem.disable && /^(yes|true|1)$/.test(mockItem.disable) ? 'YES' : 'NO');
         this.setBody(mockItem);
-        if (mockItem.remote && /^((get|post|put|patch|delete|head)\s+)?https?:\/\//i.test(mockItem.remote)) {
+        var isUrlLiked = /^((get|post|put|patch|delete|head)\s+)?https?:\/\//i.test(mockItem.remote);
+        var isDollarUrl = mockItem.remote === '$url';
+        if (mockItem.remote && (isUrlLiked || isDollarUrl)) {
             this.remote = mockItem.remote;
+        }
+        else if (mockItem.remote) {
+            throw new Error('Invalid @remote config. Valid @remote examples: http://x.com/, GET http://x.com, $url');
         }
         this.deProxy = !!mockItem.deProxy;
         this.key = "".concat(this.url, "-").concat(this.method);
@@ -1850,6 +1857,7 @@ var MockItem = /** @class */ (function () {
             url = url.replace(new RegExp('\\$query\.' + key, 'g'), queryString);
         }
         url = url.replace(/\$query/g, (0, utils_1.queryObject2String)(query));
+        url = url === '$url' ? requestUrl : url;
         return { method: method, url: url };
     };
     return MockItem;
@@ -2198,8 +2206,6 @@ var Mocker = /** @class */ (function () {
             var disable = _a.disable, times = _a.times, method = _a.method;
             var verb = String(method).toUpperCase();
             return disable !== 'YES' && (times === undefined || times > 0) && (verb === 'ANY' || verb === requestMethod);
-        }).sort(function (mockItem1, mockItem2) {
-            return String(mockItem2.url).length - String(mockItem1.url).length;
         });
         for (var i = 0; i < 2; i++) {
             for (var _i = 0, items_1 = items; _i < items_1.length; _i++) {
