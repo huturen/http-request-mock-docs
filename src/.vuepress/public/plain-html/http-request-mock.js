@@ -21043,6 +21043,7 @@ var FetchInterceptor = /** @class */ (function (_super) {
                 var remoteInfo = mockItem === null || mockItem === void 0 ? void 0 : mockItem.getRemoteInfo(requestUrl);
                 if (remoteInfo) {
                     params.method = remoteInfo.method || method;
+                    me.setRequestHeadersForRemoteRequest(mockItem, params);
                     me.fetch(remoteInfo.url, params).then(function (fetchResponse) {
                         me.sendRemoteResult(fetchResponse, mockItem, requestInfo, resolve);
                     }).catch(reject);
@@ -21056,6 +21057,23 @@ var FetchInterceptor = /** @class */ (function (_super) {
             });
         };
         return this;
+    };
+    /**
+     * Set request headers for requests marked by remote config.
+     * @param {AnyObject} fetchParams
+     */
+    FetchInterceptor.prototype.setRequestHeadersForRemoteRequest = function (mockItem, fetchParams) {
+        if (Object.keys(mockItem.requestHeaders).length <= 0)
+            return;
+        if (typeof Headers === 'function' && fetchParams.headers instanceof Headers) {
+            Object.entries(mockItem.requestHeaders).forEach(function (_a) {
+                var key = _a[0], val = _a[1];
+                fetchParams.headers.set(key, val);
+            });
+        }
+        else {
+            fetchParams.headers = __assign(__assign({}, (fetchParams.headers || {})), mockItem.requestHeaders);
+        }
     };
     /**
      * Set remote result.
@@ -21307,6 +21325,9 @@ var WxRequestInterceptor = /** @class */ (function (_super) {
                 if (mockItem && remoteInfo) {
                     wxRequestOpts.url = remoteInfo.url;
                     wxRequestOpts.method = remoteInfo.method || wxRequestOpts.method;
+                    if (Object.keys(mockItem.requestHeaders).length > 0) {
+                        wxRequestOpts.header = __assign(__assign({}, (wxRequestOpts.header || {})), mockItem.requestHeaders);
+                    }
                     return _this.sendRemoteResult(wxRequestOpts, mockItem, requestInfo);
                 }
                 if (/^get$/i.test(wxRequestOpts.method) && (0, utils_1.isObject)(wxRequestOpts.data)) {
@@ -21623,7 +21644,7 @@ var XMLHttpRequestInterceptor = /** @class */ (function (_super) {
                         // remoteInfo has a higher priority than BypassMock
                         var remoteInfo = (_a = _this.mockItem) === null || _a === void 0 ? void 0 : _a.getRemoteInfo(_this.requestInfo.url);
                         if (remoteInfo) {
-                            return me.sendRemoteResult(_this, remoteInfo);
+                            return me.sendRemoteResult(_this, _this.mockItem, remoteInfo);
                         }
                         return me.doMockRequest(_this).then(function (isBypassed) {
                             if (isBypassed) {
@@ -21645,7 +21666,7 @@ var XMLHttpRequestInterceptor = /** @class */ (function (_super) {
      * @param {XMLHttpRequestInstance} xhr
      * @param {Record<string, string>} remoteInfo
      */
-    XMLHttpRequestInterceptor.prototype.sendRemoteResult = function (xhr, remoteInfo) {
+    XMLHttpRequestInterceptor.prototype.sendRemoteResult = function (xhr, mockItem, remoteInfo) {
         var _this = this;
         var _a = xhr.requestArgs, method = _a[0], async = _a[2], user = _a[3], password = _a[4];
         var newXhr = new XMLHttpRequest();
@@ -21669,6 +21690,10 @@ var XMLHttpRequestInterceptor = /** @class */ (function (_super) {
             }
         };
         newXhr.open(remoteInfo.method || method, remoteInfo.url, async, user, password);
+        Object.entries(mockItem.requestHeaders).forEach(function (_a) {
+            var key = _a[0], val = _a[1];
+            newXhr.setRequestHeader(key, val);
+        });
         newXhr.send(xhr.requestInfo.rawBody); // raw body
         return xhr;
     };
@@ -22126,9 +22151,11 @@ var MockItem = /** @class */ (function () {
         this.method = /^(get|post|put|patch|delete|head|any)$/i.test(mockItem.method || '')
             ? (_a = mockItem.method) === null || _a === void 0 ? void 0 : _a.toUpperCase()
             : 'ANY';
-        var headers = mockItem.headers || mockItem.header || {};
+        var reqHeaders = mockItem.requestHeaders;
+        var headers = mockItem.headers || mockItem.header;
         this.header = headers && typeof headers === 'object' ? headers : {};
         this.headers = headers && typeof headers === 'object' ? headers : {};
+        this.requestHeaders = reqHeaders && typeof reqHeaders === 'object' ? reqHeaders : {};
         this.delay = mockItem.delay !== undefined && /^\d{0,15}$/.test(mockItem.delay + '') ? (+mockItem.delay) : 0;
         this.times = mockItem.times !== undefined && /^-?\d{0,15}$/.test(mockItem.times + '') ? +mockItem.times : Infinity;
         this.status = mockItem.status && /^[1-5][0-9][0-9]$/.test(mockItem.status + '') ? +mockItem.status : 200;

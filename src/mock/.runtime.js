@@ -71,12 +71,18 @@ mocker.mock({
   "url": "https://www.api.com/remote1",
   "method": "GET",
   "body": require('./remote1.js'),
+  "requestHeaders": {
+    "abc": "xyz"
+  },
   "remote": "https://jsonplaceholder.typicode.com/todos/1"
 });
 mocker.mock({
   "url": "https://www.api.com/remote2",
   "method": "GET",
   "body": require('./remote2.js'),
+  "requestHeaders": {
+    "abc": "xyz"
+  },
   "remote": "https://jsonplaceholder.typicode.com/todos/1"
 });
 mocker.mock({

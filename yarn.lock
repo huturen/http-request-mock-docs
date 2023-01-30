@@ -5975,10 +5975,10 @@ http-proxy@^1.17.0, http-proxy@^1.18.1:
     follow-redirects "^1.0.0"
     requires-port "^1.0.0"
 
-http-request-mock@^1.8.8:
-  version "1.8.8"
-  resolved "https://registry.npmjs.org/http-request-mock/-/http-request-mock-1.8.8.tgz#ebbb5760bf9ee24c040417cfe8f923d456f60232"
-  integrity sha512-SQOVKk/1NH/xTF2XN82f5nAvu/XajpVpKelH1rwTYnpaH3j1dd9MB3gdRCB1s5cuey/0/HJWjyl6hdz4w4rU/Q==
+http-request-mock@^1.8.10:
+  version "1.8.10"
+  resolved "https://registry.npmjs.org/http-request-mock/-/http-request-mock-1.8.10.tgz#a0dcbd629b7567d544eb087bd4d3983aee3c8f9d"
+  integrity sha512-k3op8DjaDxdA4q+L9rjfNZ/ZngsyILNRVAkJ3x4VNlTf8wXstCb4s92gb93Ois/PekvMvysZUsi2Nc2DZSqyXQ==
   dependencies:
     "@ngneat/falso" "^4.0.0"
     "@types/follow-redirects" "^1.14.1"
