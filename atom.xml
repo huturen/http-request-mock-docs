@@ -3,7 +3,7 @@
   <id>https://huturen.github.io/http-request-mock-docs/</id>
   <title>http-request-mock</title>
   <subtitle>http-request-mock: A new way to speed up your development and testing.</subtitle>
-  <updated>2023-01-29T08:22:05.621Z</updated>
+  <updated>2023-01-30T09:32:31.785Z</updated>
   <generator>@mr-hope/vuepress-plugin-feed</generator>
   <link rel="self" href="https://huturen.github.io/http-request-mock-docs/atom.xml"/>
   <link rel="alternate" href="https://huturen.github.io/http-request-mock-docs/"/>
@@ -876,6 +876,11 @@ module<span>.</span><span>exports</span> <span>=</span> <span>(</span><span>requ
  *
  * In browser, the specified remote url must conform to the cross-domain specification.
  * @remote https://jsonplaceholder.typicode.com/todos/1
+ *
+ * You can set request headers for the specified remote request
+ * Note: For browser, target server must confirm to Access-Control-Allow-Headers specification
+ * @requestHeaders abc: xyz
+ *
  * @method get
  */</span>
 module<span>.</span><span>exports</span> <span>=</span> <span>remote</span> <span>=></span> remote<span>.</span>responseJson<span>;</span>
@@ -886,6 +891,11 @@ module<span>.</span><span>exports</span> <span>=</span> <span>remote</span> <spa
  *
  * In browser, the specified remote url must conform to the cross-domain specification.
  * @remote https://jsonplaceholder.typicode.com/todos/1
+ *
+ * You can set request headers for the specified remote request
+ * Note: For browser, target server must confirm to Access-Control-Allow-Headers specification
+ * @requestHeaders abc: xyz
+ *
  * @method get
  */</span>
 module<span>.</span><span>exports</span> <span>=</span> <span>remote</span> <span>=></span> <span>{</span>
