@@ -23,9 +23,13 @@ You can define your mock data file like below:
  * Default: 200
  * @status 200
  *
+ * Request headers, only available for @remote tag
+ * It can be set repeatedly.
+ * @requestHeaders content-type: application/json
+ *
  * Response http headers to be mocked.
  * It can be set repeatedly.
- * @header content-type: application/json
+ * @headers content-type: application/json
  *
  * Simulate network latency in milliseconds.
  * Default: 0
