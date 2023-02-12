@@ -11,21 +11,9 @@ action:
     link: /intro/
     type: primary
 features:
-  - title: Cross domain
-    details: Out of the box, with no configuration, support for cross domain.
-    link: /feature/cross/
-
-  - title: Protobuf
-    details: Support for generating mock data by proto files.
-    link: /feature/proto/
-
   - title: Interceptor
     details: It can be used as an interceptor. You can decide how to handle requests.
     link: /feature/bypass/
-
-  - title: All in one
-    details: XMLHttpRequest, fetch, https.get, http.get, https.request, http.request.
-    link: /intro/
 
   - title: More 3rd-party libraries
     details: It supports axios, jquery, superagent, ky, node-fetch, got, you name it.
@@ -50,6 +38,15 @@ features:
 copyrightText: false
 footer: MIT Licensed | Copyright © 2021-present huturen
 ---
+
+---
+
+An integration case with vue3:
+
+![Demonstration](/http-request-mock-docs/imgs/demonstration.gif)
+
+Get the [source code](https://github.com/huturen/http-request-mock-simple-case-vue3) of the above case.
+[More integration cases](/examples/).
 
 ---
 
