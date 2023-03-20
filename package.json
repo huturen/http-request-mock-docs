@@ -4,7 +4,8 @@
   "description": "http-request-mock docs",
   "license": "MIT",
   "scripts": {
-    "build": "vuepress build src",
+    "build": "export NODE_OPTIONS=--openssl-legacy-provider && vuepress build src",
+    "local-build": "vuepress build src",
     "clean-dev": "vuepress dev src --no-cache",
     "dev": "http-request-mock-cli --index http-request-mock.js -e none -d src/mock -w \"vuepress dev src\"",
     "eject-theme": "vuepress eject-hope src"
