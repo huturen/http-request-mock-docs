@@ -20564,15 +20564,13 @@ exports.isObject = isObject;
 function tryToParseObject(body) {
     var isObjLiked = typeof body === 'string' && body[0] === '{' && body[body.length - 1] === '}';
     var isArrLiked = typeof body === 'string' && body[0] === '[' && body[body.length - 1] === ']';
-    if (isObjLiked || isArrLiked) {
-        try {
-            return JSON.parse(body);
-        }
-        catch (e) {
-            return body;
-        }
+    if (!isObjLiked && !isArrLiked) {
+        return body;
     }
-    else {
+    try {
+        return JSON.parse(body);
+    }
+    catch (e) {
         return body;
     }
 }
@@ -20607,12 +20605,15 @@ function str2arrayBuffer(str) {
     if (typeof TextEncoder === 'function') {
         return new TextEncoder().encode(str);
     }
-    var buf = new ArrayBuffer(str.length * 2); // 2 bytes for each char
-    var bufView = new Uint16Array(buf);
-    for (var i = 0, strLen = str.length; i < strLen; i++) {
-        bufView[i] = str.charCodeAt(i);
+    if (typeof ArrayBuffer === 'function') {
+        var buf = new ArrayBuffer(str.length * 2); // 2 bytes for each char
+        var bufView = new Uint16Array(buf);
+        for (var i = 0, strLen = str.length; i < strLen; i++) {
+            bufView[i] = str.charCodeAt(i);
+        }
+        return buf;
     }
-    return buf;
+    return null;
 }
 exports.str2arrayBuffer = str2arrayBuffer;
 /**
@@ -20862,17 +20863,17 @@ var BaseInterceptor = /** @class */ (function () {
         }
         return mockItem;
     };
-    BaseInterceptor.prototype.getRequestInfo = function (mixedRequestInfo) {
+    BaseInterceptor.prototype.getRequestInfo = function (requestInfo) {
         var info = {
-            url: mixedRequestInfo.url,
-            method: mixedRequestInfo.method || 'GET',
-            query: (0, utils_1.getQuery)(mixedRequestInfo.url),
+            url: requestInfo.url,
+            method: requestInfo.method || 'GET',
+            query: (0, utils_1.getQuery)(requestInfo.url),
         };
-        if (mixedRequestInfo.headers || mixedRequestInfo.header) {
-            info.headers = mixedRequestInfo.headers || mixedRequestInfo.header;
+        if (requestInfo.headers || requestInfo.header) {
+            info.headers = requestInfo.headers || requestInfo.header;
         }
-        if (mixedRequestInfo.body !== undefined) {
-            info.body = (0, utils_1.tryToParseObject)(mixedRequestInfo.body);
+        if (requestInfo.body !== undefined) {
+            info.body = (0, utils_1.tryToParseObject)(requestInfo.body);
         }
         return info;
     };
@@ -21019,6 +21020,7 @@ var FetchInterceptor = /** @class */ (function (_super) {
         // eslint-disable-next-line @typescript-eslint/no-this-alias
         var me = this;
         this.global.fetch = function (input, init) {
+            var _this = this;
             var url;
             var params;
             // https://developer.mozilla.org/en-US/docs/Web/API/Request
@@ -21040,6 +21042,18 @@ var FetchInterceptor = /** @class */ (function (_super) {
                     return;
                 }
                 var requestInfo = me.getRequestInfo(__assign(__assign({}, params), { url: requestUrl, method: method }));
+                requestInfo.doOriginalCall = function () { return __awaiter(_this, void 0, void 0, function () {
+                    var res;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0: return [4 /*yield*/, me.getOriginalResponse(requestUrl, params)];
+                            case 1:
+                                res = _a.sent();
+                                requestInfo.doOriginalCall = undefined;
+                                return [2 /*return*/, res];
+                        }
+                    });
+                }); };
                 var remoteInfo = mockItem === null || mockItem === void 0 ? void 0 : mockItem.getRemoteInfo(requestUrl);
                 if (remoteInfo) {
                     params.method = remoteInfo.method || method;
@@ -21100,6 +21114,79 @@ var FetchInterceptor = /** @class */ (function (_super) {
                 responseJson: json,
             };
             _this.doMockRequest(mockItem, requestInfo, resolve, remoteResponse);
+        });
+    };
+    /**
+     * Get original response
+     * @param {string} requestUrl
+     * @param {FetchRequest | AnyObject} params
+     */
+    FetchInterceptor.prototype.getOriginalResponse = function (requestUrl, params) {
+        return __awaiter(this, void 0, void 0, function () {
+            var status, headers, responseText, responseJson, responseBuffer, responseBlob, res, isBlobAvailable, _a, _b, _c, err_1;
+            return __generator(this, function (_d) {
+                switch (_d.label) {
+                    case 0:
+                        status = null;
+                        headers = {};
+                        responseText = null;
+                        responseJson = null;
+                        responseBuffer = null;
+                        responseBlob = null;
+                        _d.label = 1;
+                    case 1:
+                        _d.trys.push([1, 13, , 14]);
+                        return [4 /*yield*/, this.fetch(requestUrl, params)];
+                    case 2:
+                        res = _d.sent();
+                        status = res.status;
+                        if (typeof Headers === 'function' && res.headers instanceof Headers) {
+                            res.headers.forEach(function (val, key) { return (headers[key.toLocaleLowerCase()] = val); });
+                        }
+                        isBlobAvailable = typeof Blob === 'function'
+                            && typeof Blob.prototype.text === 'function'
+                            && typeof Blob.prototype.arrayBuffer === 'function'
+                            && typeof Blob.prototype.slice === 'function'
+                            && typeof Blob.prototype.stream === 'function';
+                        if (!isBlobAvailable) return [3 /*break*/, 4];
+                        return [4 /*yield*/, res.blob()];
+                    case 3:
+                        _a = _d.sent();
+                        return [3 /*break*/, 5];
+                    case 4:
+                        _a = null;
+                        _d.label = 5;
+                    case 5:
+                        responseBlob = _a;
+                        if (!isBlobAvailable) return [3 /*break*/, 7];
+                        return [4 /*yield*/, responseBlob.text()];
+                    case 6:
+                        _b = _d.sent();
+                        return [3 /*break*/, 9];
+                    case 7: return [4 /*yield*/, res.text()];
+                    case 8:
+                        _b = _d.sent();
+                        _d.label = 9;
+                    case 9:
+                        responseText = _b;
+                        if (!isBlobAvailable) return [3 /*break*/, 11];
+                        return [4 /*yield*/, responseBlob.arrayBuffer()];
+                    case 10:
+                        _c = _d.sent();
+                        return [3 /*break*/, 12];
+                    case 11:
+                        _c = null;
+                        _d.label = 12;
+                    case 12:
+                        responseBuffer = _c;
+                        responseJson = responseText === null ? null : (0, utils_1.tryToParseJson)(responseText);
+                        return [2 /*return*/, { status: status, headers: headers, responseText: responseText, responseJson: responseJson, responseBuffer: responseBuffer, responseBlob: responseBlob, error: null }];
+                    case 13:
+                        err_1 = _d.sent();
+                        return [2 /*return*/, { status: status, headers: headers, responseText: responseText, responseJson: responseJson, responseBuffer: responseBuffer, responseBlob: responseBlob, error: err_1 }];
+                    case 14: return [2 /*return*/];
+                }
+            });
         });
     };
     /**
@@ -21336,6 +21423,14 @@ var WxRequestInterceptor = /** @class */ (function (_super) {
                 else {
                     requestInfo.body = wxRequestOpts.data;
                 }
+                requestInfo.doOriginalCall = function () { return __awaiter(_this, void 0, void 0, function () {
+                    var res;
+                    return __generator(this, function (_a) {
+                        res = this.getOriginalResponse(wxRequestOpts);
+                        requestInfo.doOriginalCall = undefined;
+                        return [2 /*return*/, res];
+                    });
+                }); };
                 if (mockItem) {
                     _this.doMockRequest(mockItem, requestInfo, wxRequestOpts).then(function (isBypassed) {
                         if (isBypassed) {
@@ -21380,6 +21475,41 @@ var WxRequestInterceptor = /** @class */ (function (_super) {
                 me.doMockRequest(mockItem, requestInfo, wxRequestOpts, remoteResponse);
             } }));
         return this.getRequstTask();
+    };
+    /**
+     * Get original response
+     * @param {WxRequestOpts} wxRequestOpts
+     */
+    WxRequestInterceptor.prototype.getOriginalResponse = function (wxRequestOpts) {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.wxRequest(__assign(__assign({}, wxRequestOpts), { success: function (wxResponse) {
+                    var data = wxResponse.data;
+                    resolve({
+                        status: wxResponse.statusCode,
+                        headers: wxResponse.header,
+                        responseText: typeof data === 'string' ? data : JSON.stringify(data),
+                        responseJson: typeof data === 'string' ? (0, utils_1.tryToParseJson)(data) : data,
+                        responseBuffer: typeof ArrayBuffer === 'function' && (data instanceof ArrayBuffer)
+                            ? data
+                            : null,
+                        // https://developers.weixin.qq.com/miniprogram/dev/api/network/request/wx.request.html
+                        // wx.request does not support Blob response data
+                        responseBlob: null,
+                        error: null,
+                    });
+                }, fail: function (err) {
+                    resolve({
+                        status: 0,
+                        headers: {},
+                        responseText: null,
+                        responseJson: null,
+                        responseBuffer: null,
+                        responseBlob: null,
+                        error: new Error("request error: ".concat(err.errMsg)),
+                    });
+                } }));
+        });
     };
     /**
      * Make mock request.
@@ -21615,6 +21745,18 @@ var XMLHttpRequestInterceptor = /** @class */ (function (_super) {
                             _this.mockResponse = new NotResolved();
                             _this.requestInfo = me.getRequestInfo({ url: requestUrl, method: method, });
                             _this.requestArgs = [method, requestUrl, async, user, password];
+                            _this.requestInfo.doOriginalCall = function () { return __awaiter(_this, void 0, void 0, function () {
+                                var res;
+                                return __generator(this, function (_a) {
+                                    switch (_a.label) {
+                                        case 0: return [4 /*yield*/, me.getOriginalResponse(this)];
+                                        case 1:
+                                            res = _a.sent();
+                                            this.requestInfo.doOriginalCall = undefined;
+                                            return [2 /*return*/, res];
+                                    }
+                                });
+                            }); };
                             return;
                         }
                     }
@@ -21668,8 +21810,10 @@ var XMLHttpRequestInterceptor = /** @class */ (function (_super) {
      */
     XMLHttpRequestInterceptor.prototype.sendRemoteResult = function (xhr, mockItem, remoteInfo) {
         var _this = this;
-        var _a = xhr.requestArgs, method = _a[0], async = _a[2], user = _a[3], password = _a[4];
+        var _a = xhr.requestArgs, method = _a[0], async = _a[1], user = _a[2], password = _a[3];
         var newXhr = new XMLHttpRequest();
+        newXhr.responseType = xhr.responseType;
+        newXhr.timeout = xhr.timeout;
         Object.assign(newXhr, { isMockRequest: false, bypassMock: true });
         newXhr.onreadystatechange = function () {
             if (newXhr.readyState === 4) {
@@ -21677,7 +21821,7 @@ var XMLHttpRequestInterceptor = /** @class */ (function (_super) {
                     status: newXhr.status,
                     headers: newXhr.getAllResponseHeaders().split('\r\n').reduce(function (res, item) {
                         var _a = item.split(':'), key = _a[0], val = _a[1];
-                        if (key) {
+                        if (key && val) {
                             res[key.toLowerCase()] = val.trim();
                         }
                         return res;
@@ -21698,10 +21842,76 @@ var XMLHttpRequestInterceptor = /** @class */ (function (_super) {
         return xhr;
     };
     /**
+     * Get original response
+     * @param {XMLHttpRequestInstance} xhr
+     */
+    XMLHttpRequestInterceptor.prototype.getOriginalResponse = function (xhr) {
+        var _a = xhr.requestArgs, method = _a[0], requestUrl = _a[1], async = _a[2], user = _a[3], password = _a[4];
+        var requestInfo = xhr.requestInfo;
+        return new Promise(function (resolve) {
+            var newXhr = new XMLHttpRequest();
+            newXhr.responseType = xhr.responseType;
+            newXhr.timeout = xhr.timeout;
+            Object.assign(newXhr, { isMockRequest: false, bypassMock: true });
+            var status = null;
+            var headers = {};
+            var responseText = null;
+            var responseJson = null;
+            var responseBuffer = null;
+            var responseBlob = null;
+            newXhr.onreadystatechange = function handleLoad() {
+                if (newXhr.readyState === 4) {
+                    var responseType = newXhr.responseType;
+                    status = newXhr.status;
+                    headers = newXhr.getAllResponseHeaders()
+                        .split('\r\n')
+                        .reduce(function (res, item) {
+                        var _a = item.split(':'), key = _a[0], val = _a[1];
+                        if (key && val) {
+                            res[key.toLowerCase()] = val.trim();
+                        }
+                        return res;
+                    }, {});
+                    responseText = !responseType || responseType === 'text' || responseType === 'json'
+                        ? newXhr.responseText
+                        : (typeof newXhr.response === 'string' ? typeof newXhr.response : null);
+                    responseJson = (0, utils_1.tryToParseJson)(responseText);
+                    responseBuffer = (typeof ArrayBuffer === 'function') && (newXhr.response instanceof ArrayBuffer)
+                        ? newXhr.response
+                        : null;
+                    responseBlob = (typeof Blob === 'function') && (newXhr.response instanceof Blob)
+                        ? newXhr.response
+                        : null;
+                    resolve({ status: status, headers: headers, responseText: responseText, responseJson: responseJson, responseBuffer: responseBuffer, responseBlob: responseBlob, error: null });
+                }
+            };
+            newXhr.open(method, requestUrl, async, user, password);
+            newXhr.ontimeout = function handleTimeout() {
+                var error = new Error('timeout exceeded');
+                resolve({ status: status, headers: headers, responseText: responseText, responseJson: responseJson, responseBuffer: responseBuffer, responseBlob: responseBlob, error: error });
+            };
+            // Real errors are hidden from us by the browser
+            // onerror should only fire if it's a network error
+            newXhr.onerror = function handleError() {
+                var error = new Error('network error');
+                resolve({ status: status, headers: headers, responseText: responseText, responseJson: responseJson, responseBuffer: responseBuffer, responseBlob: responseBlob, error: error });
+            };
+            // Handle browser request cancellation (as opposed to a manual cancellation)
+            newXhr.onabort = function handleAbort() {
+                var error = new Error('request aborted');
+                resolve({ status: status, headers: headers, responseText: responseText, responseJson: responseJson, responseBuffer: responseBuffer, responseBlob: responseBlob, error: error });
+            };
+            Object.entries(requestInfo.headers || {}).forEach(function (_a) {
+                var key = _a[0], val = _a[1];
+                newXhr.setRequestHeader(key, val);
+            });
+            newXhr.send(requestInfo.rawBody); // raw body
+        });
+    };
+    /**
      * Make mock request.
      * @param {XMLHttpRequestInstance} xhr
-     * @param {MockItemInfo} mockItem
-     * @param {RequestInfo} requestInfo
+     * @param {RemoteResponse | null} remoteResponse
      */
     XMLHttpRequestInterceptor.prototype.doMockRequest = function (xhr, remoteResponse) {
         if (remoteResponse === void 0) { remoteResponse = null; }
@@ -21732,8 +21942,7 @@ var XMLHttpRequestInterceptor = /** @class */ (function (_super) {
     /**
      * Make mock response.
      * @param {XMLHttpRequestInstance} xhr
-     * @param {MockItemInfo} mockItem
-     * @param {RequestInfo} requestInfo
+     * @param {RemoteResponse | null} remoteResponse
      */
     XMLHttpRequestInterceptor.prototype.doMockResponse = function (xhr, remoteResponse) {
         if (remoteResponse === void 0) { remoteResponse = null; }
@@ -21892,7 +22101,9 @@ var XMLHttpRequestInterceptor = /** @class */ (function (_super) {
                 return function (header, value) {
                     if (_this.isMockRequest) {
                         _this.requestInfo.headers = _this.requestInfo.headers || {};
+                        _this.requestInfo.header = _this.requestInfo.header || {};
                         _this.requestInfo.headers[header] = value;
+                        _this.requestInfo.header[header] = value;
                         return;
                     }
                     return original.call(_this, header, value);
@@ -22173,7 +22384,6 @@ var MockItem = /** @class */ (function () {
         this.key = "".concat(this.url, "-").concat(this.method);
     }
     MockItem.prototype.setBody = function (mockItem) {
-        var _this = this;
         var body;
         if ('body' in mockItem) {
             body = mockItem.body;
@@ -22184,14 +22394,7 @@ var MockItem = /** @class */ (function () {
         else {
             body = '';
         }
-        if ((0, utils_1.isPromise)(body)) {
-            body.then(function (data) {
-                _this.body = (0, utils_1.isImported)(data) ? data.default : data;
-            });
-        }
-        {
-            this.body = body;
-        }
+        this.body = body;
     };
     MockItem.prototype.bypass = function () {
         return new bypass_1.default;
@@ -22199,27 +22402,34 @@ var MockItem = /** @class */ (function () {
     MockItem.prototype.sendBody = function (requestInfo, remoteResponse) {
         if (remoteResponse === void 0) { remoteResponse = null; }
         return __awaiter(this, void 0, void 0, function () {
-            var body, _a;
+            var data, body, _a;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
-                        if (!(typeof this.body === 'function')) return [3 /*break*/, 5];
-                        if (!remoteResponse) return [3 /*break*/, 2];
-                        return [4 /*yield*/, this.body.bind(this)(remoteResponse, requestInfo, this)];
+                        if (!(0, utils_1.isPromise)(this.body)) return [3 /*break*/, 2];
+                        return [4 /*yield*/, this.body];
                     case 1:
-                        _a = _b.sent();
-                        return [3 /*break*/, 4];
-                    case 2: return [4 /*yield*/, this.body.bind(this)(requestInfo, this)];
+                        data = _b.sent();
+                        this.body = (0, utils_1.isImported)(data) ? data.default : data;
+                        _b.label = 2;
+                    case 2:
+                        if (!(typeof this.body === 'function')) return [3 /*break*/, 7];
+                        if (!remoteResponse) return [3 /*break*/, 4];
+                        return [4 /*yield*/, this.body.bind(this)(remoteResponse, requestInfo, this)];
                     case 3:
                         _a = _b.sent();
-                        _b.label = 4;
-                    case 4:
-                        body = _a;
                         return [3 /*break*/, 6];
+                    case 4: return [4 /*yield*/, this.body.bind(this)(requestInfo, this)];
                     case 5:
-                        body = this.body;
+                        _a = _b.sent();
                         _b.label = 6;
-                    case 6: return [2 /*return*/, body];
+                    case 6:
+                        body = _a;
+                        return [3 /*break*/, 8];
+                    case 7:
+                        body = this.body;
+                        _b.label = 8;
+                    case 8: return [2 /*return*/, body];
                 }
             });
         });
@@ -23250,7 +23460,7 @@ function getChineseInfo () {
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
-/******/ 	
+/******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
 /******/ 		// Check if module is in cache
@@ -23264,17 +23474,17 @@ function getChineseInfo () {
 /******/ 			loaded: false,
 /******/ 			exports: {}
 /******/ 		};
-/******/ 	
+/******/
 /******/ 		// Execute the module function
 /******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/ 	
+/******/
 /******/ 		// Flag the module as loaded
 /******/ 		module.loaded = true;
-/******/ 	
+/******/
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/ 	
+/******/
 /************************************************************************/
 /******/ 	/* webpack/runtime/amd define */
 /******/ 	(() => {
@@ -23282,12 +23492,12 @@ function getChineseInfo () {
 /******/ 			throw new Error('define cannot be used indirect');
 /******/ 		};
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/amd options */
 /******/ 	(() => {
 /******/ 		__webpack_require__.amdO = {};
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
 /******/ 		// getDefaultExport function for compatibility with non-harmony modules
@@ -23299,7 +23509,7 @@ function getChineseInfo () {
 /******/ 			return getter;
 /******/ 		};
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -23311,7 +23521,7 @@ function getChineseInfo () {
 /******/ 			}
 /******/ 		};
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/global */
 /******/ 	(() => {
 /******/ 		__webpack_require__.g = (function() {
@@ -23323,12 +23533,12 @@ function getChineseInfo () {
 /******/ 			}
 /******/ 		})();
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
 /******/ 		// define __esModule on exports
@@ -23339,7 +23549,7 @@ function getChineseInfo () {
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/node module decorator */
 /******/ 	(() => {
 /******/ 		__webpack_require__.nmd = (module) => {
@@ -23348,15 +23558,15 @@ function getChineseInfo () {
 /******/ 			return module;
 /******/ 		};
 /******/ 	})();
-/******/ 	
+/******/
 /************************************************************************/
-/******/ 	
+/******/
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
 /******/ 	var __webpack_exports__ = __webpack_require__(280);
 /******/ 	__webpack_exports__ = __webpack_exports__["default"];
-/******/ 	
+/******/
 /******/ 	return __webpack_exports__;
 /******/ })()
 ;
