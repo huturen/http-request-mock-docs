@@ -63,11 +63,6 @@ mocker.mock({
   }
 });
 mocker.mock({
-  "url": "/getResult",
-  "body": require('./proto/getResult.js'),
-  "delay": 10
-});
-mocker.mock({
   "url": "https://www.api.com/remote1",
   "method": "GET",
   "body": require('./remote1.js'),

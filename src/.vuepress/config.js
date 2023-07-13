@@ -74,7 +74,7 @@ module.exports = config({
           children: [
             "", "static", "dynamic", "status", "headers", "delay",
             "times", "disable", "bypass", "faker", "cross", "logs",
-            "proto", "cache", "remote"
+            "cache", "remote"
           ],
         },
         "examples",

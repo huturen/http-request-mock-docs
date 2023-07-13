@@ -39,6 +39,5 @@ Options:
                                      This feature is designed for browser, so do not use it in a nodjs project.
                                      Note: proxy mode is still under experimental stage, only for experts.
                                      [matched] All requests matched by @url will be proxied to a proxy server. (default: "none")
-  --proto                            Generate mock files by proto files.
   -h, --help                         output usage information
 ```
