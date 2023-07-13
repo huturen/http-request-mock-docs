@@ -6,8 +6,8 @@
     <link>https://huturen.github.io/http-request-mock-docs/</link>
     <description>http-request-mock: A new way to speed up your development and testing.</description>
     <language>en-US</language>
-    <pubDate>Mon, 20 Mar 2023 15:16:16 GMT</pubDate>
-    <lastBuildDate>Mon, 20 Mar 2023 15:16:16 GMT</lastBuildDate>
+    <pubDate>Thu, 13 Jul 2023 14:54:51 GMT</pubDate>
+    <lastBuildDate>Thu, 13 Jul 2023 14:54:51 GMT</lastBuildDate>
     <generator>@mr-hope/vuepress-plugin-feed</generator>
     <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
     <item>
@@ -15,7 +15,7 @@
       <link>https://huturen.github.io/http-request-mock-docs/api/</link>
       <guid>https://huturen.github.io/http-request-mock-docs/api/</guid>
       <source url="https://huturen.github.io/http-request-mock-docs/rss.xml">API</source>
-      <pubDate>Mon, 20 Mar 2023 15:13:24 GMT</pubDate>
+      <pubDate>Thu, 13 Jul 2023 14:53:53 GMT</pubDate>
       <content:encoded><![CDATA[<h2 id="for-httprequestmock"> For HttpRequestMock</h2>
 <h3 id="setup-mocker"> setup() : Mocker:</h3>
 <p>Auto detect request environment and set up request mock.</p>
@@ -88,7 +88,7 @@
       <link>https://huturen.github.io/http-request-mock-docs/examples/</link>
       <guid>https://huturen.github.io/http-request-mock-docs/examples/</guid>
       <source url="https://huturen.github.io/http-request-mock-docs/rss.xml">Examples</source>
-      <pubDate>Mon, 20 Mar 2023 15:13:24 GMT</pubDate>
+      <pubDate>Thu, 13 Jul 2023 14:53:53 GMT</pubDate>
       <content:encoded><![CDATA[<ul>
 <li>
 <p>Integration with webpack-dev-server:
@@ -133,7 +133,7 @@
       <link>https://huturen.github.io/http-request-mock-docs/feature/bypass/</link>
       <guid>https://huturen.github.io/http-request-mock-docs/feature/bypass/</guid>
       <source url="https://huturen.github.io/http-request-mock-docs/rss.xml">Bypass mocking</source>
-      <pubDate>Mon, 20 Mar 2023 15:13:24 GMT</pubDate>
+      <pubDate>Thu, 13 Jul 2023 14:53:53 GMT</pubDate>
       <content:encoded><![CDATA[<div><p>Tips</p>
 <p>A mock config item can be bypassed dynamically.</p>
 </div>
@@ -202,7 +202,7 @@ module<span>.</span><span>exports</span> <span>=</span> <span>function</span><sp
       <link>https://huturen.github.io/http-request-mock-docs/feature/cache/</link>
       <guid>https://huturen.github.io/http-request-mock-docs/feature/cache/</guid>
       <source url="https://huturen.github.io/http-request-mock-docs/rss.xml">Cache</source>
-      <pubDate>Mon, 20 Mar 2023 15:13:24 GMT</pubDate>
+      <pubDate>Thu, 13 Jul 2023 14:53:53 GMT</pubDate>
       <content:encoded><![CDATA[<p><code>http-request-mock</code> supports the cache of data changes.</p>
 <feature-cache />
 <hr>
@@ -320,7 +320,7 @@ module<span>.</span><span>exports</span> <span>=</span> <span>(</span><span>requ
       <link>https://huturen.github.io/http-request-mock-docs/feature/cross/</link>
       <guid>https://huturen.github.io/http-request-mock-docs/feature/cross/</guid>
       <source url="https://huturen.github.io/http-request-mock-docs/rss.xml">Cross domain</source>
-      <pubDate>Mon, 20 Mar 2023 15:13:24 GMT</pubDate>
+      <pubDate>Thu, 13 Jul 2023 14:53:53 GMT</pubDate>
       <content:encoded><![CDATA[<p><code>http-request-mock</code> supports cross domain requests without any additional configurations.</p>
 <feature-cross />
 <hr>
@@ -379,7 +379,7 @@ module<span>.</span><span>exports</span> <span>=</span> <span>(</span><span>requ
       <link>https://huturen.github.io/http-request-mock-docs/feature/delay/</link>
       <guid>https://huturen.github.io/http-request-mock-docs/feature/delay/</guid>
       <source url="https://huturen.github.io/http-request-mock-docs/rss.xml">Delaying response</source>
-      <pubDate>Mon, 20 Mar 2023 15:13:24 GMT</pubDate>
+      <pubDate>Thu, 13 Jul 2023 14:53:53 GMT</pubDate>
       <content:encoded><![CDATA[<feature-delay />
 <h2 id="mock-data-file"> Mock data file</h2>
 <div><pre><code><span>/**
@@ -425,7 +425,7 @@ module<span>.</span>exports <span>=</span> <span>'delay mocking'</span><span>;</
       <link>https://huturen.github.io/http-request-mock-docs/feature/disable/</link>
       <guid>https://huturen.github.io/http-request-mock-docs/feature/disable/</guid>
       <source url="https://huturen.github.io/http-request-mock-docs/rss.xml">Disable mocking</source>
-      <pubDate>Mon, 20 Mar 2023 15:13:24 GMT</pubDate>
+      <pubDate>Thu, 13 Jul 2023 14:53:53 GMT</pubDate>
       <content:encoded><![CDATA[<feature-disable />
 <hr>
 <h2 id="mock-data-file"> Mock data file</h2>
@@ -487,7 +487,7 @@ module<span>.</span>exports <span>=</span> <span>{</span>
       <link>https://huturen.github.io/http-request-mock-docs/feature/dynamic/</link>
       <guid>https://huturen.github.io/http-request-mock-docs/feature/dynamic/</guid>
       <source url="https://huturen.github.io/http-request-mock-docs/rss.xml">Dynamic response</source>
-      <pubDate>Mon, 20 Mar 2023 15:13:24 GMT</pubDate>
+      <pubDate>Thu, 13 Jul 2023 14:53:53 GMT</pubDate>
       <content:encoded><![CDATA[<p>You can export a function instead of an object to resolve a dynamic response,
 so as to simulate a complex business logic in the real world.</p>
 <feature-dynamic />
@@ -545,7 +545,7 @@ module<span>.</span><span>exports</span> <span>=</span> <span>(</span><span>requ
       <link>https://huturen.github.io/http-request-mock-docs/feature/faker/</link>
       <guid>https://huturen.github.io/http-request-mock-docs/feature/faker/</guid>
       <source url="https://huturen.github.io/http-request-mock-docs/rss.xml">Fake data</source>
-      <pubDate>Mon, 20 Mar 2023 15:13:24 GMT</pubDate>
+      <pubDate>Thu, 13 Jul 2023 14:53:53 GMT</pubDate>
       <content:encoded><![CDATA[<p><code>http-request-mock</code> has integrated with <a href="https://github.com/ngneat/falso" target="_blank" rel="noopener noreferrer">@ngneat/falso</a>.</p>
 <p>You can use it to generate massive amounts of fake data.</p>
 <feature-faker />
@@ -600,7 +600,7 @@ module<span>.</span><span>exports</span> <span>=</span> <span>function</span><sp
       <link>https://huturen.github.io/http-request-mock-docs/feature/headers/</link>
       <guid>https://huturen.github.io/http-request-mock-docs/feature/headers/</guid>
       <source url="https://huturen.github.io/http-request-mock-docs/rss.xml">Response headers</source>
-      <pubDate>Mon, 20 Mar 2023 15:13:24 GMT</pubDate>
+      <pubDate>Thu, 13 Jul 2023 14:53:53 GMT</pubDate>
       <content:encoded><![CDATA[<feature-headers />
 <h2 id="mock-data-file"> Mock data file</h2>
 <div><pre><code><span>/**
@@ -647,7 +647,7 @@ module<span>.</span>exports <span>=</span> <span>'response headers mocking'</spa
       <link>https://huturen.github.io/http-request-mock-docs/feature/logs/</link>
       <guid>https://huturen.github.io/http-request-mock-docs/feature/logs/</guid>
       <source url="https://huturen.github.io/http-request-mock-docs/rss.xml">Logs</source>
-      <pubDate>Mon, 20 Mar 2023 15:13:24 GMT</pubDate>
+      <pubDate>Thu, 13 Jul 2023 14:53:53 GMT</pubDate>
       <content:encoded><![CDATA[<h2 id="default-logs"> Default logs</h2>
 <p>By default, in a non-nodejs-enviroment, <code>http-request-mock</code> will print some necessary
 logs if a request is matched with a mock config item. The logs contain request information
@@ -665,150 +665,11 @@ HttpRequetMock<span>.</span><span>disableLog</span><span>(</span><span>)</span><
       <enclosure url="https://huturen.github.io/http-request-mock-docs/http-request-mock-docs/imgs/logs.png" type="image/png"/>
     </item>
     <item>
-      <title>Probobuf</title>
-      <link>https://huturen.github.io/http-request-mock-docs/feature/proto/</link>
-      <guid>https://huturen.github.io/http-request-mock-docs/feature/proto/</guid>
-      <source url="https://huturen.github.io/http-request-mock-docs/rss.xml">Probobuf</source>
-      <pubDate>Mon, 20 Mar 2023 15:13:24 GMT</pubDate>
-      <content:encoded><![CDATA[<h2 id="support-for-generating-mock-data-by-proto-files"> Support for generating mock data by proto files.</h2>
-<ol>
-<li>
-<p>When the <code>npx http-request-mock-cli --proto</code> command is executed for
-the first time, a <code>.protorc.js</code> configuration file will be generated in
-the mock directory.</p>
-</li>
-<li>
-<p>You can set [protoEntry] option in the file below and run the command again.</p>
-</li>
-<li>
-<p>When the <code>npx http-request-mock-cli --proto</code> command is executed for
-the second time, the relevant mock files will be generated.</p>
-</li>
-</ol>
-<h2 id="protorc-js-file"> .protorc.js file</h2>
-<div><pre><code><span>const</span> faker <span>=</span> <span>require</span><span>(</span><span>'http-request-mock/plugin/faker.js'</span><span>)</span><span>.</span>shadow<span>;</span>
-<span>const</span> path <span>=</span> <span>require</span><span>(</span><span>'path'</span><span>)</span><span>;</span>
-
-module<span>.</span>exports <span>=</span> <span>{</span>
-  <span>overwrite</span><span>:</span> <span>true</span><span>,</span>
-
-  <span>apiPrefix</span><span>:</span> <span>''</span><span>,</span>
-
-  <span>// The proto entry file. Absolute path.</span>
-  <span>protoEntry</span><span>:</span> <span>'/some/path/to/your/proto/files.proto'</span><span>,</span>
-
-  <span>// A list of search paths that are absolute for imported .proto files.</span>
-  <span>protoPaths</span><span>:</span> <span>[</span><span>]</span><span>,</span>
-
-
-  <span>// Generate mock files that match specified methods, such as: ['getUser', /^getUser.*/].</span>
-  <span>// Note: this option is exclusive with `exclude_methods`.</span>
-  <span>includeMethods</span><span>:</span> <span>[</span><span>]</span><span>,</span>
-
-  <span>// Skip methods that match specified items, such as: ['getUser', /^getUser.*/].</span>
-  <span>// Note: this option is exclusive with `include_methods`.</span>
-  <span>excludeMethods</span><span>:</span> <span>[</span><span>]</span><span>,</span>
-
-  <span>// Whether or not to generate proto request fields, default to false.</span>
-  <span>generateProtoRequestFields</span><span>:</span> <span>false</span><span>,</span>
-
-  <span>// The default length of a repeated field</span>
-  <span>repeatedLength</span><span>:</span> <span>(</span><span>)</span> <span>=></span> faker<span>.</span><span>rand</span><span>(</span><span>2</span><span>,</span> <span>5</span><span>)</span><span>,</span>
-
-  <span>// Set global default values for specified types</span>
-  <span>globalTypes</span><span>:</span> <span>{</span>
-    <span>int32</span><span>:</span> faker<span>.</span><span>integer</span><span>(</span><span>1</span><span>,</span> <span>10000</span><span>)</span><span>,</span>
-    <span>int64</span><span>:</span> <span>'faker.integer(1, 10000).toString()'</span><span>,</span>
-    <span>string</span><span>:</span> faker<span>.</span><span>string</span><span>(</span><span>5</span><span>,</span> <span>12</span><span>)</span><span>,</span>
-    <span>bool</span><span>:</span> faker<span>.</span><span>bool</span><span>(</span><span>)</span><span>,</span>
-    <span>double</span><span>:</span> faker<span>.</span><span>float</span><span>(</span><span>0</span><span>,</span> <span>10000</span><span>,</span> <span>2</span><span>)</span><span>,</span>
-    <span>float</span><span>:</span> faker<span>.</span><span>float</span><span>(</span><span>0</span><span>,</span> <span>10000</span><span>,</span> <span>2</span><span>)</span><span>,</span>
-    <span>uint32</span><span>:</span> faker<span>.</span><span>integer</span><span>(</span><span>0</span><span>,</span> <span>10000</span><span>)</span><span>,</span>
-    <span>uint64</span><span>:</span> faker<span>.</span><span>integer</span><span>(</span><span>0</span><span>,</span> <span>10000</span><span>)</span><span>,</span>
-    <span>sint32</span><span>:</span> faker<span>.</span><span>integer</span><span>(</span><span>-</span><span>10000</span><span>,</span> <span>10000</span><span>)</span><span>,</span>
-    <span>sint64</span><span>:</span> faker<span>.</span><span>integer</span><span>(</span><span>-</span><span>10000</span><span>,</span> <span>10000</span><span>)</span><span>,</span>
-    <span>fixed32</span><span>:</span> faker<span>.</span><span>integer</span><span>(</span><span>0</span><span>,</span> <span>10000</span><span>)</span><span>,</span>
-    <span>fixed64</span><span>:</span> faker<span>.</span><span>integer</span><span>(</span><span>0</span><span>,</span> <span>10000</span><span>)</span><span>,</span>
-    <span>sfixed32</span><span>:</span> faker<span>.</span><span>integer</span><span>(</span><span>-</span><span>10000</span><span>,</span> <span>10000</span><span>)</span><span>,</span>
-    <span>sfixed64</span><span>:</span> faker<span>.</span><span>integer</span><span>(</span><span>-</span><span>10000</span><span>,</span> <span>10000</span><span>)</span><span>,</span>
-    <span>bytes</span><span>:</span> faker<span>.</span><span>bytes</span><span>(</span><span>)</span><span>,</span>
-  <span>}</span><span>,</span>
-
-  <span>// Set global default values for specified fields.</span>
-  <span>globalFields</span><span>:</span> <span>{</span>
-    <span>code</span><span>:</span> <span>0</span><span>,</span>
-    <span>msg</span><span>:</span> <span>'ok'</span><span>,</span>
-    <span>id</span><span>:</span> <span>(</span><span>messageType</span><span>)</span> <span>=></span> <span>{</span>
-      <span>return</span> faker<span>.</span><span>incrementId</span><span>(</span><span>1</span><span>,</span> messageType<span>)</span><span>;</span>
-    <span>}</span><span>,</span>
-    <span>title</span><span>:</span> faker<span>.</span><span>text</span><span>(</span><span>)</span><span>,</span>
-    <span>name</span><span>:</span> faker<span>.</span><span>name</span><span>(</span><span>)</span><span>,</span>
-    <span>url</span><span>:</span> faker<span>.</span><span>url</span><span>(</span><span>)</span><span>,</span>
-    <span>email</span><span>:</span> faker<span>.</span><span>email</span><span>(</span><span>)</span><span>,</span>
-    <span>avatar</span><span>:</span> faker<span>.</span><span>avatar</span><span>(</span><span>)</span><span>,</span>
-    <span>image</span><span>:</span> faker<span>.</span><span>image</span><span>(</span><span>)</span><span>,</span>
-    <span>datetime</span><span>:</span> faker<span>.</span><span>datetime</span><span>(</span><span>)</span><span>,</span>
-    <span>ip</span><span>:</span> faker<span>.</span><span>ip</span><span>(</span><span>)</span><span>,</span>
-    <span>phone</span><span>:</span> faker<span>.</span><span>phone</span><span>(</span><span>)</span><span>,</span>
-    <span>address</span><span>:</span> faker<span>.</span><span>address</span><span>(</span><span>)</span><span>,</span>
-    <span>guid</span><span>:</span> faker<span>.</span><span>guid</span><span>(</span><span>)</span><span>,</span>
-  <span>}</span>
-<span>}</span><span>;</span>
-</code></pre>
-</div><h2 id="proto-file"> Proto file</h2>
-<div><pre><code>syntax = &quot;proto3&quot;;
-package proto_messages;
-
-message Request {
-}
-
-message Record {
-  uint32 id    = 1;
-  string name  = 2;
-  uint32 age   = 3;
-  string email = 4;
-}
-
-message Result {
-  uint32 code = 1;
-  string msg  = 2;
-  Record data = 3;
-}
-
-service Api {
-  rpc getResult (Request) returns (Result);
-}
-
-</code></pre>
-</div><h2 id="mock-data-file-which-is-generated-by-command"> Mock data file which is generated by command</h2>
-<div><pre><code><span>/**
- * @url /getResult
- * @delay 10
- * @method any
- */</span>
-<span>/* eslint-disable */</span>
-<span>const</span> <span>{</span> faker <span>}</span> <span>=</span> <span>require</span><span>(</span><span>'http-request-mock/http-request-mock.js'</span><span>)</span><span>;</span>
-module<span>.</span><span>exports</span> <span>=</span> <span>(</span><span>request</span><span>)</span> <span>=></span> <span>{</span>
-  <span>return</span> <span>{</span>
-    <span>code</span><span>:</span> <span>0</span><span>,</span>
-    <span>msg</span><span>:</span> <span>"ok"</span><span>,</span>
-    <span>data</span><span>:</span> <span>{</span>
-      <span>id</span><span>:</span> faker<span>.</span><span>incrementId</span><span>(</span><span>1</span><span>,</span> <span>"Record"</span><span>)</span><span>,</span>
-      <span>name</span><span>:</span> faker<span>.</span><span>name</span><span>(</span><span>)</span><span>,</span>
-      <span>age</span><span>:</span> faker<span>.</span><span>integer</span><span>(</span><span>0</span><span>,</span> <span>10000</span><span>)</span><span>,</span>
-      <span>email</span><span>:</span> faker<span>.</span><span>email</span><span>(</span><span>)</span><span>,</span>
-    <span>}</span><span>,</span>
-  <span>}</span>
-<span>}</span><span>;</span>
-</code></pre>
-</div>]]></content:encoded>
-    </item>
-    <item>
       <title>Features</title>
       <link>https://huturen.github.io/http-request-mock-docs/feature/</link>
       <guid>https://huturen.github.io/http-request-mock-docs/feature/</guid>
       <source url="https://huturen.github.io/http-request-mock-docs/rss.xml">Features</source>
-      <pubDate>Mon, 20 Mar 2023 15:13:24 GMT</pubDate>
+      <pubDate>Thu, 13 Jul 2023 14:53:53 GMT</pubDate>
       <content:encoded><![CDATA[<ul>
 <li><a href="/http-request-mock-docs/feature/static">Static response</a></li>
 <li><a href="/http-request-mock-docs/feature/dynamic">Dynamic response</a></li>
@@ -821,7 +682,6 @@ module<span>.</span><span>exports</span> <span>=</span> <span>(</span><span>requ
 <li><a href="/http-request-mock-docs/feature/faker">Fake data</a></li>
 <li><a href="/http-request-mock-docs/feature/cross">Cross domain</a></li>
 <li><a href="/http-request-mock-docs/feature/logs">Logs</a></li>
-<li><a href="/http-request-mock-docs/feature/proto">Proto</a></li>
 <li><a href="/http-request-mock-docs/feature/cache">Cache</a></li>
 <li><a href="/http-request-mock-docs/feature/remote">Remote mock data</a></li>
 </ul>
@@ -832,7 +692,7 @@ module<span>.</span><span>exports</span> <span>=</span> <span>(</span><span>requ
       <link>https://huturen.github.io/http-request-mock-docs/feature/remote/</link>
       <guid>https://huturen.github.io/http-request-mock-docs/feature/remote/</guid>
       <source url="https://huturen.github.io/http-request-mock-docs/rss.xml">Remote mock data</source>
-      <pubDate>Mon, 20 Mar 2023 15:13:24 GMT</pubDate>
+      <pubDate>Thu, 13 Jul 2023 14:53:53 GMT</pubDate>
       <content:encoded><![CDATA[<p><code>http-request-mock</code> supports for using remote mock data.</p>
 <feature-remote />
 <h2 id="mock-data-file"> Mock data file</h2>
@@ -920,7 +780,7 @@ module<span>.</span><span>exports</span> <span>=</span> <span>remote</span> <spa
       <link>https://huturen.github.io/http-request-mock-docs/feature/static/</link>
       <guid>https://huturen.github.io/http-request-mock-docs/feature/static/</guid>
       <source url="https://huturen.github.io/http-request-mock-docs/rss.xml">Static response</source>
-      <pubDate>Mon, 20 Mar 2023 15:13:24 GMT</pubDate>
+      <pubDate>Thu, 13 Jul 2023 14:53:53 GMT</pubDate>
       <content:encoded><![CDATA[<feature-static />
 <hr>
 <h2 id="mock-data-file"> Mock data file</h2>
@@ -976,7 +836,7 @@ module<span>.</span>exports <span>=</span> <span>{</span> <span>ret</span><span>
       <link>https://huturen.github.io/http-request-mock-docs/feature/status/</link>
       <guid>https://huturen.github.io/http-request-mock-docs/feature/status/</guid>
       <source url="https://huturen.github.io/http-request-mock-docs/rss.xml">HTTP status</source>
-      <pubDate>Mon, 20 Mar 2023 15:13:24 GMT</pubDate>
+      <pubDate>Thu, 13 Jul 2023 14:53:53 GMT</pubDate>
       <content:encoded><![CDATA[<feature-status />
 <hr>
 <h2 id="mock-data-file"> Mock data file</h2>
@@ -1023,7 +883,7 @@ module<span>.</span>exports <span>=</span> <span>'Not Found'</span>
       <link>https://huturen.github.io/http-request-mock-docs/feature/times/</link>
       <guid>https://huturen.github.io/http-request-mock-docs/feature/times/</guid>
       <source url="https://huturen.github.io/http-request-mock-docs/rss.xml">Limited number</source>
-      <pubDate>Mon, 20 Mar 2023 15:13:24 GMT</pubDate>
+      <pubDate>Thu, 13 Jul 2023 14:53:53 GMT</pubDate>
       <content:encoded><![CDATA[<h2 id="limited-number-of-mocking"> Limited number of mocking</h2>
 <div><p>Note</p>
 <p>The mock item defined in the mock data file below will be deactivated after <mark>2</mark> requests.</p>
@@ -1085,7 +945,7 @@ module<span>.</span>exports <span>=</span> <span>{</span> <span>mock</span><span
       <link>https://huturen.github.io/http-request-mock-docs/install/</link>
       <guid>https://huturen.github.io/http-request-mock-docs/install/</guid>
       <source url="https://huturen.github.io/http-request-mock-docs/rss.xml">Installation</source>
-      <pubDate>Mon, 20 Mar 2023 15:13:24 GMT</pubDate>
+      <pubDate>Thu, 13 Jul 2023 14:53:53 GMT</pubDate>
       <content:encoded><![CDATA[<p>You can use <code>http-request-mock</code> to speed up your development and testing.</p>
 <p><strong>NPM</strong>:</p>
 <p><code>npm install --save-dev http-request-mock</code></p>
@@ -1108,7 +968,7 @@ module<span>.</span>exports <span>=</span> <span>{</span> <span>mock</span><span
       <link>https://huturen.github.io/http-request-mock-docs/intro/</link>
       <guid>https://huturen.github.io/http-request-mock-docs/intro/</guid>
       <source url="https://huturen.github.io/http-request-mock-docs/rss.xml">Introduction</source>
-      <pubDate>Mon, 20 Mar 2023 15:13:24 GMT</pubDate>
+      <pubDate>Thu, 13 Jul 2023 14:53:53 GMT</pubDate>
       <content:encoded><![CDATA[<p>It mocks http requests issued by axios, jquery, superagent, node-fetch, got, (… you name it) by
 intercepting XMLHttpRequest, fetch, and nodejs native HTTP/HTTPS module requests at the low level.</p>
 <ol>
@@ -1133,7 +993,7 @@ to hack into your business code to mock something ever again after a one-time co
       <link>https://huturen.github.io/http-request-mock-docs/</link>
       <guid>https://huturen.github.io/http-request-mock-docs/</guid>
       <source url="https://huturen.github.io/http-request-mock-docs/rss.xml">Project home</source>
-      <pubDate>Mon, 20 Mar 2023 15:13:24 GMT</pubDate>
+      <pubDate>Thu, 13 Jul 2023 14:53:53 GMT</pubDate>
       <content:encoded><![CDATA[<hr>
 <p>An integration case with vue3:</p>
 <p><img src="/http-request-mock-docs/imgs/demonstration.gif" alt="Demonstration" /></p>
@@ -1183,7 +1043,7 @@ module<span>.</span><span>exports</span> <span>=</span> <span>(</span><span>req<
       <link>https://huturen.github.io/http-request-mock-docs/usage/bare-bones/</link>
       <guid>https://huturen.github.io/http-request-mock-docs/usage/bare-bones/</guid>
       <source url="https://huturen.github.io/http-request-mock-docs/rss.xml">Bare-bones</source>
-      <pubDate>Mon, 20 Mar 2023 15:13:24 GMT</pubDate>
+      <pubDate>Thu, 13 Jul 2023 14:53:53 GMT</pubDate>
       <content:encoded><![CDATA[<p>In a bare-bones example, you just import <code>http-request-mock</code> into
 your module entry(such as: src/index.js, components/abc.vue) and configure
 your mock datas there. Take a Vue project as an example:</p>
@@ -1233,7 +1093,7 @@ a day that you'll get a mess as the project grows.</p>
       <link>https://huturen.github.io/http-request-mock-docs/usage/cli/</link>
       <guid>https://huturen.github.io/http-request-mock-docs/usage/cli/</guid>
       <source url="https://huturen.github.io/http-request-mock-docs/rss.xml">CLI</source>
-      <pubDate>Mon, 20 Mar 2023 15:13:24 GMT</pubDate>
+      <pubDate>Thu, 13 Jul 2023 14:53:53 GMT</pubDate>
       <content:encoded><![CDATA[<h2 id="command-line-tool-options"> Command Line Tool Options</h2>
 <p><code>npx http-request-mock-cli -h</code>:</p>
 <div><pre><code>Usage: npx http-request-mock-cli [options]
@@ -1268,7 +1128,6 @@ Options:
                                      This feature is designed for browser, so do not use it in a nodjs project.
                                      Note: proxy mode is still under experimental stage, only for experts.
                                      [matched] All requests matched by @url will be proxied to a proxy server. (default: &quot;none&quot;)
-  --proto                            Generate mock files by proto files.
   -h, --help                         output usage information
 </code></pre>
 </div>]]></content:encoded>
@@ -1278,7 +1137,7 @@ Options:
       <link>https://huturen.github.io/http-request-mock-docs/usage/integration/</link>
       <guid>https://huturen.github.io/http-request-mock-docs/usage/integration/</guid>
       <source url="https://huturen.github.io/http-request-mock-docs/rss.xml">Integration</source>
-      <pubDate>Mon, 20 Mar 2023 15:13:24 GMT</pubDate>
+      <pubDate>Thu, 13 Jul 2023 14:53:53 GMT</pubDate>
       <content:encoded><![CDATA[<h2 id="integration"> Integration</h2>
 <p>For a large web application, we provide a webpack plugin and command
 tool to integrate your project. In this way, the mock data file can be
@@ -1380,7 +1239,7 @@ into the specified entry which may look like below:</li>
       <link>https://huturen.github.io/http-request-mock-docs/usage/mock/</link>
       <guid>https://huturen.github.io/http-request-mock-docs/usage/mock/</guid>
       <source url="https://huturen.github.io/http-request-mock-docs/rss.xml">Mock data file</source>
-      <pubDate>Mon, 20 Mar 2023 15:13:24 GMT</pubDate>
+      <pubDate>Thu, 13 Jul 2023 14:53:53 GMT</pubDate>
       <content:encoded><![CDATA[<p>You can define your mock data file like below:</p>
 <div><pre><code><span>/**
  * Note: Only the first comments block will be parsed.
@@ -1440,7 +1299,7 @@ module<span>.</span><span>exports</span> <span>=</span> <span>(</span><span>requ
       <link>https://huturen.github.io/http-request-mock-docs/usage/</link>
       <guid>https://huturen.github.io/http-request-mock-docs/usage/</guid>
       <source url="https://huturen.github.io/http-request-mock-docs/rss.xml">Usage</source>
-      <pubDate>Mon, 20 Mar 2023 15:13:24 GMT</pubDate>
+      <pubDate>Thu, 13 Jul 2023 14:53:53 GMT</pubDate>
       <content:encoded><![CDATA[<ul>
 <li><a href="/http-request-mock-docs/usage/start">Start</a></li>
 <li><a href="/http-request-mock-docs/usage/minimum">Bare-bones</a></li>
@@ -1457,7 +1316,7 @@ module<span>.</span><span>exports</span> <span>=</span> <span>(</span><span>requ
       <link>https://huturen.github.io/http-request-mock-docs/usage/start/</link>
       <guid>https://huturen.github.io/http-request-mock-docs/usage/start/</guid>
       <source url="https://huturen.github.io/http-request-mock-docs/rss.xml">Start</source>
-      <pubDate>Mon, 20 Mar 2023 15:13:24 GMT</pubDate>
+      <pubDate>Thu, 13 Jul 2023 14:53:53 GMT</pubDate>
       <content:encoded><![CDATA[<p>To mock an http request, just call a <code>mock</code> method or http verb method(<code>get</code>,<code>post</code>,<code>put</code>,<code>patch</code>,<code>delete</code>).</p>
 <div><pre><code><span>import</span> HttpRequestMock <span>from</span> <span>'http-request-mock'</span><span>;</span>
 <span>const</span> mocker <span>=</span> HttpRequestMock<span>.</span><span>setup</span><span>(</span><span>)</span><span>;</span>
@@ -1483,7 +1342,7 @@ mocker<span>.</span><span>get</span><span>(</span><span>'https://www.api.com/som
       <link>https://huturen.github.io/http-request-mock-docs/usage/test/</link>
       <guid>https://huturen.github.io/http-request-mock-docs/usage/test/</guid>
       <source url="https://huturen.github.io/http-request-mock-docs/rss.xml">Unit test</source>
-      <pubDate>Mon, 20 Mar 2023 15:13:24 GMT</pubDate>
+      <pubDate>Thu, 13 Jul 2023 14:53:53 GMT</pubDate>
       <content:encoded><![CDATA[<p>This library comes with built-in unit test capability and can be used in jest and mocha envrioment.
 The unit tests of this library are also based on itself.</p>
 <p>An example of jest：</p>
