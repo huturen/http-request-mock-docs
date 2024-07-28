@@ -12,7 +12,7 @@ return /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 287:
+/***/ 698:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
@@ -21,10 +21,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.Mocker = void 0;
-var fetch_1 = __importDefault(__webpack_require__(676));
-var wx_request_1 = __importDefault(__webpack_require__(833));
-var xml_http_request_1 = __importDefault(__webpack_require__(219));
-var mocker_1 = __importDefault(__webpack_require__(819));
+var fetch_1 = __importDefault(__webpack_require__(592));
+var wx_request_1 = __importDefault(__webpack_require__(353));
+var xml_http_request_1 = __importDefault(__webpack_require__(174));
+var mocker_1 = __importDefault(__webpack_require__(647));
 exports.Mocker = mocker_1.default;
 var BrowserPureIndex = /** @class */ (function () {
     function BrowserPureIndex() {
@@ -116,7 +116,7 @@ exports["default"] = BrowserPureIndex;
 
 /***/ }),
 
-/***/ 719:
+/***/ 650:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -132,7 +132,7 @@ exports["default"] = Bypass;
 
 /***/ }),
 
-/***/ 391:
+/***/ 849:
 /***/ ((__unused_webpack_module, exports) => {
 
 var __filename = "/index.js";
@@ -377,7 +377,7 @@ exports.getCallerFile = getCallerFile;
 
 /***/ }),
 
-/***/ 542:
+/***/ 856:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -452,12 +452,12 @@ exports.HTTPStatusCodes = {
 
 /***/ }),
 
-/***/ 667:
+/***/ 827:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var utils_1 = __webpack_require__(391);
+var utils_1 = __webpack_require__(849);
 var BaseInterceptor = /** @class */ (function () {
     function BaseInterceptor(mocker, proxyServer) {
         var _a;
@@ -534,7 +534,12 @@ var BaseInterceptor = /** @class */ (function () {
             return this.checkProxyUrl(url, method);
         }
         if (typeof URL === 'function' && typeof window === 'object' && window) {
-            return this.checkProxyUrl(new URL(url, window.location.href).href, method);
+            // https://github.com/huturen/http-request-mock/issues/21
+            // "window.location.href" might point to an embedded file (e.g., data:text/html;charset=utf-8,...),
+            // potentially leading to an "Invalid URL" error.
+            if (/^https?:\/\//i.test(window.location.href)) {
+                return this.checkProxyUrl(new URL(url, window.location.href).href, method);
+            }
         }
         if (typeof document === 'object' && document && typeof document.createElement === 'function') {
             var elemA = document.createElement('a');
@@ -571,7 +576,7 @@ exports["default"] = BaseInterceptor;
 
 /***/ }),
 
-/***/ 676:
+/***/ 592:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
@@ -616,7 +621,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -642,10 +647,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 /* eslint-disable @typescript-eslint/ban-types */
-var bypass_1 = __importDefault(__webpack_require__(719));
-var utils_1 = __webpack_require__(391);
-var config_1 = __webpack_require__(542);
-var base_1 = __importDefault(__webpack_require__(667));
+var bypass_1 = __importDefault(__webpack_require__(650));
+var utils_1 = __webpack_require__(849);
+var config_1 = __webpack_require__(856);
+var base_1 = __importDefault(__webpack_require__(827));
 var FetchInterceptor = /** @class */ (function (_super) {
     __extends(FetchInterceptor, _super);
     function FetchInterceptor(mocker, proxyServer) {
@@ -688,6 +693,7 @@ var FetchInterceptor = /** @class */ (function (_super) {
                     me.fetch(requestUrl, params).then(resolve).catch(reject);
                     return;
                 }
+                me.setTimeoutForSingal(params, reject);
                 var requestInfo = me.getRequestInfo(__assign(__assign({}, params), { url: requestUrl, method: method }));
                 requestInfo.doOriginalCall = function () { return __awaiter(_this, void 0, void 0, function () {
                     var res;
@@ -718,6 +724,25 @@ var FetchInterceptor = /** @class */ (function (_super) {
             });
         };
         return this;
+    };
+    FetchInterceptor.prototype.setTimeoutForSingal = function (params, reject) {
+        var _a;
+        if (!params.signal) {
+            return;
+        }
+        var defaultTimeoutMsg = 'request timed out';
+        // If the signal is already aborted, immediately throw in order to reject the promise.
+        if (params.signal.aborted) {
+            reject(params.signal.reason || new Error(defaultTimeoutMsg));
+        }
+        // Perform the main purpose of the API
+        // Call resolve(result) when done.
+        // Watch for 'abort' signals
+        (_a = params.signal) === null || _a === void 0 ? void 0 : _a.addEventListener("abort", function () {
+            var _a;
+            // Stop the main operation, reject the promise with the abort reason.
+            reject(((_a = params.signal) === null || _a === void 0 ? void 0 : _a.reason) || new Error(defaultTimeoutMsg));
+        });
     };
     /**
      * Set request headers for requests marked by remote config.
@@ -949,7 +974,7 @@ exports["default"] = FetchInterceptor;
 
 /***/ }),
 
-/***/ 833:
+/***/ 353:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
@@ -994,7 +1019,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -1020,9 +1045,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 /* eslint-disable @typescript-eslint/no-empty-function */
-var bypass_1 = __importDefault(__webpack_require__(719));
-var utils_1 = __webpack_require__(391);
-var base_1 = __importDefault(__webpack_require__(667));
+var bypass_1 = __importDefault(__webpack_require__(650));
+var utils_1 = __webpack_require__(849);
+var base_1 = __importDefault(__webpack_require__(827));
 var WxRequestInterceptor = /** @class */ (function (_super) {
     __extends(WxRequestInterceptor, _super);
     function WxRequestInterceptor(mocker, proxyServer) {
@@ -1257,7 +1282,7 @@ exports["default"] = WxRequestInterceptor;
 
 /***/ }),
 
-/***/ 219:
+/***/ 174:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
@@ -1302,7 +1327,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -1327,10 +1352,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var bypass_1 = __importDefault(__webpack_require__(719));
-var utils_1 = __webpack_require__(391);
-var config_1 = __webpack_require__(542);
-var base_1 = __importDefault(__webpack_require__(667));
+var bypass_1 = __importDefault(__webpack_require__(650));
+var utils_1 = __webpack_require__(849);
+var config_1 = __webpack_require__(856);
+var base_1 = __importDefault(__webpack_require__(827));
 var XMLHttpRequestInterceptor = /** @class */ (function (_super) {
     __extends(XMLHttpRequestInterceptor, _super);
     function XMLHttpRequestInterceptor(mocker, proxyServer) {
@@ -1459,8 +1484,12 @@ var XMLHttpRequestInterceptor = /** @class */ (function (_super) {
         var newXhr = new XMLHttpRequest();
         newXhr.responseType = xhr.responseType;
         newXhr.timeout = xhr.timeout;
+        this.setTimeoutTimer(newXhr);
         Object.assign(newXhr, { isMockRequest: false, bypassMock: true });
         newXhr.onreadystatechange = function () {
+            if (newXhr.isTimeout) {
+                return;
+            }
             if (newXhr.readyState === 4) {
                 var remoteResponse = {
                     status: newXhr.status,
@@ -1567,6 +1596,7 @@ var XMLHttpRequestInterceptor = /** @class */ (function (_super) {
                     case 0:
                         isBypassed = false;
                         mockItem = xhr.mockItem;
+                        this.setTimeoutTimer(xhr);
                         if (!(mockItem.delay && mockItem.delay > 0)) return [3 /*break*/, 3];
                         return [4 /*yield*/, (0, utils_1.sleep)(+mockItem.delay)];
                     case 1:
@@ -1584,6 +1614,27 @@ var XMLHttpRequestInterceptor = /** @class */ (function (_super) {
             });
         });
     };
+    XMLHttpRequestInterceptor.prototype.setTimeoutTimer = function (xhr) {
+        var _this = this;
+        var isEventReady = typeof Event !== 'undefined' && typeof xhr.dispatchEvent === 'function';
+        // If already set, ignore it
+        if (xhr.timeoutTimer) {
+            return true;
+        }
+        if (xhr.timeout) {
+            xhr.timeoutTimer = setTimeout(function () {
+                xhr.isTimeout = true;
+                if (typeof xhr.ontimeout === 'function') {
+                    xhr.ontimeout(_this.progressEvent('timeout'));
+                }
+                else if (isEventReady) {
+                    xhr.dispatchEvent(new Event('timeout'));
+                }
+            }, xhr.timeout);
+            return true;
+        }
+        return false;
+    };
     /**
      * Make mock response.
      * @param {XMLHttpRequestInstance} xhr
@@ -1597,6 +1648,10 @@ var XMLHttpRequestInterceptor = /** @class */ (function (_super) {
                 switch (_b.label) {
                     case 0:
                         mockItem = xhr.mockItem, requestInfo = xhr.requestInfo;
+                        if (xhr.isTimeout) {
+                            return [2 /*return*/, false];
+                        }
+                        clearTimeout(xhr.timeoutTimer);
                         now = Date.now();
                         if (!remoteResponse) return [3 /*break*/, 2];
                         return [4 /*yield*/, mockItem.sendBody(requestInfo, remoteResponse)];
@@ -1643,13 +1698,13 @@ var XMLHttpRequestInterceptor = /** @class */ (function (_super) {
             xhr.dispatchEvent(new Event('readystatechange'));
         }
         if (typeof xhr.onload === 'function') {
-            xhr.onload(this.event('load'));
+            xhr.onload(this.progressEvent('load'));
         }
         else if (isEventReady) {
             xhr.dispatchEvent(new Event('load'));
         }
         if (typeof xhr.onloadend === 'function') {
-            xhr.onloadend(this.event('loadend'));
+            xhr.onloadend(this.progressEvent('loadend'));
         }
         else if (isEventReady) {
             xhr.dispatchEvent(new Event('loadend'));
@@ -1658,32 +1713,36 @@ var XMLHttpRequestInterceptor = /** @class */ (function (_super) {
     XMLHttpRequestInterceptor.prototype.event = function (type) {
         return {
             type: type,
-            target: null,
-            currentTarget: null,
+            target: this.xhr,
+            currentTarget: this.xhr,
             eventPhase: 0,
             bubbles: false,
             cancelable: false,
             defaultPrevented: false,
             composed: false,
-            timeStamp: 294973.8000000119,
+            timeStamp: typeof (performance === null || performance === void 0 ? void 0 : performance.now) === 'function' ? performance.now() : 294973.8000000119,
             srcElement: null,
             returnValue: true,
             cancelBubble: false,
-            path: [],
+            // NONE, CAPTURING_PHASE, AT_TARGET, BUBBLING_PHASE
+            // path: [],
             NONE: 0,
-            CAPTURING_PHASE: 0,
-            AT_TARGET: 0,
-            BUBBLING_PHASE: 0,
+            CAPTURING_PHASE: 1,
+            AT_TARGET: 2,
+            BUBBLING_PHASE: 3,
             composedPath: function () { return []; },
             initEvent: function () { return void (0); },
             preventDefault: function () { return void (0); },
             stopImmediatePropagation: function () { return void (0); },
             stopPropagation: function () { return void (0); },
             isTrusted: false,
-            lengthComputable: false,
-            loaded: 1,
-            total: 1
         };
+    };
+    XMLHttpRequestInterceptor.prototype.progressEvent = function (type) {
+        var baseEvent = this.event(type);
+        return __assign(__assign({}, baseEvent), { lengthComputable: false, loaded: type === 'loadend' ? 1 : 0,
+            // a fake total size, not reliable
+            total: type === 'loadend' ? 1 : 0 });
     };
     /**
      * https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest/getAllResponseHeaders
@@ -1944,7 +2003,7 @@ var NotResolved = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 137:
+/***/ 142:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
@@ -1963,7 +2022,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -1988,8 +2047,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var bypass_1 = __importDefault(__webpack_require__(719));
-var utils_1 = __webpack_require__(391);
+var bypass_1 = __importDefault(__webpack_require__(650));
+var utils_1 = __webpack_require__(849);
 var MockItem = /** @class */ (function () {
     /**
      * Format specified mock item.
@@ -2104,7 +2163,7 @@ exports["default"] = MockItem;
 
 /***/ }),
 
-/***/ 819:
+/***/ 647:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
@@ -2123,9 +2182,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var utils_1 = __webpack_require__(391);
-var config_1 = __webpack_require__(542);
-var mock_item_1 = __importDefault(__webpack_require__(137));
+var utils_1 = __webpack_require__(849);
+var config_1 = __webpack_require__(856);
+var mock_item_1 = __importDefault(__webpack_require__(142));
 var Mocker = /** @class */ (function () {
     function Mocker(proxyServer) {
         var _a;
@@ -2580,7 +2639,7 @@ exports["default"] = Mocker;
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	var __webpack_exports__ = __webpack_require__(287);
+/******/ 	var __webpack_exports__ = __webpack_require__(698);
 /******/ 	__webpack_exports__ = __webpack_exports__["default"];
 /******/
 /******/ 	return __webpack_exports__;

@@ -11,7 +11,7 @@
 return /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 405:
+/***/ 395:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -20,203 +20,203 @@ __webpack_require__.r(__webpack_exports__);
 
 // EXPORTS
 __webpack_require__.d(__webpack_exports__, {
-  "rand": () => (/* binding */ rand),
-  "randAbbreviation": () => (/* binding */ randAbbreviation),
-  "randAccessory": () => (/* binding */ randAccessory),
-  "randAccount": () => (/* binding */ randAccount),
-  "randAddress": () => (/* binding */ randAddress),
-  "randAirline": () => (/* binding */ randAirline),
-  "randAirport": () => (/* binding */ randAirport),
-  "randAirportCode": () => (/* binding */ randAirportCode),
-  "randAirportName": () => (/* binding */ randAirportName),
-  "randAlpha": () => (/* binding */ randAlpha),
-  "randAlphaNumeric": () => (/* binding */ randAlphaNumeric),
-  "randAmericanFootballTeam": () => (/* binding */ randAmericanFootballTeam),
-  "randAnimalType": () => (/* binding */ randAnimalType),
-  "randArn": () => (/* binding */ randArn),
-  "randAvatar": () => (/* binding */ randAvatar),
-  "randAwsRegion": () => (/* binding */ randAwsRegion),
-  "randAwsRequestId": () => (/* binding */ randAwsRequestId),
-  "randAwsService": () => (/* binding */ randAwsService),
-  "randBaseballTeam": () => (/* binding */ randBaseballTeam),
-  "randBasketballTeam": () => (/* binding */ randBasketballTeam),
-  "randBear": () => (/* binding */ randBear),
-  "randBetweenDate": () => (/* binding */ randBetweenDate),
-  "randBinary": () => (/* binding */ randBinary),
-  "randBird": () => (/* binding */ randBird),
-  "randBitcoinAddress": () => (/* binding */ randBitcoinAddress),
-  "randBook": () => (/* binding */ randBook),
-  "randBoolean": () => (/* binding */ randBoolean),
-  "randBrand": () => (/* binding */ randBrand),
-  "randBrowser": () => (/* binding */ randBrowser),
-  "randCardinalDirection": () => (/* binding */ randCardinalDirection),
-  "randCat": () => (/* binding */ randCat),
-  "randCatchPhrase": () => (/* binding */ randCatchPhrase),
-  "randCetacean": () => (/* binding */ randCetacean),
-  "randCity": () => (/* binding */ randCity),
-  "randClothingSize": () => (/* binding */ randClothingSize),
-  "randCodeSnippet": () => (/* binding */ randCodeSnippet),
-  "randColor": () => (/* binding */ randColor),
-  "randCompanyName": () => (/* binding */ randCompanyName),
-  "randCountry": () => (/* binding */ randCountry),
-  "randCountryCode": () => (/* binding */ randCountryCode),
-  "randCounty": () => (/* binding */ randCounty),
-  "randCow": () => (/* binding */ randCow),
-  "randCreditCard": () => (/* binding */ randCreditCard),
-  "randCreditCardBrand": () => (/* binding */ randCreditCardBrand),
-  "randCreditCardCVV": () => (/* binding */ randCreditCardCVV),
-  "randCreditCardNumber": () => (/* binding */ randCreditCardNumber),
-  "randCrocodilia": () => (/* binding */ randCrocodilia),
-  "randCurrencyCode": () => (/* binding */ randCurrencyCode),
-  "randCurrencyName": () => (/* binding */ randCurrencyName),
-  "randCurrencySymbol": () => (/* binding */ randCurrencySymbol),
-  "randDatabaseCollation": () => (/* binding */ randDatabaseCollation),
-  "randDatabaseColumn": () => (/* binding */ randDatabaseColumn),
-  "randDatabaseEngine": () => (/* binding */ randDatabaseEngine),
-  "randDatabaseType": () => (/* binding */ randDatabaseType),
-  "randDepartment": () => (/* binding */ randDepartment),
-  "randDirection": () => (/* binding */ randDirection),
-  "randDirectoryPath": () => (/* binding */ randDirectoryPath),
-  "randDog": () => (/* binding */ randDog),
-  "randDomainName": () => (/* binding */ randDomainName),
-  "randDomainSuffix": () => (/* binding */ randDomainSuffix),
-  "randDrinks": () => (/* binding */ randDrinks),
-  "randEmail": () => (/* binding */ randEmail),
-  "randEmailProvider": () => (/* binding */ randEmailProvider),
-  "randEmoji": () => (/* binding */ randEmoji),
-  "randEthereumAddress": () => (/* binding */ randEthereumAddress),
-  "randFileExt": () => (/* binding */ randFileExt),
-  "randFileName": () => (/* binding */ randFileName),
-  "randFilePath": () => (/* binding */ randFilePath),
-  "randFileType": () => (/* binding */ randFileType),
-  "randFirstName": () => (/* binding */ randFirstName),
-  "randFish": () => (/* binding */ randFish),
-  "randFlightDetails": () => (/* binding */ randFlightDetails),
-  "randFlightNumber": () => (/* binding */ randFlightNumber),
-  "randFloat": () => (/* binding */ randFloat),
-  "randFontFamily": () => (/* binding */ randFontFamily),
-  "randFontSize": () => (/* binding */ randFontSize),
-  "randFood": () => (/* binding */ randFood),
-  "randFootballTeam": () => (/* binding */ randFootballTeam),
-  "randFrequency": () => (/* binding */ randFrequency),
-  "randFullAddress": () => (/* binding */ randFullAddress),
-  "randFullName": () => (/* binding */ randFullName),
-  "randFutureDate": () => (/* binding */ randFutureDate),
-  "randGender": () => (/* binding */ randGender),
-  "randGitBranch": () => (/* binding */ randGitBranch),
-  "randGitCommitEntry": () => (/* binding */ randGitCommitEntry),
-  "randGitCommitMessage": () => (/* binding */ randGitCommitMessage),
-  "randGitCommitSha": () => (/* binding */ randGitCommitSha),
-  "randGitShortSha": () => (/* binding */ randGitShortSha),
-  "randHex": () => (/* binding */ randHex),
-  "randHexaDecimal": () => (/* binding */ randHexaDecimal),
-  "randHorse": () => (/* binding */ randHorse),
-  "randHsl": () => (/* binding */ randHsl),
-  "randHttpMethod": () => (/* binding */ randHttpMethod),
-  "randIban": () => (/* binding */ randIban),
-  "randIceHockeyTeam": () => (/* binding */ randIceHockeyTeam),
-  "randImg": () => (/* binding */ randImg),
-  "randIntegration": () => (/* binding */ randIntegration),
-  "randIp": () => (/* binding */ randIp),
-  "randIpv6": () => (/* binding */ randIpv6),
-  "randJSON": () => (/* binding */ randJSON),
-  "randJobArea": () => (/* binding */ randJobArea),
-  "randJobDescriptor": () => (/* binding */ randJobDescriptor),
-  "randJobTitle": () => (/* binding */ randJobTitle),
-  "randJobType": () => (/* binding */ randJobType),
-  "randLanguage": () => (/* binding */ randLanguage),
-  "randLastName": () => (/* binding */ randLastName),
-  "randLatitude": () => (/* binding */ randLatitude),
-  "randLine": () => (/* binding */ randLine),
-  "randLines": () => (/* binding */ randLines),
-  "randLion": () => (/* binding */ randLion),
-  "randLocale": () => (/* binding */ randLocale),
-  "randLongitude": () => (/* binding */ randLongitude),
-  "randMac": () => (/* binding */ randMac),
-  "randMask": () => (/* binding */ randMask),
-  "randMimeType": () => (/* binding */ randMimeType),
-  "randMonth": () => (/* binding */ randMonth),
-  "randMovie": () => (/* binding */ randMovie),
-  "randMovieCharacter": () => (/* binding */ randMovieCharacter),
-  "randMusicGenre": () => (/* binding */ randMusicGenre),
-  "randNearbyGPSCoordinate": () => (/* binding */ randNearbyGPSCoordinate),
-  "randNumber": () => (/* binding */ randNumber),
-  "randOAuthProvider": () => (/* binding */ randOAuthProvider),
-  "randOctal": () => (/* binding */ randOctal),
-  "randOrdinalDirection": () => (/* binding */ randOrdinalDirection),
-  "randParagraph": () => (/* binding */ randParagraph),
-  "randPassword": () => (/* binding */ randPassword),
-  "randPastDate": () => (/* binding */ randPastDate),
-  "randPermission": () => (/* binding */ randPermission),
-  "randPersonTitle": () => (/* binding */ randPersonTitle),
-  "randPhoneNumber": () => (/* binding */ randPhoneNumber),
-  "randPhrase": () => (/* binding */ randPhrase),
-  "randPort": () => (/* binding */ randPort),
-  "randPost": () => (/* binding */ randPost),
-  "randPriority": () => (/* binding */ randPriority),
-  "randProduct": () => (/* binding */ randProduct),
-  "randProductAdjective": () => (/* binding */ randProductAdjective),
-  "randProductCategory": () => (/* binding */ randProductCategory),
-  "randProductDescription": () => (/* binding */ randProductDescription),
-  "randProductMaterial": () => (/* binding */ randProductMaterial),
-  "randProductName": () => (/* binding */ randProductName),
-  "randProgrammingLanguage": () => (/* binding */ randProgrammingLanguage),
-  "randPronoun": () => (/* binding */ randPronoun),
-  "randProtocol": () => (/* binding */ randProtocol),
-  "randQuote": () => (/* binding */ randQuote),
-  "randRabbit": () => (/* binding */ randRabbit),
-  "randRecentDate": () => (/* binding */ randRecentDate),
-  "randRgb": () => (/* binding */ randRgb),
-  "randRole": () => (/* binding */ randRole),
-  "randRoutingNumber": () => (/* binding */ randRoutingNumber),
-  "randSeatNumber": () => (/* binding */ randSeatNumber),
-  "randSemver": () => (/* binding */ randSemver),
-  "randSentence": () => (/* binding */ randSentence),
-  "randSequence": () => (/* binding */ randSequence),
-  "randShape": () => (/* binding */ randShape),
-  "randSinger": () => (/* binding */ randSinger),
-  "randSkill": () => (/* binding */ randSkill),
-  "randSlug": () => (/* binding */ randSlug),
-  "randSnake": () => (/* binding */ randSnake),
-  "randSocial": () => (/* binding */ randSocial),
-  "randSong": () => (/* binding */ randSong),
-  "randSoonDate": () => (/* binding */ randSoonDate),
-  "randSports": () => (/* binding */ randSports),
-  "randSportsTeam": () => (/* binding */ randSportsTeam),
-  "randState": () => (/* binding */ randState),
-  "randStateAbbr": () => (/* binding */ randStateAbbr),
-  "randStatus": () => (/* binding */ randStatus),
-  "randStreetAddress": () => (/* binding */ randStreetAddress),
-  "randStreetName": () => (/* binding */ randStreetName),
-  "randSubscriptionPlan": () => (/* binding */ randSubscriptionPlan),
-  "randSuperhero": () => (/* binding */ randSuperhero),
-  "randSuperheroName": () => (/* binding */ randSuperheroName),
-  "randSvg": () => (/* binding */ randSvg),
-  "randText": () => (/* binding */ randText),
-  "randTextRange": () => (/* binding */ randTextRange),
-  "randTimeZone": () => (/* binding */ randTimeZone),
-  "randTodo": () => (/* binding */ randTodo),
-  "randTransactionType": () => (/* binding */ randTransactionType),
-  "randUrl": () => (/* binding */ randUrl),
-  "randUser": () => (/* binding */ randUser),
-  "randUserAgent": () => (/* binding */ randUserAgent),
-  "randUserName": () => (/* binding */ randUserName),
-  "randUuid": () => (/* binding */ randUuid),
-  "randVehicle": () => (/* binding */ randVehicle),
-  "randVehicleFuel": () => (/* binding */ randVehicleFuel),
-  "randVehicleManufacturer": () => (/* binding */ randVehicleManufacturer),
-  "randVehicleModel": () => (/* binding */ randVehicleModel),
-  "randVehicleType": () => (/* binding */ randVehicleType),
-  "randVerb": () => (/* binding */ randVerb),
-  "randWeekday": () => (/* binding */ randWeekday),
-  "randWord": () => (/* binding */ randWord),
-  "randZipCode": () => (/* binding */ randZipCode),
-  "random": () => (/* binding */ random),
-  "seed": () => (/* binding */ seed)
+  rand: () => (/* binding */ rand),
+  randAbbreviation: () => (/* binding */ randAbbreviation),
+  randAccessory: () => (/* binding */ randAccessory),
+  randAccount: () => (/* binding */ randAccount),
+  randAddress: () => (/* binding */ randAddress),
+  randAirline: () => (/* binding */ randAirline),
+  randAirport: () => (/* binding */ randAirport),
+  randAirportCode: () => (/* binding */ randAirportCode),
+  randAirportName: () => (/* binding */ randAirportName),
+  randAlpha: () => (/* binding */ randAlpha),
+  randAlphaNumeric: () => (/* binding */ randAlphaNumeric),
+  randAmericanFootballTeam: () => (/* binding */ randAmericanFootballTeam),
+  randAnimalType: () => (/* binding */ randAnimalType),
+  randArn: () => (/* binding */ randArn),
+  randAvatar: () => (/* binding */ randAvatar),
+  randAwsRegion: () => (/* binding */ randAwsRegion),
+  randAwsRequestId: () => (/* binding */ randAwsRequestId),
+  randAwsService: () => (/* binding */ randAwsService),
+  randBaseballTeam: () => (/* binding */ randBaseballTeam),
+  randBasketballTeam: () => (/* binding */ randBasketballTeam),
+  randBear: () => (/* binding */ randBear),
+  randBetweenDate: () => (/* binding */ randBetweenDate),
+  randBinary: () => (/* binding */ randBinary),
+  randBird: () => (/* binding */ randBird),
+  randBitcoinAddress: () => (/* binding */ randBitcoinAddress),
+  randBook: () => (/* binding */ randBook),
+  randBoolean: () => (/* binding */ randBoolean),
+  randBrand: () => (/* binding */ randBrand),
+  randBrowser: () => (/* binding */ randBrowser),
+  randCardinalDirection: () => (/* binding */ randCardinalDirection),
+  randCat: () => (/* binding */ randCat),
+  randCatchPhrase: () => (/* binding */ randCatchPhrase),
+  randCetacean: () => (/* binding */ randCetacean),
+  randCity: () => (/* binding */ randCity),
+  randClothingSize: () => (/* binding */ randClothingSize),
+  randCodeSnippet: () => (/* binding */ randCodeSnippet),
+  randColor: () => (/* binding */ randColor),
+  randCompanyName: () => (/* binding */ randCompanyName),
+  randCountry: () => (/* binding */ randCountry),
+  randCountryCode: () => (/* binding */ randCountryCode),
+  randCounty: () => (/* binding */ randCounty),
+  randCow: () => (/* binding */ randCow),
+  randCreditCard: () => (/* binding */ randCreditCard),
+  randCreditCardBrand: () => (/* binding */ randCreditCardBrand),
+  randCreditCardCVV: () => (/* binding */ randCreditCardCVV),
+  randCreditCardNumber: () => (/* binding */ randCreditCardNumber),
+  randCrocodilia: () => (/* binding */ randCrocodilia),
+  randCurrencyCode: () => (/* binding */ randCurrencyCode),
+  randCurrencyName: () => (/* binding */ randCurrencyName),
+  randCurrencySymbol: () => (/* binding */ randCurrencySymbol),
+  randDatabaseCollation: () => (/* binding */ randDatabaseCollation),
+  randDatabaseColumn: () => (/* binding */ randDatabaseColumn),
+  randDatabaseEngine: () => (/* binding */ randDatabaseEngine),
+  randDatabaseType: () => (/* binding */ randDatabaseType),
+  randDepartment: () => (/* binding */ randDepartment),
+  randDirection: () => (/* binding */ randDirection),
+  randDirectoryPath: () => (/* binding */ randDirectoryPath),
+  randDog: () => (/* binding */ randDog),
+  randDomainName: () => (/* binding */ randDomainName),
+  randDomainSuffix: () => (/* binding */ randDomainSuffix),
+  randDrinks: () => (/* binding */ randDrinks),
+  randEmail: () => (/* binding */ randEmail),
+  randEmailProvider: () => (/* binding */ randEmailProvider),
+  randEmoji: () => (/* binding */ randEmoji),
+  randEthereumAddress: () => (/* binding */ randEthereumAddress),
+  randFileExt: () => (/* binding */ randFileExt),
+  randFileName: () => (/* binding */ randFileName),
+  randFilePath: () => (/* binding */ randFilePath),
+  randFileType: () => (/* binding */ randFileType),
+  randFirstName: () => (/* binding */ randFirstName),
+  randFish: () => (/* binding */ randFish),
+  randFlightDetails: () => (/* binding */ randFlightDetails),
+  randFlightNumber: () => (/* binding */ randFlightNumber),
+  randFloat: () => (/* binding */ randFloat),
+  randFontFamily: () => (/* binding */ randFontFamily),
+  randFontSize: () => (/* binding */ randFontSize),
+  randFood: () => (/* binding */ randFood),
+  randFootballTeam: () => (/* binding */ randFootballTeam),
+  randFrequency: () => (/* binding */ randFrequency),
+  randFullAddress: () => (/* binding */ randFullAddress),
+  randFullName: () => (/* binding */ randFullName),
+  randFutureDate: () => (/* binding */ randFutureDate),
+  randGender: () => (/* binding */ randGender),
+  randGitBranch: () => (/* binding */ randGitBranch),
+  randGitCommitEntry: () => (/* binding */ randGitCommitEntry),
+  randGitCommitMessage: () => (/* binding */ randGitCommitMessage),
+  randGitCommitSha: () => (/* binding */ randGitCommitSha),
+  randGitShortSha: () => (/* binding */ randGitShortSha),
+  randHex: () => (/* binding */ randHex),
+  randHexaDecimal: () => (/* binding */ randHexaDecimal),
+  randHorse: () => (/* binding */ randHorse),
+  randHsl: () => (/* binding */ randHsl),
+  randHttpMethod: () => (/* binding */ randHttpMethod),
+  randIban: () => (/* binding */ randIban),
+  randIceHockeyTeam: () => (/* binding */ randIceHockeyTeam),
+  randImg: () => (/* binding */ randImg),
+  randIntegration: () => (/* binding */ randIntegration),
+  randIp: () => (/* binding */ randIp),
+  randIpv6: () => (/* binding */ randIpv6),
+  randJSON: () => (/* binding */ randJSON),
+  randJobArea: () => (/* binding */ randJobArea),
+  randJobDescriptor: () => (/* binding */ randJobDescriptor),
+  randJobTitle: () => (/* binding */ randJobTitle),
+  randJobType: () => (/* binding */ randJobType),
+  randLanguage: () => (/* binding */ randLanguage),
+  randLastName: () => (/* binding */ randLastName),
+  randLatitude: () => (/* binding */ randLatitude),
+  randLine: () => (/* binding */ randLine),
+  randLines: () => (/* binding */ randLines),
+  randLion: () => (/* binding */ randLion),
+  randLocale: () => (/* binding */ randLocale),
+  randLongitude: () => (/* binding */ randLongitude),
+  randMac: () => (/* binding */ randMac),
+  randMask: () => (/* binding */ randMask),
+  randMimeType: () => (/* binding */ randMimeType),
+  randMonth: () => (/* binding */ randMonth),
+  randMovie: () => (/* binding */ randMovie),
+  randMovieCharacter: () => (/* binding */ randMovieCharacter),
+  randMusicGenre: () => (/* binding */ randMusicGenre),
+  randNearbyGPSCoordinate: () => (/* binding */ randNearbyGPSCoordinate),
+  randNumber: () => (/* binding */ randNumber),
+  randOAuthProvider: () => (/* binding */ randOAuthProvider),
+  randOctal: () => (/* binding */ randOctal),
+  randOrdinalDirection: () => (/* binding */ randOrdinalDirection),
+  randParagraph: () => (/* binding */ randParagraph),
+  randPassword: () => (/* binding */ randPassword),
+  randPastDate: () => (/* binding */ randPastDate),
+  randPermission: () => (/* binding */ randPermission),
+  randPersonTitle: () => (/* binding */ randPersonTitle),
+  randPhoneNumber: () => (/* binding */ randPhoneNumber),
+  randPhrase: () => (/* binding */ randPhrase),
+  randPort: () => (/* binding */ randPort),
+  randPost: () => (/* binding */ randPost),
+  randPriority: () => (/* binding */ randPriority),
+  randProduct: () => (/* binding */ randProduct),
+  randProductAdjective: () => (/* binding */ randProductAdjective),
+  randProductCategory: () => (/* binding */ randProductCategory),
+  randProductDescription: () => (/* binding */ randProductDescription),
+  randProductMaterial: () => (/* binding */ randProductMaterial),
+  randProductName: () => (/* binding */ randProductName),
+  randProgrammingLanguage: () => (/* binding */ randProgrammingLanguage),
+  randPronoun: () => (/* binding */ randPronoun),
+  randProtocol: () => (/* binding */ randProtocol),
+  randQuote: () => (/* binding */ randQuote),
+  randRabbit: () => (/* binding */ randRabbit),
+  randRecentDate: () => (/* binding */ randRecentDate),
+  randRgb: () => (/* binding */ randRgb),
+  randRole: () => (/* binding */ randRole),
+  randRoutingNumber: () => (/* binding */ randRoutingNumber),
+  randSeatNumber: () => (/* binding */ randSeatNumber),
+  randSemver: () => (/* binding */ randSemver),
+  randSentence: () => (/* binding */ randSentence),
+  randSequence: () => (/* binding */ randSequence),
+  randShape: () => (/* binding */ randShape),
+  randSinger: () => (/* binding */ randSinger),
+  randSkill: () => (/* binding */ randSkill),
+  randSlug: () => (/* binding */ randSlug),
+  randSnake: () => (/* binding */ randSnake),
+  randSocial: () => (/* binding */ randSocial),
+  randSong: () => (/* binding */ randSong),
+  randSoonDate: () => (/* binding */ randSoonDate),
+  randSports: () => (/* binding */ randSports),
+  randSportsTeam: () => (/* binding */ randSportsTeam),
+  randState: () => (/* binding */ randState),
+  randStateAbbr: () => (/* binding */ randStateAbbr),
+  randStatus: () => (/* binding */ randStatus),
+  randStreetAddress: () => (/* binding */ randStreetAddress),
+  randStreetName: () => (/* binding */ randStreetName),
+  randSubscriptionPlan: () => (/* binding */ randSubscriptionPlan),
+  randSuperhero: () => (/* binding */ randSuperhero),
+  randSuperheroName: () => (/* binding */ randSuperheroName),
+  randSvg: () => (/* binding */ randSvg),
+  randText: () => (/* binding */ randText),
+  randTextRange: () => (/* binding */ randTextRange),
+  randTimeZone: () => (/* binding */ randTimeZone),
+  randTodo: () => (/* binding */ randTodo),
+  randTransactionType: () => (/* binding */ randTransactionType),
+  randUrl: () => (/* binding */ randUrl),
+  randUser: () => (/* binding */ randUser),
+  randUserAgent: () => (/* binding */ randUserAgent),
+  randUserName: () => (/* binding */ randUserName),
+  randUuid: () => (/* binding */ randUuid),
+  randVehicle: () => (/* binding */ randVehicle),
+  randVehicleFuel: () => (/* binding */ randVehicleFuel),
+  randVehicleManufacturer: () => (/* binding */ randVehicleManufacturer),
+  randVehicleModel: () => (/* binding */ randVehicleModel),
+  randVehicleType: () => (/* binding */ randVehicleType),
+  randVerb: () => (/* binding */ randVerb),
+  randWeekday: () => (/* binding */ randWeekday),
+  randWord: () => (/* binding */ randWord),
+  randZipCode: () => (/* binding */ randZipCode),
+  random: () => (/* binding */ random),
+  seed: () => (/* binding */ seed)
 });
 
 // EXTERNAL MODULE: ./node_modules/seedrandom/index.js
-var seedrandom = __webpack_require__(377);
+var seedrandom = __webpack_require__(391);
 var seedrandom_default = /*#__PURE__*/__webpack_require__.n(seedrandom);
 ;// CONCATENATED MODULE: ./node_modules/uuid/dist/esm-browser/rng.js
 // Unique ID creation requires a high quality random # generator. In the browser we therefore
@@ -19305,7 +19305,7 @@ function randAirportCode(options) {
 
 /***/ }),
 
-/***/ 377:
+/***/ 391:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 // A library of seedable RNGs implemented in Javascript.
@@ -19320,17 +19320,17 @@ function randAirportCode(options) {
 // alea, a 53-bit multiply-with-carry generator by Johannes Baagøe.
 // Period: ~2^116
 // Reported to pass all BigCrush tests.
-var alea = __webpack_require__(832);
+var alea = __webpack_require__(180);
 
 // xor128, a pure xor-shift generator by George Marsaglia.
 // Period: 2^128-1.
 // Reported to fail: MatrixRank and LinearComp.
-var xor128 = __webpack_require__(652);
+var xor128 = __webpack_require__(181);
 
 // xorwow, George Marsaglia's 160-bit xor-shift combined plus weyl.
 // Period: 2^192-2^32
 // Reported to fail: CollisionOver, SimpPoker, and LinearComp.
-var xorwow = __webpack_require__(801);
+var xorwow = __webpack_require__(31);
 
 // xorshift7, by François Panneton and Pierre L'ecuyer, takes
 // a different approach: it adds robustness by allowing more shifts
@@ -19338,7 +19338,7 @@ var xorwow = __webpack_require__(801);
 // with 256 bits, that passes BigCrush with no systmatic failures.
 // Period 2^256-1.
 // No systematic BigCrush failures reported.
-var xorshift7 = __webpack_require__(30);
+var xorshift7 = __webpack_require__(67);
 
 // xor4096, by Richard Brent, is a 4096-bit xor-shift with a
 // very long period that also adds a Weyl generator. It also passes
@@ -19347,18 +19347,18 @@ var xorshift7 = __webpack_require__(30);
 // collisions.
 // Period: 2^4128-2^32.
 // No systematic BigCrush failures reported.
-var xor4096 = __webpack_require__(618);
+var xor4096 = __webpack_require__(833);
 
 // Tyche-i, by Samuel Neves and Filipe Araujo, is a bit-shifting random
 // number generator derived from ChaCha, a modern stream cipher.
 // https://eden.dei.uc.pt/~sneves/pubs/2011-snfa2.pdf
 // Period: ~2^127
 // No systematic BigCrush failures reported.
-var tychei = __webpack_require__(49);
+var tychei = __webpack_require__(717);
 
 // The original ARC4-based prng included in this library.
 // Period: ~2^1600
-var sr = __webpack_require__(971);
+var sr = __webpack_require__(801);
 
 sr.alea = alea;
 sr.xor128 = xor128;
@@ -19372,7 +19372,7 @@ module.exports = sr;
 
 /***/ }),
 
-/***/ 832:
+/***/ 180:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* module decorator */ module = __webpack_require__.nmd(module);
@@ -19495,7 +19495,7 @@ if (module && module.exports) {
 
 /***/ }),
 
-/***/ 49:
+/***/ 717:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* module decorator */ module = __webpack_require__.nmd(module);
@@ -19607,7 +19607,7 @@ if (module && module.exports) {
 
 /***/ }),
 
-/***/ 652:
+/***/ 181:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* module decorator */ module = __webpack_require__.nmd(module);
@@ -19697,7 +19697,7 @@ if (module && module.exports) {
 
 /***/ }),
 
-/***/ 618:
+/***/ 833:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* module decorator */ module = __webpack_require__.nmd(module);
@@ -19852,7 +19852,7 @@ if (module && module.exports) {
 
 /***/ }),
 
-/***/ 30:
+/***/ 67:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* module decorator */ module = __webpack_require__.nmd(module);
@@ -19958,7 +19958,7 @@ if (module && module.exports) {
 
 /***/ }),
 
-/***/ 801:
+/***/ 31:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* module decorator */ module = __webpack_require__.nmd(module);
@@ -20053,7 +20053,7 @@ if (module && module.exports) {
 
 /***/ }),
 
-/***/ 971:
+/***/ 801:
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_RESULT__;/*
@@ -20291,7 +20291,7 @@ if ( true && module.exports) {
   module.exports = seedrandom;
   // When in node.js, try using crypto package for autoseeding.
   try {
-    nodecrypto = __webpack_require__(42);
+    nodecrypto = __webpack_require__(234);
   } catch (ex) {}
 } else if (true) {
   !(__WEBPACK_AMD_DEFINE_RESULT__ = (function() { return seedrandom; }).call(exports, __webpack_require__, exports, module),
@@ -20311,7 +20311,7 @@ if ( true && module.exports) {
 
 /***/ }),
 
-/***/ 287:
+/***/ 698:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -20321,10 +20321,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.Mocker = void 0;
-var fetch_1 = __importDefault(__webpack_require__(676));
-var wx_request_1 = __importDefault(__webpack_require__(833));
-var xml_http_request_1 = __importDefault(__webpack_require__(219));
-var mocker_1 = __importDefault(__webpack_require__(819));
+var fetch_1 = __importDefault(__webpack_require__(592));
+var wx_request_1 = __importDefault(__webpack_require__(353));
+var xml_http_request_1 = __importDefault(__webpack_require__(174));
+var mocker_1 = __importDefault(__webpack_require__(647));
 exports.Mocker = mocker_1.default;
 var BrowserPureIndex = /** @class */ (function () {
     function BrowserPureIndex() {
@@ -20416,7 +20416,7 @@ exports["default"] = BrowserPureIndex;
 
 /***/ }),
 
-/***/ 280:
+/***/ 640:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -20441,10 +20441,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.Mocker = void 0;
-var cache_js_1 = __importDefault(__webpack_require__(612));
-var faker_js_1 = __importDefault(__webpack_require__(975));
-var browser_pure_1 = __importDefault(__webpack_require__(287));
-var mocker_1 = __importDefault(__webpack_require__(819));
+var cache_js_1 = __importDefault(__webpack_require__(472));
+var faker_js_1 = __importDefault(__webpack_require__(843));
+var browser_pure_1 = __importDefault(__webpack_require__(698));
+var mocker_1 = __importDefault(__webpack_require__(647));
 exports.Mocker = mocker_1.default;
 /**
  * The same as BrowserPureIndex, but with "faker" and "cache" plugins.
@@ -20464,7 +20464,7 @@ exports["default"] = BrowserIndex;
 
 /***/ }),
 
-/***/ 719:
+/***/ 650:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -20481,7 +20481,7 @@ exports["default"] = Bypass;
 
 /***/ }),
 
-/***/ 391:
+/***/ 849:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -20727,7 +20727,7 @@ exports.getCallerFile = getCallerFile;
 
 /***/ }),
 
-/***/ 542:
+/***/ 856:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -20803,13 +20803,13 @@ exports.HTTPStatusCodes = {
 
 /***/ }),
 
-/***/ 667:
+/***/ 827:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var utils_1 = __webpack_require__(391);
+var utils_1 = __webpack_require__(849);
 var BaseInterceptor = /** @class */ (function () {
     function BaseInterceptor(mocker, proxyServer) {
         var _a;
@@ -20886,7 +20886,12 @@ var BaseInterceptor = /** @class */ (function () {
             return this.checkProxyUrl(url, method);
         }
         if (typeof URL === 'function' && typeof window === 'object' && window) {
-            return this.checkProxyUrl(new URL(url, window.location.href).href, method);
+            // https://github.com/huturen/http-request-mock/issues/21
+            // "window.location.href" might point to an embedded file (e.g., data:text/html;charset=utf-8,...),
+            // potentially leading to an "Invalid URL" error.
+            if (/^https?:\/\//i.test(window.location.href)) {
+                return this.checkProxyUrl(new URL(url, window.location.href).href, method);
+            }
         }
         if (typeof document === 'object' && document && typeof document.createElement === 'function') {
             var elemA = document.createElement('a');
@@ -20923,7 +20928,7 @@ exports["default"] = BaseInterceptor;
 
 /***/ }),
 
-/***/ 676:
+/***/ 592:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -20969,7 +20974,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -20995,10 +21000,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 /* eslint-disable @typescript-eslint/ban-types */
-var bypass_1 = __importDefault(__webpack_require__(719));
-var utils_1 = __webpack_require__(391);
-var config_1 = __webpack_require__(542);
-var base_1 = __importDefault(__webpack_require__(667));
+var bypass_1 = __importDefault(__webpack_require__(650));
+var utils_1 = __webpack_require__(849);
+var config_1 = __webpack_require__(856);
+var base_1 = __importDefault(__webpack_require__(827));
 var FetchInterceptor = /** @class */ (function (_super) {
     __extends(FetchInterceptor, _super);
     function FetchInterceptor(mocker, proxyServer) {
@@ -21041,6 +21046,7 @@ var FetchInterceptor = /** @class */ (function (_super) {
                     me.fetch(requestUrl, params).then(resolve).catch(reject);
                     return;
                 }
+                me.setTimeoutForSingal(params, reject);
                 var requestInfo = me.getRequestInfo(__assign(__assign({}, params), { url: requestUrl, method: method }));
                 requestInfo.doOriginalCall = function () { return __awaiter(_this, void 0, void 0, function () {
                     var res;
@@ -21071,6 +21077,25 @@ var FetchInterceptor = /** @class */ (function (_super) {
             });
         };
         return this;
+    };
+    FetchInterceptor.prototype.setTimeoutForSingal = function (params, reject) {
+        var _a;
+        if (!params.signal) {
+            return;
+        }
+        var defaultTimeoutMsg = 'request timed out';
+        // If the signal is already aborted, immediately throw in order to reject the promise.
+        if (params.signal.aborted) {
+            reject(params.signal.reason || new Error(defaultTimeoutMsg));
+        }
+        // Perform the main purpose of the API
+        // Call resolve(result) when done.
+        // Watch for 'abort' signals
+        (_a = params.signal) === null || _a === void 0 ? void 0 : _a.addEventListener("abort", function () {
+            var _a;
+            // Stop the main operation, reject the promise with the abort reason.
+            reject(((_a = params.signal) === null || _a === void 0 ? void 0 : _a.reason) || new Error(defaultTimeoutMsg));
+        });
     };
     /**
      * Set request headers for requests marked by remote config.
@@ -21302,7 +21327,7 @@ exports["default"] = FetchInterceptor;
 
 /***/ }),
 
-/***/ 833:
+/***/ 353:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -21348,7 +21373,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -21374,9 +21399,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 /* eslint-disable @typescript-eslint/no-empty-function */
-var bypass_1 = __importDefault(__webpack_require__(719));
-var utils_1 = __webpack_require__(391);
-var base_1 = __importDefault(__webpack_require__(667));
+var bypass_1 = __importDefault(__webpack_require__(650));
+var utils_1 = __webpack_require__(849);
+var base_1 = __importDefault(__webpack_require__(827));
 var WxRequestInterceptor = /** @class */ (function (_super) {
     __extends(WxRequestInterceptor, _super);
     function WxRequestInterceptor(mocker, proxyServer) {
@@ -21611,7 +21636,7 @@ exports["default"] = WxRequestInterceptor;
 
 /***/ }),
 
-/***/ 219:
+/***/ 174:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -21657,7 +21682,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -21682,10 +21707,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var bypass_1 = __importDefault(__webpack_require__(719));
-var utils_1 = __webpack_require__(391);
-var config_1 = __webpack_require__(542);
-var base_1 = __importDefault(__webpack_require__(667));
+var bypass_1 = __importDefault(__webpack_require__(650));
+var utils_1 = __webpack_require__(849);
+var config_1 = __webpack_require__(856);
+var base_1 = __importDefault(__webpack_require__(827));
 var XMLHttpRequestInterceptor = /** @class */ (function (_super) {
     __extends(XMLHttpRequestInterceptor, _super);
     function XMLHttpRequestInterceptor(mocker, proxyServer) {
@@ -21814,8 +21839,12 @@ var XMLHttpRequestInterceptor = /** @class */ (function (_super) {
         var newXhr = new XMLHttpRequest();
         newXhr.responseType = xhr.responseType;
         newXhr.timeout = xhr.timeout;
+        this.setTimeoutTimer(newXhr);
         Object.assign(newXhr, { isMockRequest: false, bypassMock: true });
         newXhr.onreadystatechange = function () {
+            if (newXhr.isTimeout) {
+                return;
+            }
             if (newXhr.readyState === 4) {
                 var remoteResponse = {
                     status: newXhr.status,
@@ -21922,6 +21951,7 @@ var XMLHttpRequestInterceptor = /** @class */ (function (_super) {
                     case 0:
                         isBypassed = false;
                         mockItem = xhr.mockItem;
+                        this.setTimeoutTimer(xhr);
                         if (!(mockItem.delay && mockItem.delay > 0)) return [3 /*break*/, 3];
                         return [4 /*yield*/, (0, utils_1.sleep)(+mockItem.delay)];
                     case 1:
@@ -21939,6 +21969,27 @@ var XMLHttpRequestInterceptor = /** @class */ (function (_super) {
             });
         });
     };
+    XMLHttpRequestInterceptor.prototype.setTimeoutTimer = function (xhr) {
+        var _this = this;
+        var isEventReady = typeof Event !== 'undefined' && typeof xhr.dispatchEvent === 'function';
+        // If already set, ignore it
+        if (xhr.timeoutTimer) {
+            return true;
+        }
+        if (xhr.timeout) {
+            xhr.timeoutTimer = setTimeout(function () {
+                xhr.isTimeout = true;
+                if (typeof xhr.ontimeout === 'function') {
+                    xhr.ontimeout(_this.progressEvent('timeout'));
+                }
+                else if (isEventReady) {
+                    xhr.dispatchEvent(new Event('timeout'));
+                }
+            }, xhr.timeout);
+            return true;
+        }
+        return false;
+    };
     /**
      * Make mock response.
      * @param {XMLHttpRequestInstance} xhr
@@ -21952,6 +22003,10 @@ var XMLHttpRequestInterceptor = /** @class */ (function (_super) {
                 switch (_b.label) {
                     case 0:
                         mockItem = xhr.mockItem, requestInfo = xhr.requestInfo;
+                        if (xhr.isTimeout) {
+                            return [2 /*return*/, false];
+                        }
+                        clearTimeout(xhr.timeoutTimer);
                         now = Date.now();
                         if (!remoteResponse) return [3 /*break*/, 2];
                         return [4 /*yield*/, mockItem.sendBody(requestInfo, remoteResponse)];
@@ -21998,13 +22053,13 @@ var XMLHttpRequestInterceptor = /** @class */ (function (_super) {
             xhr.dispatchEvent(new Event('readystatechange'));
         }
         if (typeof xhr.onload === 'function') {
-            xhr.onload(this.event('load'));
+            xhr.onload(this.progressEvent('load'));
         }
         else if (isEventReady) {
             xhr.dispatchEvent(new Event('load'));
         }
         if (typeof xhr.onloadend === 'function') {
-            xhr.onloadend(this.event('loadend'));
+            xhr.onloadend(this.progressEvent('loadend'));
         }
         else if (isEventReady) {
             xhr.dispatchEvent(new Event('loadend'));
@@ -22013,32 +22068,36 @@ var XMLHttpRequestInterceptor = /** @class */ (function (_super) {
     XMLHttpRequestInterceptor.prototype.event = function (type) {
         return {
             type: type,
-            target: null,
-            currentTarget: null,
+            target: this.xhr,
+            currentTarget: this.xhr,
             eventPhase: 0,
             bubbles: false,
             cancelable: false,
             defaultPrevented: false,
             composed: false,
-            timeStamp: 294973.8000000119,
+            timeStamp: typeof (performance === null || performance === void 0 ? void 0 : performance.now) === 'function' ? performance.now() : 294973.8000000119,
             srcElement: null,
             returnValue: true,
             cancelBubble: false,
-            path: [],
+            // NONE, CAPTURING_PHASE, AT_TARGET, BUBBLING_PHASE
+            // path: [],
             NONE: 0,
-            CAPTURING_PHASE: 0,
-            AT_TARGET: 0,
-            BUBBLING_PHASE: 0,
+            CAPTURING_PHASE: 1,
+            AT_TARGET: 2,
+            BUBBLING_PHASE: 3,
             composedPath: function () { return []; },
             initEvent: function () { return void (0); },
             preventDefault: function () { return void (0); },
             stopImmediatePropagation: function () { return void (0); },
             stopPropagation: function () { return void (0); },
             isTrusted: false,
-            lengthComputable: false,
-            loaded: 1,
-            total: 1
         };
+    };
+    XMLHttpRequestInterceptor.prototype.progressEvent = function (type) {
+        var baseEvent = this.event(type);
+        return __assign(__assign({}, baseEvent), { lengthComputable: false, loaded: type === 'loadend' ? 1 : 0,
+            // a fake total size, not reliable
+            total: type === 'loadend' ? 1 : 0 });
     };
     /**
      * https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest/getAllResponseHeaders
@@ -22299,7 +22358,7 @@ var NotResolved = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 137:
+/***/ 142:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -22319,7 +22378,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -22344,8 +22403,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var bypass_1 = __importDefault(__webpack_require__(719));
-var utils_1 = __webpack_require__(391);
+var bypass_1 = __importDefault(__webpack_require__(650));
+var utils_1 = __webpack_require__(849);
 var MockItem = /** @class */ (function () {
     /**
      * Format specified mock item.
@@ -22460,7 +22519,7 @@ exports["default"] = MockItem;
 
 /***/ }),
 
-/***/ 819:
+/***/ 647:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -22480,9 +22539,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var utils_1 = __webpack_require__(391);
-var config_1 = __webpack_require__(542);
-var mock_item_1 = __importDefault(__webpack_require__(137));
+var utils_1 = __webpack_require__(849);
+var config_1 = __webpack_require__(856);
+var mock_item_1 = __importDefault(__webpack_require__(142));
 var Mocker = /** @class */ (function () {
     function Mocker(proxyServer) {
         var _a;
@@ -22893,7 +22952,7 @@ exports["default"] = Mocker;
 
 /***/ }),
 
-/***/ 612:
+/***/ 472:
 /***/ ((module) => {
 
 /**
@@ -22955,7 +23014,7 @@ module.exports = function cacheWrapper(cacheKey, mockData) {
 
 /***/ }),
 
-/***/ 975:
+/***/ 843:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 const {
@@ -22980,7 +23039,7 @@ const {
   randUrl,
   randUuid,
   randWord
-} = __webpack_require__(405);
+} = __webpack_require__(395);
 
 const randArr = rand;
 const cache = {};
@@ -23449,7 +23508,7 @@ function getChineseInfo () {
 
 /***/ }),
 
-/***/ 42:
+/***/ 234:
 /***/ (() => {
 
 /* (ignored) */
@@ -23564,7 +23623,7 @@ function getChineseInfo () {
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	var __webpack_exports__ = __webpack_require__(280);
+/******/ 	var __webpack_exports__ = __webpack_require__(640);
 /******/ 	__webpack_exports__ = __webpack_exports__["default"];
 /******/
 /******/ 	return __webpack_exports__;
