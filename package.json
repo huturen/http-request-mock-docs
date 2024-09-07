@@ -7,7 +7,7 @@
     "build": "export NODE_OPTIONS=--openssl-legacy-provider && vuepress build src",
     "local-build": "vuepress build src",
     "clean-dev": "vuepress dev src --no-cache",
-    "dev": "http-request-mock-cli --index http-request-mock.js -e none -d src/mock -w \"vuepress dev src\"",
+    "dev": "export NODE_OPTIONS=--openssl-legacy-provider && http-request-mock-cli --index http-request-mock.js -e none -d src/mock -w \"vuepress dev src\"",
     "eject-theme": "vuepress eject-hope src"
   },
   "devDependencies": {
@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "axios": "^0.21.3",
-    "http-request-mock": "^1.8.17",
+    "http-request-mock": "^2.0.0",
     "localstorage-polyfill": "^1.0.1"
   }
 }

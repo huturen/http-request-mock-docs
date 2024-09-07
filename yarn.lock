@@ -3357,6 +3357,11 @@ commander@7:
   resolved "https://registry.npmjs.org/commander/-/commander-7.2.0.tgz"
   integrity sha512-QrWXB+ZQSVPmIWIhtEO9H+gwHaMGYiF5ChvoJ+K9ZGHG/sVsa6yiesAD1GC/x46sET00Xlwo1u49RVVVzvcSkw==
 
+commander@^12.1.0:
+  version "12.1.0"
+  resolved "https://registry.npmjs.org/commander/-/commander-12.1.0.tgz#01423b36f501259fdaac4d0e4d60c96c991585d3"
+  integrity sha512-Vw8qHK3bZM9y/P10u3Vib8o/DdkvA2OtPtZvD871QKjy74Wj1WSKFILMPRPSdUSx5RFK1arlJzEtA4PkFgnbuA==
+
 commander@^8.0.0:
   version "8.3.0"
   resolved "https://registry.npmjs.org/commander/-/commander-8.3.0.tgz"
@@ -5917,15 +5922,15 @@ http-proxy@^1.17.0, http-proxy@^1.18.1:
     follow-redirects "^1.0.0"
     requires-port "^1.0.0"
 
-http-request-mock@^1.8.17:
-  version "1.8.17"
-  resolved "https://registry.npmjs.org/http-request-mock/-/http-request-mock-1.8.17.tgz#d3670597d2d451892929ec602e5a9c3c73cce4e5"
-  integrity sha512-UtM39f+r4/tFlfFFjWeYmsNXk7xXK8daVw+2Rq0DEZS3e4xVb1kU9qfNa2wXNR7LeWi5KGtVycagzwv5ByEtFQ==
+http-request-mock@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npmjs.org/http-request-mock/-/http-request-mock-2.0.0.tgz#ad22208549fc28f3dd7bfab27568eb1a53d90848"
+  integrity sha512-YV6Ni+wX51Nh1sH5Umu69Nkwox/wYd086ARtUPhRJzcwVx5DlfQWbIJApYzrhEcEaW4ThkmDOH9ooWYc2pg6lQ==
   dependencies:
     "@ngneat/falso" "^4.0.0"
     "@types/follow-redirects" "^1.14.1"
     chokidar "^3.5.2"
-    commander "^2.20.3"
+    commander "^12.1.0"
     follow-redirects "^1.15.0"
     http-proxy "^1.18.1"
 

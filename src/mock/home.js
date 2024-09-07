@@ -1,8 +1,8 @@
 /**
  * @url https://api.com/xyz
  * @method get
- * @header content-type: application/json
- * @header abc: xyz
+ * @headers content-type: application/json
+ * @headers abc: xyz
  * @status 200
  * @delay 300
  */

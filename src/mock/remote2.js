@@ -6,7 +6,7 @@
  *
  * You can set request headers for the specified remote request
  * Note: For browser, target server must confirm to Access-Control-Allow-Headers specification
- * @requestHeaders abc: xyz
+ * @remoteRequestHeaders abc: xyz
  *
  * @method get
  */

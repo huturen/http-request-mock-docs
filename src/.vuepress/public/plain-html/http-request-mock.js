@@ -20488,7 +20488,7 @@ exports["default"] = Bypass;
 var __filename = "/index.js";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.getCallerFile = exports.isImported = exports.isPromise = exports.isNodejs = exports.currentDatetime = exports.currentTime = exports.currentDate = exports.isArrayBuffer = exports.str2arrayBuffer = exports.sleep = exports.tryToParseJson = exports.tryToParseObject = exports.isObject = exports.queryObject2String = exports.getQuery = void 0;
+exports.get = exports.getCallerFile = exports.isImported = exports.isPromise = exports.isNodejs = exports.currentDatetime = exports.currentTime = exports.currentDate = exports.isArrayBuffer = exports.str2arrayBuffer = exports.sleep = exports.tryToParseJson = exports.tryToParsePostBody = exports.tryToParseObject = exports.isObject = exports.queryObject2String = exports.getQuery = void 0;
 /**
  * Get query parameters from the specified request url.
  * https://www.sitepoint.com/get-url-parameters-with-javascript/
@@ -20575,6 +20575,22 @@ function tryToParseObject(body) {
     }
 }
 exports.tryToParseObject = tryToParseObject;
+function tryToParsePostBody(body) {
+    if (!body) {
+        return body;
+    }
+    if (typeof body === 'string') {
+        var info = tryToParseObject(body);
+        if (info && typeof info === 'object') {
+            return info;
+        }
+    }
+    if (typeof body === 'string' && body.includes('&') && body.includes('=')) {
+        return getQuery(body);
+    }
+    return body;
+}
+exports.tryToParsePostBody = tryToParsePostBody;
 /**
  * Try to parse a JSON string
  * @param {unknown} body
@@ -20723,6 +20739,25 @@ function getCallerFile() {
     }
 }
 exports.getCallerFile = getCallerFile;
+function get(obj, path, defaultValue) {
+    if (typeof path === 'string') {
+        path = path.replace(/\[(\w+)\]/g, '.$1');
+        path = path.split('.').filter(Boolean);
+    }
+    var result = obj;
+    for (var _i = 0, _a = path; _i < _a.length; _i++) {
+        var key = _a[_i];
+        if (result && result[key] !== undefined) {
+            result = result[key];
+        }
+        else {
+            result = undefined;
+            break;
+        }
+    }
+    return (result === undefined ? defaultValue : result);
+}
+exports.get = get;
 
 
 /***/ }),
@@ -20869,11 +20904,12 @@ var BaseInterceptor = /** @class */ (function () {
             method: requestInfo.method || 'GET',
             query: (0, utils_1.getQuery)(requestInfo.url),
         };
-        if (requestInfo.headers || requestInfo.header) {
-            info.headers = requestInfo.headers || requestInfo.header;
+        if ((0, utils_1.get)(requestInfo, 'headers') || (0, utils_1.get)(requestInfo, 'header')) {
+            info.headers = (0, utils_1.get)(requestInfo, 'headers') || (0, utils_1.get)(requestInfo, 'header');
         }
         if (requestInfo.body !== undefined) {
-            info.body = (0, utils_1.tryToParseObject)(requestInfo.body);
+            info.rawBody = requestInfo.body;
+            info.body = (0, utils_1.tryToParsePostBody)(requestInfo.body);
         }
         return info;
     };
@@ -21028,9 +21064,13 @@ var FetchInterceptor = /** @class */ (function (_super) {
             var _this = this;
             var url;
             var params;
-            // https://developer.mozilla.org/en-US/docs/Web/API/Request
-            // Note: the first argument of fetch maybe a Request object.
-            if (typeof input === 'object') {
+            // https://developer.mozilla.org/en-US/docs/Web/API/Window/fetch
+            // Note: the first argument of fetch maybe a Request or URL object.
+            if (input instanceof URL) {
+                url = input.toString();
+                params = init || {};
+            }
+            else if (typeof input === 'object') {
                 url = input.url;
                 params = input;
             }
@@ -21043,7 +21083,7 @@ var FetchInterceptor = /** @class */ (function (_super) {
             return new Promise(function (resolve, reject) {
                 var mockItem = me.matchMockRequest(requestUrl, method);
                 if (!mockItem) {
-                    me.fetch(requestUrl, params).then(resolve).catch(reject);
+                    me.fetch(input, init).then(resolve).catch(reject);
                     return;
                 }
                 me.setTimeoutForSingal(params, reject);
@@ -21063,10 +21103,12 @@ var FetchInterceptor = /** @class */ (function (_super) {
                 var remoteInfo = mockItem === null || mockItem === void 0 ? void 0 : mockItem.getRemoteInfo(requestUrl);
                 if (remoteInfo) {
                     params.method = remoteInfo.method || method;
-                    me.setRequestHeadersForRemoteRequest(mockItem, params);
-                    me.fetch(remoteInfo.url, params).then(function (fetchResponse) {
+                    me.setRemoteRequestHeaders(mockItem, params);
+                    me.fetch(remoteInfo.url, params)
+                        .then(function (fetchResponse) {
                         me.sendRemoteResult(fetchResponse, mockItem, requestInfo, resolve);
-                    }).catch(reject);
+                    })
+                        .catch(reject);
                     return;
                 }
                 me.doMockRequest(mockItem, requestInfo, resolve).then(function (isBypassed) {
@@ -21078,6 +21120,7 @@ var FetchInterceptor = /** @class */ (function (_super) {
         };
         return this;
     };
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     FetchInterceptor.prototype.setTimeoutForSingal = function (params, reject) {
         var _a;
         if (!params.signal) {
@@ -21091,7 +21134,7 @@ var FetchInterceptor = /** @class */ (function (_super) {
         // Perform the main purpose of the API
         // Call resolve(result) when done.
         // Watch for 'abort' signals
-        (_a = params.signal) === null || _a === void 0 ? void 0 : _a.addEventListener("abort", function () {
+        (_a = params.signal) === null || _a === void 0 ? void 0 : _a.addEventListener('abort', function () {
             var _a;
             // Stop the main operation, reject the promise with the abort reason.
             reject(((_a = params.signal) === null || _a === void 0 ? void 0 : _a.reason) || new Error(defaultTimeoutMsg));
@@ -21101,17 +21144,19 @@ var FetchInterceptor = /** @class */ (function (_super) {
      * Set request headers for requests marked by remote config.
      * @param {AnyObject} fetchParams
      */
-    FetchInterceptor.prototype.setRequestHeadersForRemoteRequest = function (mockItem, fetchParams) {
-        if (Object.keys(mockItem.requestHeaders).length <= 0)
+    FetchInterceptor.prototype.setRemoteRequestHeaders = function (mockItem, fetchParams) {
+        if (Object.keys(mockItem.remoteRequestHeaders).length <= 0)
             return;
-        if (typeof Headers === 'function' && fetchParams.headers instanceof Headers) {
-            Object.entries(mockItem.requestHeaders).forEach(function (_a) {
+        // https://developer.mozilla.org/en-US/docs/Web/API/Headers
+        if (typeof fetchParams.headers.set === 'function') {
+            Object.entries(mockItem.remoteRequestHeaders).forEach(function (_a) {
+                var _b;
                 var key = _a[0], val = _a[1];
-                fetchParams.headers.set(key, val);
+                (_b = fetchParams.headers) === null || _b === void 0 ? void 0 : _b.set(key, val);
             });
         }
         else {
-            fetchParams.headers = __assign(__assign({}, (fetchParams.headers || {})), mockItem.requestHeaders);
+            fetchParams.headers = __assign(__assign({}, (fetchParams.headers || {})), mockItem.remoteRequestHeaders);
         }
     };
     /**
@@ -21437,8 +21482,8 @@ var WxRequestInterceptor = /** @class */ (function (_super) {
                 if (mockItem && remoteInfo) {
                     wxRequestOpts.url = remoteInfo.url;
                     wxRequestOpts.method = remoteInfo.method || wxRequestOpts.method;
-                    if (Object.keys(mockItem.requestHeaders).length > 0) {
-                        wxRequestOpts.header = __assign(__assign({}, (wxRequestOpts.header || {})), mockItem.requestHeaders);
+                    if (Object.keys(mockItem.remoteRequestHeaders).length > 0) {
+                        wxRequestOpts.header = __assign(__assign({}, (wxRequestOpts.header || {})), mockItem.remoteRequestHeaders);
                     }
                     return _this.sendRemoteResult(wxRequestOpts, mockItem, requestInfo);
                 }
@@ -21806,7 +21851,7 @@ var XMLHttpRequestInterceptor = /** @class */ (function (_super) {
                     if (_this.isMockRequest) {
                         if (body !== null && body !== undefined) {
                             _this.requestInfo.rawBody = body;
-                            _this.requestInfo.body = (0, utils_1.tryToParseObject)(body);
+                            _this.requestInfo.body = (0, utils_1.tryToParsePostBody)(body);
                         }
                         // remoteInfo has a higher priority than BypassMock
                         var remoteInfo = (_a = _this.mockItem) === null || _a === void 0 ? void 0 : _a.getRemoteInfo(_this.requestInfo.url);
@@ -21863,7 +21908,7 @@ var XMLHttpRequestInterceptor = /** @class */ (function (_super) {
             }
         };
         newXhr.open(remoteInfo.method || method, remoteInfo.url, async, user, password);
-        Object.entries(mockItem.requestHeaders).forEach(function (_a) {
+        Object.entries(mockItem.remoteRequestHeaders).forEach(function (_a) {
             var key = _a[0], val = _a[1];
             newXhr.setRequestHeader(key, val);
         });
@@ -22068,8 +22113,8 @@ var XMLHttpRequestInterceptor = /** @class */ (function (_super) {
     XMLHttpRequestInterceptor.prototype.event = function (type) {
         return {
             type: type,
-            target: this.xhr,
-            currentTarget: this.xhr,
+            target: null,
+            currentTarget: null,
             eventPhase: 0,
             bubbles: false,
             cancelable: false,
@@ -22095,7 +22140,7 @@ var XMLHttpRequestInterceptor = /** @class */ (function (_super) {
     };
     XMLHttpRequestInterceptor.prototype.progressEvent = function (type) {
         var baseEvent = this.event(type);
-        return __assign(__assign({}, baseEvent), { lengthComputable: false, loaded: type === 'loadend' ? 1 : 0,
+        return __assign(__assign({}, baseEvent), { lengthComputable: false, loaded: type === 'loadend' ? 1 : 0, 
             // a fake total size, not reliable
             total: type === 'loadend' ? 1 : 0 });
     };
@@ -22421,11 +22466,11 @@ var MockItem = /** @class */ (function () {
         this.method = /^(get|post|put|patch|delete|head|any)$/i.test(mockItem.method || '')
             ? (_a = mockItem.method) === null || _a === void 0 ? void 0 : _a.toUpperCase()
             : 'ANY';
-        var reqHeaders = mockItem.requestHeaders;
-        var headers = mockItem.headers || mockItem.header;
-        this.header = headers && typeof headers === 'object' ? headers : {};
-        this.headers = headers && typeof headers === 'object' ? headers : {};
-        this.requestHeaders = reqHeaders && typeof reqHeaders === 'object' ? reqHeaders : {};
+        var reqHeaders = mockItem.remoteRequestHeaders;
+        var headers = (0, utils_1.get)(mockItem, 'headers') || (0, utils_1.get)(mockItem, 'header');
+        this.header = (headers && typeof headers === 'object' ? headers : {});
+        this.headers = (headers && typeof headers === 'object' ? headers : {});
+        this.remoteRequestHeaders = reqHeaders && typeof reqHeaders === 'object' ? reqHeaders : {};
         this.delay = mockItem.delay !== undefined && /^\d{0,15}$/.test(mockItem.delay + '') ? (+mockItem.delay) : 0;
         this.times = mockItem.times !== undefined && /^-?\d{0,15}$/.test(mockItem.times + '') ? +mockItem.times : Infinity;
         this.status = mockItem.status && /^[1-5][0-9][0-9]$/.test(mockItem.status + '') ? +mockItem.status : 200;
@@ -22687,11 +22732,10 @@ var Mocker = /** @class */ (function () {
             delay: 0,
             status: 200,
             times: Infinity,
-            header: {},
             headers: {}
         }; }
-        var delay = opts.delay, status = opts.status, times = opts.times, header = opts.header, headers = opts.headers;
-        this.mock({ url: url, method: 'GET', body: body, delay: delay, status: status, header: header, headers: headers, times: times });
+        var delay = opts.delay, status = opts.status, times = opts.times, headers = opts.headers;
+        this.mock({ url: url, method: 'GET', body: body, delay: delay, status: status, headers: headers, times: times });
         return this;
     };
     /**
@@ -22711,11 +22755,10 @@ var Mocker = /** @class */ (function () {
             delay: 0,
             status: 200,
             times: Infinity,
-            header: {},
             headers: {}
         }; }
-        var delay = opts.delay, status = opts.status, times = opts.times, header = opts.header, headers = opts.headers;
-        this.mock({ url: url, method: 'POST', body: body, delay: delay, status: status, header: header, headers: headers, times: times });
+        var delay = opts.delay, status = opts.status, times = opts.times, headers = opts.headers;
+        this.mock({ url: url, method: 'POST', body: body, delay: delay, status: status, headers: headers, times: times });
         return this;
     };
     /**
@@ -22735,11 +22778,10 @@ var Mocker = /** @class */ (function () {
             delay: 0,
             status: 200,
             times: Infinity,
-            header: {},
             headers: {}
         }; }
-        var delay = opts.delay, status = opts.status, times = opts.times, header = opts.header, headers = opts.headers;
-        this.mock({ url: url, method: 'PUT', body: body, delay: delay, status: status, header: header, headers: headers, times: times });
+        var delay = opts.delay, status = opts.status, times = opts.times, headers = opts.headers;
+        this.mock({ url: url, method: 'PUT', body: body, delay: delay, status: status, headers: headers, times: times });
         return this;
     };
     /**
@@ -22759,11 +22801,10 @@ var Mocker = /** @class */ (function () {
             delay: 0,
             status: 200,
             times: Infinity,
-            header: {},
             headers: {}
         }; }
-        var delay = opts.delay, status = opts.status, times = opts.times, header = opts.header, headers = opts.headers;
-        this.mock({ url: url, method: 'PATCH', body: body, delay: delay, status: status, header: header, headers: headers, times: times });
+        var delay = opts.delay, status = opts.status, times = opts.times, headers = opts.headers;
+        this.mock({ url: url, method: 'PATCH', body: body, delay: delay, status: status, headers: headers, times: times });
         return this;
     };
     /**
@@ -22783,11 +22824,10 @@ var Mocker = /** @class */ (function () {
             delay: 0,
             status: 200,
             times: Infinity,
-            header: {},
             headers: {}
         }; }
-        var delay = opts.delay, status = opts.status, times = opts.times, header = opts.header, headers = opts.headers;
-        this.mock({ url: url, method: 'DELETE', body: body, delay: delay, status: status, header: header, headers: headers, times: times });
+        var delay = opts.delay, status = opts.status, times = opts.times, headers = opts.headers;
+        this.mock({ url: url, method: 'DELETE', body: body, delay: delay, status: status, headers: headers, times: times });
         return this;
     };
     /**
@@ -22812,11 +22852,10 @@ var Mocker = /** @class */ (function () {
             delay: 0,
             status: 200,
             times: Infinity,
-            header: {},
             headers: {}
         }; }
-        var delay = opts.delay, status = opts.status, times = opts.times, header = opts.header, headers = opts.headers;
-        this.mock({ url: url, method: 'HEAD', body: '', delay: delay, status: status, header: header, headers: headers, times: times });
+        var delay = opts.delay, status = opts.status, times = opts.times, headers = opts.headers;
+        this.mock({ url: url, method: 'HEAD', body: '', delay: delay, status: status, headers: headers, times: times });
         return this;
     };
     /**
@@ -22836,11 +22875,10 @@ var Mocker = /** @class */ (function () {
             delay: 0,
             status: 200,
             times: Infinity,
-            header: {},
             headers: {}
         }; }
-        var delay = opts.delay, status = opts.status, times = opts.times, header = opts.header, headers = opts.headers;
-        this.mock({ url: url, method: 'ANY', body: body, delay: delay, status: status, header: header, headers: headers, times: times });
+        var delay = opts.delay, status = opts.status, times = opts.times, headers = opts.headers;
+        this.mock({ url: url, method: 'ANY', body: body, delay: delay, status: status, headers: headers, times: times });
         return this;
     };
     /**
@@ -23519,7 +23557,7 @@ function getChineseInfo () {
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
-/******/
+/******/ 	
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
 /******/ 		// Check if module is in cache
@@ -23533,17 +23571,17 @@ function getChineseInfo () {
 /******/ 			loaded: false,
 /******/ 			exports: {}
 /******/ 		};
-/******/
+/******/ 	
 /******/ 		// Execute the module function
 /******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/
+/******/ 	
 /******/ 		// Flag the module as loaded
 /******/ 		module.loaded = true;
-/******/
+/******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/
+/******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/amd define */
 /******/ 	(() => {
@@ -23551,12 +23589,12 @@ function getChineseInfo () {
 /******/ 			throw new Error('define cannot be used indirect');
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/amd options */
 /******/ 	(() => {
 /******/ 		__webpack_require__.amdO = {};
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
 /******/ 		// getDefaultExport function for compatibility with non-harmony modules
@@ -23568,7 +23606,7 @@ function getChineseInfo () {
 /******/ 			return getter;
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -23580,7 +23618,7 @@ function getChineseInfo () {
 /******/ 			}
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/global */
 /******/ 	(() => {
 /******/ 		__webpack_require__.g = (function() {
@@ -23592,12 +23630,12 @@ function getChineseInfo () {
 /******/ 			}
 /******/ 		})();
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
 /******/ 		// define __esModule on exports
@@ -23608,7 +23646,7 @@ function getChineseInfo () {
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/node module decorator */
 /******/ 	(() => {
 /******/ 		__webpack_require__.nmd = (module) => {
@@ -23617,15 +23655,15 @@ function getChineseInfo () {
 /******/ 			return module;
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /************************************************************************/
-/******/
+/******/ 	
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
 /******/ 	var __webpack_exports__ = __webpack_require__(640);
 /******/ 	__webpack_exports__ = __webpack_exports__["default"];
-/******/
+/******/ 	
 /******/ 	return __webpack_exports__;
 /******/ })()
 ;

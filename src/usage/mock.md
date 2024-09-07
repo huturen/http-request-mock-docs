@@ -25,7 +25,7 @@ You can define your mock data file like below:
  *
  * Request headers, only available for @remote tag
  * It can be set repeatedly.
- * @requestHeaders content-type: application/json
+ * @remoteRequestHeaders content-type: application/json
  *
  * Response http headers to be mocked.
  * It can be set repeatedly.
